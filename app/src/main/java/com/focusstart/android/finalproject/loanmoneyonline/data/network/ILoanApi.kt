@@ -1,6 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.data.network
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.*
+import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -12,33 +13,33 @@ interface ILoanApi {
     @POST("login")
     fun loginIntoApp(
         @Body bodyRequest: Auth
-    ): Call<ResponseBody>
+    ): Single<ResponseBody>
 
     @POST("registration")
     fun registrationInApp(
         @Body bodyRequest: Auth
-    ): Call<UserEntity>
+    ): Single<UserEntity>
 
     @GET("loans/")
     fun getLoansList(
         @Header("Authorization") authHeader: String
-    ): Call<List<Loan>>
+    ): Single<List<Loan>>
 
     @POST("loans/")
     fun createNewLoan(
         @Body bodyRequest: LoanRequest,
         @Header("Authorization") authHeader: String
-    ): Call<Loan>
+    ): Single<Loan>
 
     @GET("loans/{id}")
     fun getLoanData(
         @Header("Authorization") authHeader: String
       //id
-    ): Call<Loan>
+    ): Single<Loan>
 
     @GET("loans/conditions")
     fun getLoanConditions(
         @Header("Authorization") authHeader: String
-    ): Call<LoanConditions>
+    ): Single<LoanConditions>
 
 }
