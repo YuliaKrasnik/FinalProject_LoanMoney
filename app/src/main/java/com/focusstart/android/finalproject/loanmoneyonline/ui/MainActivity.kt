@@ -1,7 +1,8 @@
-package com.focusstart.android.finalproject.loanmoneyonline
+package com.focusstart.android.finalproject.loanmoneyonline.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.focusstart.android.finalproject.loanmoneyonline.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
