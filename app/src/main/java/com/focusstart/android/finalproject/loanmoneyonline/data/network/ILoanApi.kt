@@ -4,10 +4,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.data.model.*
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ILoanApi {
     @POST("login")
@@ -33,8 +30,8 @@ interface ILoanApi {
 
     @GET("loans/{id}")
     fun getLoanData(
+        @Path("id") idLoan: Int, 
         @Header("Authorization") authHeader: String
-      //id
     ): Single<Loan>
 
     @GET("loans/conditions")
