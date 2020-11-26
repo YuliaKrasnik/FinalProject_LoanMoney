@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.ui
+package com.focusstart.android.finalproject.loanmoneyonline.ui.listOfLoans
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
