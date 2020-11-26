@@ -7,18 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.SearchView
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.di.RegistrationPresenterFactory
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.IRegistrationPresenter
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.IRegistrationView
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.registration.IRegistrationPresenter
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.registration.IRegistrationView
 
 class RegistrationFragment : Fragment(), IRegistrationView {
     private var presenter: IRegistrationPresenter? = null
-
-    companion object {
-        fun newInstance() = RegistrationFragment()
-    }
 
     private lateinit var etNameUser: EditText
     private lateinit var etPasswordUser: EditText

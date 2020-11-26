@@ -1,7 +1,6 @@
-package com.focusstart.android.finalproject.loanmoneyonline.presentation
+package com.focusstart.android.finalproject.loanmoneyonline.presentation.registration
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.UserEntity
-import com.focusstart.android.finalproject.loanmoneyonline.domain.AuthenticationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.domain.RegistrationInAppUseCase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
