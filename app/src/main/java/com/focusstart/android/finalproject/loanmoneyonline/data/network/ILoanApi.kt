@@ -40,5 +40,5 @@ interface ILoanApi {
     fun getLoanConditions(
         @Header("Authorization") authHeader: String
     ): Call<LoanConditions>
-    
+
 }
