@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.presentation
+package com.focusstart.android.finalproject.loanmoneyonline.presentation.registration
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.UserEntity
 import com.focusstart.android.finalproject.loanmoneyonline.domain.RegistrationInAppUseCase

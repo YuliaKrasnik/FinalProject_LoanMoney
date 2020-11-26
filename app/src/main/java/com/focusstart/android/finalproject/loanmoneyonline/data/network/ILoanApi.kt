@@ -8,9 +8,9 @@ import retrofit2.http.*
 
 interface ILoanApi {
     @POST("login")
-    fun loginIntoApp(
+    fun authenticationIntoApp(
         @Body bodyRequest: Auth
-    ): Single<ResponseBody>
+    ): Single<Response<ResponseBody>>
 
     @POST("registration")
     fun registrationInApp(
