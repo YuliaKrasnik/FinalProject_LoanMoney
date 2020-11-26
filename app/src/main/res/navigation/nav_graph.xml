@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/applicationSettingsFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ApplicationSettingsFragment"
+        android:label="fragment_application_settings"
+        tools:layout="@layout/fragment_application_settings" />
+    <fragment
+        android:id="@+id/authenticationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.AuthenticationFragment"
+        android:label="fragment_authentication"
+        tools:layout="@layout/fragment_authentication" >
+        <action
+            android:id="@+id/action_authenticationFragment_to_listOfLoansFragment"
+            app:destination="@id/listOfLoansFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/explanationAfterRegisterLoanFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ExplanationAfterRegisterLoanFragment"
+        android:label="fragment_explanation_after_register_loan"
+        tools:layout="@layout/fragment_explanation_after_register_loan" >
+        <action
+            android:id="@+id/action_explanationAfterRegisterLoanFragment_to_listOfLoansFragment"
+            app:destination="@id/listOfLoansFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/explanationAfterRegistrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ExplanationAfterRegistrationFragment"
+        android:label="fragment_explanation_after_registration"
+        tools:layout="@layout/fragment_explanation_after_registration" >
+        <action
+            android:id="@+id/action_explanationAfterRegistrationFragment_to_loanRegistrationFragment"
+            app:destination="@id/loanRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfLoansFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ListOfLoansFragment"
+        android:label="fragment_list_of_loans"
+        tools:layout="@layout/fragment_list_of_loans" >
+        <action
+            android:id="@+id/action_listOfLoansFragment_to_loanProfileFragment"
+            app:destination="@id/loanProfileFragment" />
+        <action
+            android:id="@+id/action_listOfLoansFragment_to_loanRegistrationFragment"
+            app:destination="@id/loanRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loanProfileFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.LoanProfileFragment"
+        android:label="fragment_loan_profile"
+        tools:layout="@layout/fragment_loan_profile" />
+    <fragment
+        android:id="@+id/loanRegistrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.LoanRegistrationFragment"
+        android:label="fragment_loan_registration"
+        tools:layout="@layout/fragment_loan_registration" >
+        <action
+            android:id="@+id/action_loanRegistrationFragment_to_explanationAfterRegisterLoanFragment"
+            app:destination="@id/explanationAfterRegisterLoanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_explanationAfterRegistrationFragment"
+            app:destination="@id/explanationAfterRegistrationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_authenticationFragment"
+            app:destination="@id/authenticationFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
+</navigation>
