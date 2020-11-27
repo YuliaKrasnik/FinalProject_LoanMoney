@@ -72,23 +72,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_value_amount_seekBar" />
 
-    <SeekBar
-        android:id="@+id/sb_period"
+    <TextView
+        android:id="@+id/tv_value_period"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="31"
-        android:progress="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_label_period" />
-
-    <TextView
-        android:id="@+id/tv_value_period_seekBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_period" />
 
     <TextView
         android:id="@+id/tv_label_percent"
@@ -97,25 +87,15 @@
         android:text="Процент:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_value_period_seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_value_period" />
 
-    <SeekBar
-        android:id="@+id/sb_percent"
+    <TextView
+        android:id="@+id/tv_value_percent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_label_percent" />
-
-    <TextView
-        android:id="@+id/tv_value_percent_seekBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sb_percent" />
 
     <Button
         android:id="@+id/btn_registration_loan"
@@ -124,5 +104,5 @@
         android:text="Оформить заявку"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_value_percent_seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_value_percent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
