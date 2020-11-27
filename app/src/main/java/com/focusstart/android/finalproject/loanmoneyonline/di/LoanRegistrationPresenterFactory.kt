@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoanDataSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SharedPreferenceSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoanRepositoryImpl
+import com.focusstart.android.finalproject.loanmoneyonline.domain.GetConditionsLoanUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.domain.LoanRegistrationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.LoanRegistrationPresenterImpl
@@ -15,7 +16,8 @@ object LoanRegistrationPresenterFactory {
         val loanRepository = LoanRepositoryImpl(loanDataSource, sharedPreferenceSource)
 
         val loanRegistrationUseCase = LoanRegistrationUseCase(loanRepository)
+        val getConditionsLoanUseCase = GetConditionsLoanUseCase(loanRepository)
 
-        return LoanRegistrationPresenterImpl(loanRegistrationUseCase)
+        return LoanRegistrationPresenterImpl(loanRegistrationUseCase, getConditionsLoanUseCase)
     }
 }
