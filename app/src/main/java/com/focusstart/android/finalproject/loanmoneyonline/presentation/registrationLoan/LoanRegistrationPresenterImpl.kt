@@ -33,9 +33,7 @@ class LoanRegistrationPresenterImpl(private val loanRegistrationUseCase: LoanReg
     }
 
     private fun registrationLoan(firstName: String, secondName: String, phoneNumber: String, amount: String, period: String, percent: String) {
-        val loanRequest = LoanRequest(amount.toInt(), firstName, secondName, percent.toDouble(), period.toInt(), phoneNumber)
-
-        loanRegistrationUseCase(loanRequest)
+        loanRegistrationUseCase(firstName, secondName, phoneNumber, amount, period, percent)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : SingleObserver<Response<Loan>> {

@@ -7,5 +7,5 @@ import retrofit2.Response
 
 interface ILoanRepository {
     fun getLoansList(): Single<Response<List<Loan>>>
-    fun registerLoan(loanRequest: LoanRequest): Single<Response<Loan>>
+    fun registerLoan(firstName: String, secondName: String, phoneNumber: String, amount: String, period: String, percent: String): Single<Response<Loan>>
 }

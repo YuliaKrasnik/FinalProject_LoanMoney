@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui.listOfLoans
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_AMOUNT
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_DATE
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_FIRST_NAME
@@ -54,8 +56,11 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     }
 
     private fun initPresenter() {
-        presenter = ListOfLoansPresenterFactory.create()
-        presenter?.attachView(this)
+        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
+        sharedPreferences?.let {
+            presenter = ListOfLoansPresenterFactory.create(it)
+            presenter?.attachView(this)
+        }
     }
 
     override fun onDestroy() {

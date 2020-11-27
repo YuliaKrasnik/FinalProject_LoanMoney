@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun isSignedIn(): Boolean {
+    private fun isSignedIn(): Boolean { //TODO: работа с SharedPreferences в data слое. Для Activity тоже создавать presenter и тд, чтобы перенести эти методы в data слой?
         if (getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE).contains(
                 APP_PREFERENCES_TOKEN
             )
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 APP_PREFERENCES_TOKEN,
                 ""
             )
-            token?.let { Log.d(TAG_DEBUG, it) } //в LoanDataSource. TODO
+            token?.let { Log.d(TAG_DEBUG, it) }
             return token != "" && token != null
         }
         return false

@@ -33,8 +33,11 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
     }
 
     private fun initPresenter() {
-        presenter = AuthenticationPresenterFactory.create()
-        presenter?.attachView(this)
+        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
+        sharedPreferences?.let {
+            presenter = AuthenticationPresenterFactory.create(it)
+            presenter?.attachView(this)
+        }
     }
 
     override fun onDestroy() {
@@ -53,14 +56,6 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
                     etPasswordUser.text.toString()
             )
         }
-    }
-
-    override fun saveBearerToken(token: String) {
-        val settings =
-                context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
-        val editor = settings?.edit()
-        editor?.putString(Constants.APP_PREFERENCES_TOKEN, token)
-        editor?.apply()
     }
 
     override fun navigateToListOfLoansFragment() {

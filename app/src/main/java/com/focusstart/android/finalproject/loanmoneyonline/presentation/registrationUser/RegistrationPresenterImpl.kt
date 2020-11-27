@@ -5,6 +5,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.UserEntity
 import com.focusstart.android.finalproject.loanmoneyonline.domain.AuthenticationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.domain.RegistrationInAppUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.SaveBearerTokenInPreferencesUseCase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -15,7 +16,8 @@ import retrofit2.Response
 
 class RegistrationPresenterImpl(
         private val registrationInAppUseCase: RegistrationInAppUseCase,
-        private val authenticationUseCase: AuthenticationUseCase) :
+        private val authenticationUseCase: AuthenticationUseCase,
+        private val saveBearerTokenInPreferencesUseCase: SaveBearerTokenInPreferencesUseCase) :
         IRegistrationPresenter {
 
     private var view: IRegistrationView? = null
@@ -75,8 +77,7 @@ class RegistrationPresenterImpl(
                         val code = response.code()
                         if (code == 200) {
                             bearerToken?.let {
-                                Log.d(Constants.TAG_DEBUG, it)
-                                view?.saveBearerToken(it)
+                                saveBearerToken(bearerToken)
                             }
                             view?.navigateToExplanationAfterRegistrationFragment()
                         }
@@ -86,5 +87,9 @@ class RegistrationPresenterImpl(
                         // TODO("Not yet implemented")
                     }
                 })
+    }
+
+    private fun saveBearerToken(bearerToken: String) {
+        saveBearerTokenInPreferencesUseCase(bearerToken)
     }
 }

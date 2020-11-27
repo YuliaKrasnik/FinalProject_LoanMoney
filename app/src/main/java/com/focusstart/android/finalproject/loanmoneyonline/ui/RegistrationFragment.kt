@@ -33,8 +33,11 @@ class RegistrationFragment : Fragment(), IRegistrationView {
     }
 
     private fun initPresenter() {
-        presenter = RegistrationPresenterFactory.create()
-        presenter?.attachView(this)
+        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
+        sharedPreferences?.let {
+            presenter = RegistrationPresenterFactory.create(it)
+            presenter?.attachView(this)
+        }
     }
 
     override fun onDestroy() {
@@ -53,14 +56,6 @@ class RegistrationFragment : Fragment(), IRegistrationView {
                     etPasswordUser.text.toString()
             )
         }
-    }
-
-    override fun saveBearerToken(token: String) {
-        val settings =
-                context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
-        val editor = settings?.edit()
-        editor?.putString(Constants.APP_PREFERENCES_TOKEN, token)
-        editor?.apply()
     }
 
     override fun navigateToExplanationAfterRegistrationFragment() {

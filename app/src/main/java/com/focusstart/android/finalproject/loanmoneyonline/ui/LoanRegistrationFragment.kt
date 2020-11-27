@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
+import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.di.LoanRegistrationPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationPresenter
@@ -116,8 +118,11 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
 
 
     private fun initPresenter() {
-        presenter = LoanRegistrationPresenterFactory.create()
-        presenter?.attachView(this)
+        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
+        sharedPreferences?.let {
+            presenter = LoanRegistrationPresenterFactory.create(it)
+            presenter?.attachView(this)
+        }
     }
 
     override fun onDestroy() {

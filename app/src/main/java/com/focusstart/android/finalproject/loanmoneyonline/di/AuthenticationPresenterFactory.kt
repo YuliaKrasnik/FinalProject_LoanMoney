@@ -1,17 +1,26 @@
 package com.focusstart.android.finalproject.loanmoneyonline.di
 
+import android.content.SharedPreferences
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoginDataSourceImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SharedPreferenceSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoginRepositoryImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.repository.SharedPreferenceRepositoryImpl
 import com.focusstart.android.finalproject.loanmoneyonline.domain.AuthenticationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.SaveBearerTokenInPreferencesUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.authentication.AuthenticationPresenterImpl
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.authentication.IAuthenticationPresenter
 
 object AuthenticationPresenterFactory {
-    fun create(): IAuthenticationPresenter {
+    fun create(preferences: SharedPreferences): IAuthenticationPresenter {
         val loginDataSource = LoginDataSourceImpl()
         val loginRepository = LoginRepositoryImpl(loginDataSource)
-        val authenticationInAppUseCase = AuthenticationUseCase(loginRepository)
 
-        return AuthenticationPresenterImpl(authenticationInAppUseCase)
+        val sharedPreferenceSource = SharedPreferenceSourceImpl(preferences)
+        val sharedPreferenceRepository = SharedPreferenceRepositoryImpl(sharedPreferenceSource)
+
+        val authenticationInAppUseCase = AuthenticationUseCase(loginRepository)
+        val saveBearerTokenInPreferencesUseCase = SaveBearerTokenInPreferencesUseCase(sharedPreferenceRepository)
+
+        return AuthenticationPresenterImpl(authenticationInAppUseCase, saveBearerTokenInPreferencesUseCase)
     }
 }

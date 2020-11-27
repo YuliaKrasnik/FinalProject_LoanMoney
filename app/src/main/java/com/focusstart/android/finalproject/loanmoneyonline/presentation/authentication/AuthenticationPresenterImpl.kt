@@ -3,6 +3,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.presentation.authent
 import android.util.Log
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.TAG_DEBUG
 import com.focusstart.android.finalproject.loanmoneyonline.domain.AuthenticationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.SaveBearerTokenInPreferencesUseCase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -11,8 +12,10 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.ResponseBody
 import retrofit2.Response
 
-class AuthenticationPresenterImpl(private val authenticationUseCase: AuthenticationUseCase) :
-    IAuthenticationPresenter {
+class AuthenticationPresenterImpl(
+        private val authenticationUseCase: AuthenticationUseCase,
+        private val saveBearerTokenInPreferencesUseCase: SaveBearerTokenInPreferencesUseCase) :
+        IAuthenticationPresenter {
     private var view: IAuthenticationView? = null
     private val compositeDisposable = CompositeDisposable()
 
@@ -34,29 +37,32 @@ class AuthenticationPresenterImpl(private val authenticationUseCase: Authenticat
 
     private fun authenticationInApp(username: String, password: String) {
         authenticationUseCase(username, password)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : SingleObserver<Response<ResponseBody>> {
-                override fun onSubscribe(disposable: Disposable) {
-                    compositeDisposable.add(disposable)
-                }
-
-                override fun onSuccess(response: Response<ResponseBody>) {
-                    val bearerToken = response.body()?.string()
-                    val code = response.code()
-                    if (code == 200) {
-                        bearerToken?.let {
-                            Log.d(TAG_DEBUG, it)
-                            view?.saveBearerToken(it)
-                        }
-                        view?.navigateToListOfLoansFragment()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : SingleObserver<Response<ResponseBody>> {
+                    override fun onSubscribe(disposable: Disposable) {
+                        compositeDisposable.add(disposable)
                     }
-                }
 
-                override fun onError(e: Throwable) {
-                    // TODO("Not yet implemented")
-                }
-            })
+                    override fun onSuccess(response: Response<ResponseBody>) {
+                        val bearerToken = response.body()?.string()
+                        val code = response.code()
+                        if (code == 200) {
+                            bearerToken?.let {
+                                saveBearerToken(bearerToken)
+                            }
+                            view?.navigateToListOfLoansFragment()
+                        }
+                    }
+
+                    override fun onError(e: Throwable) {
+                        // TODO("Not yet implemented")
+                    }
+                })
+    }
+
+    private fun saveBearerToken(bearerToken: String) {
+        saveBearerTokenInPreferencesUseCase(bearerToken)
     }
 
 }
