@@ -21,11 +21,9 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     private lateinit var etLastName: EditText
     private lateinit var etPhoneNumber: EditText
     private lateinit var sbAmount: SeekBar
-    private lateinit var sbPeriod: SeekBar
-    private lateinit var sbPercent: SeekBar
     private lateinit var tvValueAmountSeekBar: TextView
-    private lateinit var tvValuePeriodSeekBar: TextView
-    private lateinit var tvValuePercentSeekBar: TextView
+    private lateinit var tvValuePeriod: TextView
+    private lateinit var tvValuePercent: TextView
     private lateinit var btnRegistrationLoan: Button
 
     override fun onCreateView(
@@ -38,6 +36,11 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
         return fragmentLayout
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter?.onResume()
+    }
+
     private fun initView(fragmentLayout: View) {
         etFirstName = fragmentLayout.findViewById(R.id.et_first_name)
         etLastName = fragmentLayout.findViewById(R.id.et_last_name)
@@ -47,13 +50,8 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
         setChangeListenerOnAmount()
         tvValueAmountSeekBar = fragmentLayout.findViewById(R.id.tv_value_amount_seekBar)
 
-        sbPeriod = fragmentLayout.findViewById(R.id.sb_period)
-        setChangeListenerOnPeriod()
-        tvValuePeriodSeekBar = fragmentLayout.findViewById(R.id.tv_value_period_seekBar)
-
-        sbPercent = fragmentLayout.findViewById(R.id.sb_percent)
-        setChangeListenerOnPercent()
-        tvValuePercentSeekBar = fragmentLayout.findViewById(R.id.tv_value_percent_seekBar)
+        tvValuePercent = fragmentLayout.findViewById(R.id.tv_value_percent)
+        tvValuePeriod = fragmentLayout.findViewById(R.id.tv_value_period)
 
         btnRegistrationLoan = fragmentLayout.findViewById(R.id.btn_registration_loan)
         btnRegistrationLoan.setOnClickListener {
@@ -62,47 +60,17 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
                     etLastName.text.toString(),
                     etPhoneNumber.text.toString(),
                     tvValueAmountSeekBar.text.toString(),
-                    tvValuePeriodSeekBar.text.toString(),
-                    tvValuePercentSeekBar.text.toString())
+                    tvValuePeriod.text.toString(),
+                    tvValuePercent.text.toString())
         }
     }
 
-    private fun setChangeListenerOnPercent() {
-        sbPercent.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                tvValuePercentSeekBar.text = (progress).toString()
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-                //  TODO("Not yet implemented")
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                //    TODO("Not yet implemented")
-            }
-        })
-    }
-
-    private fun setChangeListenerOnPeriod() {
-        sbPeriod.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                tvValuePeriodSeekBar.text = progress.toString()
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-                //      TODO("Not yet implemented")
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                //    TODO("Not yet implemented")
-            }
-        })
-    }
 
     private fun setChangeListenerOnAmount() {
         sbAmount.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                tvValueAmountSeekBar.text = (progress * 1000).toString()
+                val transformedProgress = progress / 1000 * 1000
+                tvValueAmountSeekBar.text = (transformedProgress).toString()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -137,5 +105,11 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     }
 
     override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
+    override fun showConditions(percent: Double, period: Int, maxAmount: Int) {
+        tvValuePeriod.text = period.toString()
+        tvValuePercent.text = percent.toString()
+        sbAmount.max = maxAmount
+    }
 
 }

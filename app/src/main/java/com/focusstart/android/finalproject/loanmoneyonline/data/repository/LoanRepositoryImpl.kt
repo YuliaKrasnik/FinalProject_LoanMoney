@@ -3,6 +3,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.data.repository
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoanDataSource
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SharedPreferenceSource
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanConditions
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanRequest
 import com.focusstart.android.finalproject.loanmoneyonline.domain.repository.ILoanRepository
 import io.reactivex.Single
@@ -16,6 +17,9 @@ class LoanRepositoryImpl(private val dataSource: LoanDataSource, private val sha
         val loanRequest = LoanRequest(amount.toInt(), firstName, secondName, percent.toDouble(), period.toInt(), phoneNumber)
         return dataSource.registerLoan(loanRequest, getBearerToken())
     }
+
+    override fun getLoanConditions(): Single<Response<LoanConditions>> =
+            dataSource.getLoanConditions(getBearerToken())
 
 
     private fun getBearerToken(): String = sharedPreferenceSource.getBearerToken()

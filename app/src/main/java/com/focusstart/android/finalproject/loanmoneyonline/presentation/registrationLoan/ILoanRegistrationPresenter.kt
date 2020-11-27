@@ -7,5 +7,7 @@ interface ILoanRegistrationPresenter {
 
     fun clear()
 
+    fun onResume()
+
     fun onRegistrationLoanButtonClicked(firstName: String, secondName: String, phoneNumber: String, amount: String, period: String, percent: String)
 }
