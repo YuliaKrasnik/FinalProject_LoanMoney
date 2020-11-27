@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
 
-class ListAdapter : RecyclerView.Adapter<ItemViewHolder>() {
+class ListAdapter(private val clickFunction: (Loan) -> Unit) : RecyclerView.Adapter<ItemViewHolder>() {
 
     private val itemsList = mutableListOf<Loan>()
 
@@ -18,7 +18,7 @@ class ListAdapter : RecyclerView.Adapter<ItemViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
-        return ItemViewHolder(view)
+        return ItemViewHolder(view, clickFunction)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
