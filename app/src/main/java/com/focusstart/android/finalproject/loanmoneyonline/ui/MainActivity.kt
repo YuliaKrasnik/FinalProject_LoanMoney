@@ -2,10 +2,12 @@ package com.focusstart.android.finalproject.loanmoneyonline.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.APP_PREFERENCES
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.APP_PREFERENCES_TOKEN
+import com.focusstart.android.finalproject.loanmoneyonline.Constants.TAG_DEBUG
 import com.focusstart.android.finalproject.loanmoneyonline.R
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 APP_PREFERENCES_TOKEN,
                 ""
             )
+            token?.let { Log.d(TAG_DEBUG, it) } //в LoanDataSource. TODO
             return token != "" && token != null
         }
         return false
