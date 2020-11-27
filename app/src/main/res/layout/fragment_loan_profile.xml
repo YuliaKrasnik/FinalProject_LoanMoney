@@ -1,8 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.LoanProfileFragment">
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_profile_label_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Фамилия:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_first_name" />
+
+    <TextView
+        android:id="@+id/tv_profile_label_last_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Имя:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_first_name" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_last_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_last_name" />
+
+    <TextView
+        android:id="@+id/tv_profile_label_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Телефон:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_last_name" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_phone_number" />
+
+    <TextView
+        android:id="@+id/tv_profile_label_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Дата получения:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_phone_number" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_date" />
+
+    <TextView
+        android:id="@+id/tv_profile_label_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Сумма:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_date" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_amount" />
+
+    <TextView
+        android:id="@+id/tv_profile_label_period"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Период:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_amount" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_period"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_period" />
+
+    <TextView
+        android:id="@+id/tv_profile_label_percent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Процент:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_period" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_percent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_percent" />
+
+    <TextView
+        android:id="@+id/tv_profile_label_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Состояние:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_percent" />
+
+    <TextView
+        android:id="@+id/tv_profile_value_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_state" />
+
+    <TextView
+        android:id="@+id/tv_profile_instructions_how_to_get"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Какая-то инструкция как получить в банке/оформить на карту"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_state" />
+</androidx.constraintlayout.widget.ConstraintLayout>
