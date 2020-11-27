@@ -1,6 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.data.datasource
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanRequest
 import com.focusstart.android.finalproject.loanmoneyonline.data.network.ILoanApi
 import com.focusstart.android.finalproject.loanmoneyonline.data.network.RetrofitBuilder
 import io.reactivex.Single
@@ -8,6 +9,7 @@ import retrofit2.Response
 
 interface LoanDataSource {
     fun getLoansList(): Single<Response<List<Loan>>>
+    fun registerLoan(loanRequest: LoanRequest): Single<Response<Loan>>
 }
 class LoanDataSourceImpl : LoanDataSource {
     private val apiService by lazy { RetrofitBuilder.buildService(ILoanApi::class.java) }
@@ -17,5 +19,8 @@ class LoanDataSourceImpl : LoanDataSource {
         return apiService.getLoansList(token)    //TODO достать значение из sharedPref в data слое
     }
 
+    override fun registerLoan(loanRequest: LoanRequest): Single<Response<Loan>> {
+        return apiService.createNewLoan(loanRequest, token)
+    }
 
 }
