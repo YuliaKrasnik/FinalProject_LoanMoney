@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/listOfLoansFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ListOfLoansFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.listOfLoans.ListOfLoansFragment"
         android:label="fragment_list_of_loans"
         tools:layout="@layout/fragment_list_of_loans" >
         <action
