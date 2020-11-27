@@ -9,8 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.di.RegistrationPresenterFactory
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.registration.IRegistrationPresenter
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.registration.IRegistrationView
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationPresenter
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationView
 
 class RegistrationFragment : Fragment(), IRegistrationView {
     private var presenter: IRegistrationPresenter? = null

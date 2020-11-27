@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.presentation.registration
+package com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser
 
 interface IRegistrationPresenter {
     fun attachView(view: IRegistrationView)
