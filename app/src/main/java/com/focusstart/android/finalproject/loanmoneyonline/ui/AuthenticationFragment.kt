@@ -2,12 +2,12 @@ package com.focusstart.android.finalproject.loanmoneyonline.ui
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.R
@@ -23,8 +23,8 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
     private lateinit var btnAuthentication: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_authentication, container, false)
         initPresenter()
@@ -49,15 +49,15 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
         btnAuthentication = fragmentLayout.findViewById(R.id.btn_authentication)
         btnAuthentication.setOnClickListener {
             presenter?.onAuthenticationButtonClicked(
-                etNameUser.text.toString(),
-                etPasswordUser.text.toString()
+                    etNameUser.text.toString(),
+                    etPasswordUser.text.toString()
             )
         }
     }
 
     override fun saveBearerToken(token: String) {
         val settings =
-            context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
+                context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
         val editor = settings?.edit()
         editor?.putString(Constants.APP_PREFERENCES_TOKEN, token)
         editor?.apply()

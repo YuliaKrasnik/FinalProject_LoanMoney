@@ -1,12 +1,15 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.di.RegistrationPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationPresenter
@@ -20,8 +23,8 @@ class RegistrationFragment : Fragment(), IRegistrationView {
     private lateinit var btnRegistration: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_registration, container, false)
         initPresenter()
@@ -46,10 +49,23 @@ class RegistrationFragment : Fragment(), IRegistrationView {
         btnRegistration = fragmentLayout.findViewById(R.id.btn_registration)
         btnRegistration.setOnClickListener {
             presenter?.onRegistrationButtonClicked(
-                etNameUser.text.toString(),
-                etPasswordUser.text.toString()
+                    etNameUser.text.toString(),
+                    etPasswordUser.text.toString()
             )
         }
+    }
+
+    override fun saveBearerToken(token: String) {
+        val settings =
+                context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
+        val editor = settings?.edit()
+        editor?.putString(Constants.APP_PREFERENCES_TOKEN, token)
+        editor?.apply()
+    }
+
+    override fun navigateToExplanationAfterRegistrationFragment() {
+        val navController = NavHostFragment.findNavController(this)
+        navController.navigate(R.id.action_registrationFragment_to_explanationAfterRegistrationFragment)
     }
 
 }
