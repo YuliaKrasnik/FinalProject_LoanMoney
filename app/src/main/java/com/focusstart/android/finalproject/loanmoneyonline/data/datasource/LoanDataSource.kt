@@ -13,7 +13,7 @@ interface LoanDataSource {
 }
 class LoanDataSourceImpl : LoanDataSource {
     private val apiService by lazy { RetrofitBuilder.buildService(ILoanApi::class.java) }
-    private val token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHJpbmciLCJleHAiOjE2MDkwMTQzNjF9.FWcgctPyy5z5C2WDamUS93-F56rCFI8ShkmNzE91CYpqBp6RF7RSEEsmk2TCHVW28tNMfOq0beMr_PDV3ehsyQ" //
+    private val token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ5biIsImV4cCI6MTYwOTA1NjIwN30.t1xr1AbUFVnQgEU8CFlofh-i2IKqGYq6cyYVTOAMyfpJpgAPc7QweL6rHFkBlSZeraFotQqqhPtiznKKp2fWMA" //
 
     override fun getLoansList(): Single<Response<List<Loan>>> {
         return apiService.getLoansList(token)    //TODO достать значение из sharedPref в data слое
