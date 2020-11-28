@@ -4,9 +4,8 @@ import android.util.Log
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.TAG_DEBUG
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanConditions
-import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanRequest
-import com.focusstart.android.finalproject.loanmoneyonline.domain.GetConditionsLoanUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.LoanRegistrationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.GetConditionsLoanUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.LoanRegistrationUseCase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -5,9 +5,9 @@ import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.Login
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SharedPreferenceSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoginRepositoryImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.SharedPreferenceRepositoryImpl
-import com.focusstart.android.finalproject.loanmoneyonline.domain.AuthenticationUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.RegistrationInAppUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.SaveBearerTokenInPreferencesUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.AuthenticationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.RegistrationInAppUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.SaveBearerTokenInPreferencesUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.RegistrationPresenterImpl
 

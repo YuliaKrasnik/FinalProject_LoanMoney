@@ -1,7 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.listOfLoans
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
-import com.focusstart.android.finalproject.loanmoneyonline.domain.GetListOfLoansUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.GetListOfLoansUseCase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

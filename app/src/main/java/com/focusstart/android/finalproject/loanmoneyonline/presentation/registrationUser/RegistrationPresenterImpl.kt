@@ -1,11 +1,9 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser
 
-import android.util.Log
-import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.UserEntity
-import com.focusstart.android.finalproject.loanmoneyonline.domain.AuthenticationUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.RegistrationInAppUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.SaveBearerTokenInPreferencesUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.AuthenticationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.RegistrationInAppUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.SaveBearerTokenInPreferencesUseCase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

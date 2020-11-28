@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.domain
+package com.focusstart.android.finalproject.loanmoneyonline.domain.usecase
 
 import com.focusstart.android.finalproject.loanmoneyonline.domain.repository.ISharedPreferenceRepository
 

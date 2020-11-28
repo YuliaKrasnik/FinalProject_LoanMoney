@@ -1,9 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.authentication
 
-import android.util.Log
-import com.focusstart.android.finalproject.loanmoneyonline.Constants.TAG_DEBUG
-import com.focusstart.android.finalproject.loanmoneyonline.domain.AuthenticationUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.SaveBearerTokenInPreferencesUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.AuthenticationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.SaveBearerTokenInPreferencesUseCase
 import io.reactivex.SingleObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

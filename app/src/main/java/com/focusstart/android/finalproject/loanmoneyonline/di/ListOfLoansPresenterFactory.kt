@@ -4,7 +4,7 @@ import android.content.SharedPreferences
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoanDataSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SharedPreferenceSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoanRepositoryImpl
-import com.focusstart.android.finalproject.loanmoneyonline.domain.GetListOfLoansUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.GetListOfLoansUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.listOfLoans.IListOfLoansPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.listOfLoans.ListOfLoansPresenterImpl
 
