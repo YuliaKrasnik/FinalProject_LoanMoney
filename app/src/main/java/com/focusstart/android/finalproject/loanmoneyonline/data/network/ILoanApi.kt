@@ -17,7 +17,7 @@ interface ILoanApi {
         @Body bodyRequest: Auth
     ): Single<Response<UserEntity>>
 
-    @GET("loans/")
+    @GET("loans/all")
     fun getLoansList(
         @Header("Authorization") authHeader: String
     ): Single<Response<List<Loan>>>
