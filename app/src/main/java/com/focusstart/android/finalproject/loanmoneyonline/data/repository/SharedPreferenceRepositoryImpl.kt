@@ -8,4 +8,8 @@ class SharedPreferenceRepositoryImpl(private val sharedPreferenceSource: SharedP
     override fun saveBearerToken(token: String) {
         sharedPreferenceSource.saveBearerToken(token)
     }
+
+    override fun checkingBearerTokenAvailability(): Boolean {
+        return sharedPreferenceSource.isTokenExists()
+    }
 }
