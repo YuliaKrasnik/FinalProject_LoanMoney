@@ -8,20 +8,22 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.di.ExplanationAfterRegistrationPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.explanationAfterRegistration.IExplanationAfterRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.explanationAfterRegistration.IExplanationAfterRegistrationView
+import javax.inject.Inject
 
 class ExplanationAfterRegistrationFragment : Fragment(), IExplanationAfterRegistrationView {
-    private var presenter: IExplanationAfterRegistrationPresenter? = null
+    @Inject
+    lateinit var presenter: IExplanationAfterRegistrationPresenter
 
     private lateinit var btnGetStartedInApp: Button
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        val fragmentLayout = inflater.inflate(R.layout.fragment_explanation_after_registration, container, false)
+        val fragmentLayout =
+            inflater.inflate(R.layout.fragment_explanation_after_registration, container, false)
         initPresenter()
         initView(fragmentLayout)
         return fragmentLayout
@@ -29,17 +31,17 @@ class ExplanationAfterRegistrationFragment : Fragment(), IExplanationAfterRegist
 
     private fun initView(fragmentLayout: View) {
         btnGetStartedInApp = fragmentLayout.findViewById(R.id.btn_get_started_in_app)
-        btnGetStartedInApp.setOnClickListener { presenter?.onGetStartedInAppButtonClicked() }
+        btnGetStartedInApp.setOnClickListener { presenter.onGetStartedInAppButtonClicked() }
     }
 
     override fun onDestroy() {
-        presenter?.detachView()
+        presenter.detachView()
         super.onDestroy()
     }
 
     private fun initPresenter() {
-        presenter = ExplanationAfterRegistrationPresenterFactory.create()
-        presenter?.attachView(this)
+        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        presenter.attachView(this)
     }
 
     override fun navigateToLoanRegistrationFragment() {

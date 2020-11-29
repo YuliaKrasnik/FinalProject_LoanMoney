@@ -1,6 +1,5 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +7,14 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.di.LoanRegistrationPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationView
-import kotlin.math.max
+import javax.inject.Inject
 
 class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
-    private var presenter: ILoanRegistrationPresenter? = null
+    @Inject
+    lateinit var presenter: ILoanRegistrationPresenter
 
     private lateinit var etFirstName: EditText
     private lateinit var etLastName: EditText
@@ -28,8 +26,8 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     private lateinit var btnRegistrationLoan: Button
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_loan_registration, container, false)
         initPresenter()
@@ -39,7 +37,7 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
 
     override fun onResume() {
         super.onResume()
-        presenter?.onResume()
+        presenter.onResume()
     }
 
     private fun initView(fragmentLayout: View) {
@@ -56,21 +54,22 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
 
         btnRegistrationLoan = fragmentLayout.findViewById(R.id.btn_registration_loan)
         btnRegistrationLoan.setOnClickListener {
-            presenter?.onRegistrationLoanButtonClicked(
-                    etFirstName.text.toString(),
-                    etLastName.text.toString(),
-                    etPhoneNumber.text.toString(),
-                    tvValueAmountSeekBar.text.toString(),
-                    tvValuePeriod.text.toString(),
-                    tvValuePercent.text.toString())
+            presenter.onRegistrationLoanButtonClicked(
+                etFirstName.text.toString(),
+                etLastName.text.toString(),
+                etPhoneNumber.text.toString(),
+                tvValueAmountSeekBar.text.toString(),
+                tvValuePeriod.text.toString(),
+                tvValuePercent.text.toString()
+            )
         }
     }
 
     private fun setChangeListenerOnAmount() {
         sbAmount.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                val transformedProgress = presenter?.getTransformedProgressValueInSeekBar(progress)
-                transformedProgress?.let {
+                val transformedProgress = presenter.getTransformedProgressValueInSeekBar(progress)
+                transformedProgress.let {
                     tvValueAmountSeekBar.text = (transformedProgress).toString()
                 }
             }
@@ -83,16 +82,13 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
 
 
     private fun initPresenter() {
-        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
-        sharedPreferences?.let {
-            presenter = LoanRegistrationPresenterFactory.create(it)
-            presenter?.attachView(this)
-        }
+        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        presenter.attachView(this)
     }
 
     override fun onDestroy() {
-        presenter?.detachView()
-        presenter?.clear()
+        presenter.detachView()
+        presenter.clear()
         super.onDestroy()
     }
 
@@ -101,7 +97,8 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
         navController.navigate(R.id.action_loanRegistrationFragment_to_explanationAfterRegisterLoanFragment)
     }
 
-    override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    override fun showToast(message: String) =
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
     override fun showImmutableConditions(percent: Double, period: Int) {
         tvValuePeriod.text = period.toString()

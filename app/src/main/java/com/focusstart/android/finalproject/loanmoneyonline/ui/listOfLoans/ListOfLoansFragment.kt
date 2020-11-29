@@ -1,6 +1,5 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui.listOfLoans
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,22 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
-import com.focusstart.android.finalproject.loanmoneyonline.di.ListOfLoansPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.listOfLoans.IListOfLoansPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.listOfLoans.IListOfLoansView
+import javax.inject.Inject
 
 class ListOfLoansFragment : Fragment(), IListOfLoansView {
-    private var presenter: IListOfLoansPresenter? = null
+    @Inject
+    lateinit var presenter: IListOfLoansPresenter
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var btnCreateNewLoan: Button
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_list_of_loans, container, false)
         initPresenter()
@@ -38,25 +37,22 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         btnCreateNewLoan = fragmentLayout.findViewById(R.id.btn_create_new_loan)
-        btnCreateNewLoan.setOnClickListener { presenter?.onCreateNewLoanButtonClicked() }
+        btnCreateNewLoan.setOnClickListener { presenter.onCreateNewLoanButtonClicked() }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter?.onResume()
+        presenter.onResume()
     }
 
     private fun initPresenter() {
-        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
-        sharedPreferences?.let {
-            presenter = ListOfLoansPresenterFactory.create(it)
-            presenter?.attachView(this)
-        }
+        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        presenter.attachView(this)
     }
 
     override fun onDestroy() {
-        presenter?.detachView()
-        presenter?.clear()
+        presenter.detachView()
+        presenter.clear()
         super.onDestroy()
     }
 
@@ -69,7 +65,7 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     }
 
     private fun onClickItemFunction(loan: Loan) {
-        val bundle = presenter?.getNavigationBundle(loan)
+        val bundle = presenter.getNavigationBundle(loan)
         val navController = NavHostFragment.findNavController(this)
         navController.navigate(R.id.action_listOfLoansFragment_to_loanProfileFragment, bundle)
     }
