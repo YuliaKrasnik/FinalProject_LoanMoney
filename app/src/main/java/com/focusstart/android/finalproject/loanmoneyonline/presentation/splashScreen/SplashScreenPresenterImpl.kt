@@ -1,16 +1,22 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.splashScreen
 
+import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.CheckingBearerTokenAvailabilityUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.applySchedulers
 import io.reactivex.Single
 import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class SplashScreenPresenterImpl(private val checkingBearerTokenAvailabilityUseCase: CheckingBearerTokenAvailabilityUseCase) :
         ISplashScreenPresenter {
+
+    companion object {
+        private const val DELAY_TIME = 800L
+    }
+
     private var view: ISplashScreenView? = null
     private val compositeDisposable = CompositeDisposable()
 
@@ -19,26 +25,29 @@ class SplashScreenPresenterImpl(private val checkingBearerTokenAvailabilityUseCa
     }
 
     private fun checkingBearerTokenAvailability() {
-        val singleObservable = Single.just(checkingBearerTokenAvailabilityUseCase())
-        singleObservable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .delay(800, TimeUnit.MILLISECONDS)
+        Single.just(checkingBearerTokenAvailabilityUseCase())
+                .delay(DELAY_TIME, TimeUnit.MILLISECONDS)
+                .compose(applySchedulers())
                 .subscribe(object : SingleObserver<Boolean> {
                     override fun onSubscribe(disposable: Disposable) {
                         compositeDisposable.add(disposable)
                     }
 
                     override fun onSuccess(isTokenAvailability: Boolean) {
-                        if (isTokenAvailability) view?.navigateToListOfLoansFragment()
-                        else view?.navigateToStartFragment()
+                        processingResponseCheckingBearerToken(isTokenAvailability)
                     }
 
                     override fun onError(e: Throwable) {
-                        //   TODO("Not yet implemented")
+                        Log.e(Constants.TAG_ERROR, "checking bearer token availability: ${e.message}")
                     }
 
                 })
 
+    }
+
+    private fun processingResponseCheckingBearerToken(isTokenAvailability: Boolean) {
+        if (isTokenAvailability) view?.navigateToListOfLoansFragment()
+        else view?.navigateToStartFragment()
     }
 
     override fun attachView(view: ISplashScreenView) {
