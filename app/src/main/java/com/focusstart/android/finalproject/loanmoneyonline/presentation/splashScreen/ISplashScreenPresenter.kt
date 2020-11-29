@@ -1,6 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.splashScreen
 
-interface ISplashScreenPresenter {
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBasePresenter
+
+interface ISplashScreenPresenter : IBasePresenter {
     fun onResume()
 
     fun attachView(view: ISplashScreenView)

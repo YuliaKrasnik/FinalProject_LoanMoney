@@ -1,6 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.explanationAfterRegistration
 
-interface IExplanationAfterRegistrationPresenter {
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBasePresenter
+
+interface IExplanationAfterRegistrationPresenter : IBasePresenter {
     fun attachView(view: IExplanationAfterRegistrationView)
 
     fun detachView()

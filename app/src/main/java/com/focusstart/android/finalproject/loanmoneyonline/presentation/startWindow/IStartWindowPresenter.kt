@@ -1,6 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.startWindow
 
-interface IStartWindowPresenter {
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBasePresenter
+
+interface IStartWindowPresenter : IBasePresenter {
     fun attachView(view: IStartWindowView)
 
     fun detachView()

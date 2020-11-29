@@ -1,8 +1,9 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.authentication
 
 import android.os.Bundle
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBasePresenter
 
-interface IAuthenticationPresenter {
+interface IAuthenticationPresenter : IBasePresenter {
     fun attachView(view: IAuthenticationView)
 
     fun detachView()
