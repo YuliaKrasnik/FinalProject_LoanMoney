@@ -1,7 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.data.repository
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoanDataSource
-import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SharedPreferenceSource
+import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.ISettingsSource
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanConditions
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanRequest
@@ -11,7 +11,7 @@ import retrofit2.Response
 
 class LoanRepositoryImpl(
     private val dataSource: LoanDataSource,
-    private val sharedPreferenceSource: SharedPreferenceSource
+    private val settingsSource: ISettingsSource
 ) : ILoanRepository {
     override fun getLoansList(): Single<Response<List<Loan>>> =
         dataSource.getLoansList(getBearerToken()!!)
@@ -40,6 +40,6 @@ class LoanRepositoryImpl(
         dataSource.getLoanConditions(getBearerToken()!!)
 
 
-    private fun getBearerToken(): String? = sharedPreferenceSource.getBearerToken()
+    private fun getBearerToken(): String? = settingsSource.getBearerToken()
 
 }

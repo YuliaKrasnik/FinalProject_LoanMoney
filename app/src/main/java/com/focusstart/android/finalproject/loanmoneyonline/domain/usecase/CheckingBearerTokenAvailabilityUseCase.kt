@@ -1,8 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.domain.usecase
 
-import com.focusstart.android.finalproject.loanmoneyonline.domain.repository.ISharedPreferenceRepository
+import com.focusstart.android.finalproject.loanmoneyonline.domain.repository.ISettingsRepository
 
-class CheckingBearerTokenAvailabilityUseCase(private val sharedPreferenceRepository: ISharedPreferenceRepository) {
-    operator fun invoke(): Boolean =
-        sharedPreferenceRepository.checkingBearerTokenAvailability()
+class CheckingBearerTokenAvailabilityUseCase(private val settingsRepository: ISettingsRepository) {
+    operator fun invoke(): Boolean = settingsRepository.checkingBearerTokenAvailability()
 }

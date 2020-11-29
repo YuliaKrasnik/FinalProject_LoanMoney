@@ -3,13 +3,13 @@ package com.focusstart.android.finalproject.loanmoneyonline.data.datasource
 import android.content.SharedPreferences
 import com.focusstart.android.finalproject.loanmoneyonline.Constants
 
-interface SharedPreferenceSource {
+interface ISettingsSource {
     fun saveBearerToken(token: String)
     fun getBearerToken(): String?
     fun isTokenExists(): Boolean
 }
 
-class SharedPreferenceSourceImpl(private val preferences: SharedPreferences) : SharedPreferenceSource {
+class SettingsSourceImpl(private val preferences: SharedPreferences) : ISettingsSource {
     override fun saveBearerToken(token: String) {
         val editor = preferences.edit()
         editor.putString(Constants.APP_PREFERENCES_TOKEN, token)

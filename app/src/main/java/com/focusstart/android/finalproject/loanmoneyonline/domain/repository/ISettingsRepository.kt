@@ -1,6 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.domain.repository
 
-interface ISharedPreferenceRepository {
+interface ISettingsRepository {
     fun saveBearerToken(token:String)
     fun checkingBearerTokenAvailability(): Boolean
 }

@@ -7,7 +7,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_REGISTRATION_PASSWORD
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.CODE_NOT_FOUND
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.AuthenticationUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.SaveBearerTokenInPreferencesUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.SaveBearerTokenUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.applySchedulers
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class AuthenticationPresenterImpl(
         private val authenticationUseCase: AuthenticationUseCase,
-        private val saveBearerTokenInPreferencesUseCase: SaveBearerTokenInPreferencesUseCase) :
+        private val saveBearerTokenUseCase: SaveBearerTokenUseCase) :
         IAuthenticationPresenter {
 
     companion object {
@@ -112,7 +112,7 @@ class AuthenticationPresenterImpl(
     }
 
     private fun saveBearerToken(bearerToken: String) {
-        saveBearerTokenInPreferencesUseCase(bearerToken)
+        saveBearerTokenUseCase(bearerToken)
     }
 
 }
