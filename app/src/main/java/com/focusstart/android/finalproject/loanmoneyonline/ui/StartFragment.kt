@@ -8,18 +8,20 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.di.StartWindowPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.startWindow.IStartWindowPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.startWindow.IStartWindowView
+import javax.inject.Inject
 
 class StartFragment : Fragment(), IStartWindowView {
-    private var presenter: IStartWindowPresenter? = null
+    @Inject
+    lateinit var presenter: IStartWindowPresenter
+
     private lateinit var btnOpenRegistrationWindow: Button
     private lateinit var btnOpenAuthenticationWindow: Button
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_start, container, false)
         initPresenter()
@@ -29,20 +31,20 @@ class StartFragment : Fragment(), IStartWindowView {
 
     private fun initView(fragmentLayout: View) {
         btnOpenRegistrationWindow = fragmentLayout.findViewById(R.id.btn_open_registration_window)
-        btnOpenRegistrationWindow.setOnClickListener { presenter?.onRegistrationButtonClicked() }
+        btnOpenRegistrationWindow.setOnClickListener { presenter.onRegistrationButtonClicked() }
 
         btnOpenAuthenticationWindow = fragmentLayout.findViewById(R.id.btn_open_login_window)
-        btnOpenAuthenticationWindow.setOnClickListener { presenter?.onAuthenticationButtonClicked() }
+        btnOpenAuthenticationWindow.setOnClickListener { presenter.onAuthenticationButtonClicked() }
     }
 
     override fun onDestroy() {
-        presenter?.detachView()
+        presenter.detachView()
         super.onDestroy()
     }
 
     private fun initPresenter() {
-        presenter = StartWindowPresenterFactory.create()
-        presenter?.attachView(this)
+        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        presenter.attachView(this)
     }
 
     override fun navigateToAuthenticationFragment() {

@@ -1,20 +1,19 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.di.SplashScreenPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.splashScreen.ISplashScreenPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.splashScreen.ISplashScreenView
+import javax.inject.Inject
 
 class SplashScreenFragment : Fragment(), ISplashScreenView {
-    private var presenter: ISplashScreenPresenter? = null
+    @Inject
+    lateinit var presenter: ISplashScreenPresenter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,22 +24,19 @@ class SplashScreenFragment : Fragment(), ISplashScreenView {
     }
 
     override fun onDestroy() {
-        presenter?.detachView()
-        presenter?.clear()
+        presenter.detachView()
+        presenter.clear()
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
-        presenter?.onResume()
+        presenter.onResume()
     }
 
     private fun initPresenter() {
-        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
-        sharedPreferences?.let {
-            presenter = SplashScreenPresenterFactory.create(it)
-            presenter?.attachView(this)
-        }
+        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        presenter.attachView(this)
     }
 
     override fun navigateToStartFragment() {

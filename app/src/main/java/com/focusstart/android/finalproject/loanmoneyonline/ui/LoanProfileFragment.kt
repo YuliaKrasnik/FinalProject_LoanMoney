@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.di.LoanProfilePresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.loanProfile.ILoanProfilePresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.loanProfile.ILoanProfileView
+import javax.inject.Inject
 
 class LoanProfileFragment : Fragment(), ILoanProfileView {
-    private var presenter: ILoanProfilePresenter? = null
+    @Inject
+    lateinit var presenter: ILoanProfilePresenter
 
     private lateinit var tvFirstName: TextView
     private lateinit var tvLastName: TextView
@@ -24,8 +25,8 @@ class LoanProfileFragment : Fragment(), ILoanProfileView {
     private lateinit var tvState: TextView
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_loan_profile, container, false)
         initPresenter()
@@ -45,21 +46,30 @@ class LoanProfileFragment : Fragment(), ILoanProfileView {
     }
 
     override fun onDestroy() {
-        presenter?.detachView()
+        presenter.detachView()
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
-        presenter?.onResume(arguments)
+        presenter.onResume(arguments)
     }
 
     private fun initPresenter() {
-        presenter = LoanProfilePresenterFactory.create()
-        presenter?.attachView(this)
+        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        presenter.attachView(this)
     }
 
-    override fun showLoanProfile(firstName: String, lastName: String, phoneNumber: String, date: String, amount: String, period: String, percent: String, state: String) {
+    override fun showLoanProfile(
+        firstName: String,
+        lastName: String,
+        phoneNumber: String,
+        date: String,
+        amount: String,
+        period: String,
+        percent: String,
+        state: String
+    ) {
         tvFirstName.text = firstName
         tvLastName.text = lastName
         tvPhoneNumber.text = phoneNumber

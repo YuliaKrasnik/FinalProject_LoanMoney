@@ -10,20 +10,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.di.RegistrationPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationView
+import javax.inject.Inject
 
 class RegistrationFragment : Fragment(), IRegistrationView {
-    private var presenter: IRegistrationPresenter? = null
+    @Inject
+    lateinit var presenter: IRegistrationPresenter
 
     private lateinit var etNameUser: EditText
     private lateinit var etPasswordUser: EditText
     private lateinit var btnRegistration: Button
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_registration, container, false)
         initPresenter()
@@ -32,13 +33,13 @@ class RegistrationFragment : Fragment(), IRegistrationView {
     }
 
     private fun initPresenter() {
-        presenter = RegistrationPresenterFactory.create()
-        presenter?.attachView(this)
+        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        presenter.attachView(this)
     }
 
     override fun onDestroy() {
-        presenter?.detachView()
-        presenter?.clear()
+        presenter.detachView()
+        presenter.clear()
         super.onDestroy()
     }
 
@@ -47,14 +48,15 @@ class RegistrationFragment : Fragment(), IRegistrationView {
         etPasswordUser = fragmentLayout.findViewById(R.id.et_password_user)
         btnRegistration = fragmentLayout.findViewById(R.id.btn_registration)
         btnRegistration.setOnClickListener {
-            presenter?.onRegistrationButtonClicked(
-                    etNameUser.text.toString(),
-                    etPasswordUser.text.toString()
+            presenter.onRegistrationButtonClicked(
+                etNameUser.text.toString(),
+                etPasswordUser.text.toString()
             )
         }
     }
 
-    override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    override fun showToast(message: String) =
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
     override fun showUserNameError(message: String) {
         etNameUser.error = message

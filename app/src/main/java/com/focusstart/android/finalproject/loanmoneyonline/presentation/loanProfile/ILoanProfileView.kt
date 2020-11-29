@@ -1,6 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.loanProfile
 
-interface ILoanProfileView {
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBaseView
+
+interface ILoanProfileView : IBaseView {
     fun showLoanProfile(
             firstName: String,
             lastName: String,

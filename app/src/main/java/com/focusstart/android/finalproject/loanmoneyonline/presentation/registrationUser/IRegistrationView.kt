@@ -1,8 +1,9 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser
 
 import android.os.Bundle
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBaseView
 
-interface IRegistrationView {
+interface IRegistrationView : IBaseView {
 
     fun showToast(message: String)
 
