@@ -13,6 +13,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.di.LoanRegistrationPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationView
+import kotlin.math.max
 
 class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     private var presenter: ILoanRegistrationPresenter? = null
@@ -102,10 +103,14 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
 
     override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
-    override fun showConditions(percent: Double, period: Int, maxAmount: Int) {
+    override fun showImmutableConditions(percent: Double, period: Int) {
         tvValuePeriod.text = period.toString()
         tvValuePercent.text = percent.toString()
-        sbAmount.max = maxAmount
     }
+
+    override fun setMaxInSeekBar(maxValue: Int) {
+        sbAmount.max = maxValue
+    }
+
 
 }

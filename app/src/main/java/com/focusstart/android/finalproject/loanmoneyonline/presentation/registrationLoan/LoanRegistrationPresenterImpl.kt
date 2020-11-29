@@ -18,6 +18,7 @@ class LoanRegistrationPresenterImpl(private val loanRegistrationUseCase: LoanReg
 
     companion object {
         private const val STEP_VALUE_IN_SEEK_BAR = 1000
+        private const val MIN_VALUE_IN_SEEK_BAR = 1000
         private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
     }
 
@@ -61,8 +62,16 @@ class LoanRegistrationPresenterImpl(private val loanRegistrationUseCase: LoanReg
     private fun processingResponseGettingConditionsLoan(response: Response<LoanConditions>) {
         if (response.isSuccessful) {
             val loanCondition = response.body()
-            loanCondition?.let { view?.showConditions(it.percent, it.period, it.maxAmount) }
+            loanCondition?.let {
+                view?.showImmutableConditions(it.percent, it.period)
+                calculateValueSeekBar(it.maxAmount)
+            }
         }
+    }
+
+    private fun calculateValueSeekBar(maxAmount: Int) {
+        val maxSeekBar = (maxAmount - MIN_VALUE_IN_SEEK_BAR)/ STEP_VALUE_IN_SEEK_BAR
+        view?.setMaxInSeekBar(maxSeekBar)
     }
 
     override fun onRegistrationLoanButtonClicked(firstName: String, secondName: String, phoneNumber: String, amount: String, period: String, percent: String) {
@@ -74,7 +83,7 @@ class LoanRegistrationPresenterImpl(private val loanRegistrationUseCase: LoanReg
     private fun validationOfEnteredValues(firstName: String, secondName: String, phoneNumber: String, amount: String): Boolean =
             firstName.isNotEmpty() && secondName.isNotEmpty() && phoneNumber.isNotEmpty() && amount.isNotEmpty()
 
-    override fun getTransformedProgressValueInSeekBar(progress: Int) = progress / STEP_VALUE_IN_SEEK_BAR * STEP_VALUE_IN_SEEK_BAR
+    override fun getTransformedProgressValueInSeekBar(progress: Int) = MIN_VALUE_IN_SEEK_BAR +(progress* STEP_VALUE_IN_SEEK_BAR)
 
     private fun registrationLoan(firstName: String, secondName: String, phoneNumber: String, amount: String, period: String, percent: String) {
         loanRegistrationUseCase(firstName, secondName, phoneNumber, amount, period, percent)
