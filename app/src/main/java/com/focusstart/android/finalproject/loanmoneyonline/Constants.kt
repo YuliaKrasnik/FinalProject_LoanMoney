@@ -19,6 +19,7 @@ object Constants {
 
     const val CODE_SUCCESSFUL = 200
     const val CODE_BAD_REQUEST = 400
+    const val CODE_NOT_FOUND = 404
 
     const val BUNDLE_KEY_REGISTRATION_NAME = "key_registration_name"
     const val BUNDLE_KEY_REGISTRATION_PASSWORD = "key_registration_password"
