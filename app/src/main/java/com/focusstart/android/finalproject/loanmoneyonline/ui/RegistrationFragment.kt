@@ -1,6 +1,5 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
-import com.focusstart.android.finalproject.loanmoneyonline.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.di.RegistrationPresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationPresenter
@@ -34,11 +32,8 @@ class RegistrationFragment : Fragment(), IRegistrationView {
     }
 
     private fun initPresenter() {
-        val sharedPreferences = context?.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)
-        sharedPreferences?.let {
-            presenter = RegistrationPresenterFactory.create(it)
-            presenter?.attachView(this)
-        }
+        presenter = RegistrationPresenterFactory.create()
+        presenter?.attachView(this)
     }
 
     override fun onDestroy() {
@@ -59,11 +54,15 @@ class RegistrationFragment : Fragment(), IRegistrationView {
         }
     }
 
-    override fun navigateToExplanationAfterRegistrationFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_registrationFragment_to_explanationAfterRegistrationFragment)
+    override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
+    override fun showUserNameError(message: String) {
+        etNameUser.error = message
     }
 
-    override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    override fun navigateToAuthenticationFragment(bundle: Bundle) {
+        val navController = NavHostFragment.findNavController(this)
+        navController.navigate(R.id.action_registrationFragment_to_authenticationFragment, bundle)
+    }
 
 }

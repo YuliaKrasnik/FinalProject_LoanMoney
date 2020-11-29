@@ -1,7 +1,12 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser
 
-interface IRegistrationView {
-    fun navigateToExplanationAfterRegistrationFragment()
+import android.os.Bundle
 
-    fun showToast(message:String)
+interface IRegistrationView {
+
+    fun showToast(message: String)
+
+    fun showUserNameError(message: String)
+
+    fun navigateToAuthenticationFragment(bundle: Bundle)
 }
