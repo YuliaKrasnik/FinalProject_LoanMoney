@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.Constants
@@ -58,9 +59,26 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter?.onResume(arguments)
+    }
+
     override fun navigateToListOfLoansFragment() {
         val navController = NavHostFragment.findNavController(this)
         navController.navigate(R.id.action_authenticationFragment_to_listOfLoansFragment)
     }
+
+    override fun navigateToExplanationAfterRegistrationFragment() {
+        val navController = NavHostFragment.findNavController(this)
+        navController.navigate(R.id.action_authenticationFragment_to_explanationAfterRegistrationFragment)
+    }
+
+    override fun showPassedValues(username: String, password: String) {
+        etNameUser.setText(username)
+        etPasswordUser.setText(password)
+    }
+
+    override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
 }

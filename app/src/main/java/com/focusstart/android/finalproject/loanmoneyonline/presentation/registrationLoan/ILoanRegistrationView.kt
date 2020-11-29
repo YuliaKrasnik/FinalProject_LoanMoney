@@ -3,5 +3,6 @@ package com.focusstart.android.finalproject.loanmoneyonline.presentation.registr
 interface ILoanRegistrationView {
     fun navigateToExplanationAfterRegisterLoanFragment()
     fun showToast(message: String)
-    fun showConditions(percent: Double, period: Int, maxAmount: Int)
+    fun showImmutableConditions(percent: Double, period: Int)
+    fun setMaxInSeekBar(maxValue: Int)
 }

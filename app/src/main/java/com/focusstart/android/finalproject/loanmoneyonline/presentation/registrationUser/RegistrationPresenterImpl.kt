@@ -1,22 +1,27 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser
 
+import android.os.Bundle
+import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_REGISTRATION_NAME
+import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_REGISTRATION_PASSWORD
+import com.focusstart.android.finalproject.loanmoneyonline.Constants.CODE_BAD_REQUEST
+import com.focusstart.android.finalproject.loanmoneyonline.Constants.TAG_ERROR
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.UserEntity
-import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.AuthenticationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.RegistrationInAppUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.SaveBearerTokenInPreferencesUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.applySchedulers
 import io.reactivex.SingleObserver
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import okhttp3.ResponseBody
 import retrofit2.Response
 
 class RegistrationPresenterImpl(
-        private val registrationInAppUseCase: RegistrationInAppUseCase,
-        private val authenticationUseCase: AuthenticationUseCase,
-        private val saveBearerTokenInPreferencesUseCase: SaveBearerTokenInPreferencesUseCase) :
+        private val registrationInAppUseCase: RegistrationInAppUseCase) :
         IRegistrationPresenter {
+
+    companion object {
+        private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
+        private const val MESSAGE_USER_EXISTS = "Пользователь с таким именем уже существует"
+    }
 
     private var view: IRegistrationView? = null
     private val compositeDisposable = CompositeDisposable()
@@ -34,60 +39,46 @@ class RegistrationPresenterImpl(
     }
 
     override fun onRegistrationButtonClicked(username: String, password: String) {
-        registrationInApp(username, password)
+        if (validationOfEnteredValues(username, password))
+            registrationInApp(username, password)
+        else view?.showToast(MESSAGE_EMPTY_FIELDS)
     }
+
+    private fun validationOfEnteredValues(username: String, password: String): Boolean = username.isNotEmpty() && password.isNotEmpty()
 
     private fun registrationInApp(username: String, password: String) {
         registrationInAppUseCase(username, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                //TODO flatmap с login
+                .compose(applySchedulers())
                 .subscribe(object : SingleObserver<Response<UserEntity>> {
                     override fun onSubscribe(disposable: Disposable) {
                         compositeDisposable.add(disposable)
                     }
 
                     override fun onSuccess(response: Response<UserEntity>) {
-                        val userEntity = response.body()
-                        val code = response.code()
-                        if (code == 200) {
-                            automaticallyAuthentication(username, password)
-                        }
+                        processingResponseRegistration(response, username, password)
                     }
 
                     override fun onError(e: Throwable) {
+                        Log.e(TAG_ERROR, "registration in App: ${e.message}")
                     }
                 })
+    }
 
+    private fun processingResponseRegistration(response: Response<UserEntity>, username: String, password: String) {
+        if (response.isSuccessful) {
+            automaticallyAuthentication(username, password)
+        } else {
+            when (response.code()) {
+                CODE_BAD_REQUEST -> view?.showUserNameError(MESSAGE_USER_EXISTS)
+            }
+        }
     }
 
     private fun automaticallyAuthentication(username: String, password: String) {
-        authenticationUseCase(username, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : SingleObserver<Response<ResponseBody>> {
-                    override fun onSubscribe(disposable: Disposable) {
-                        compositeDisposable.add(disposable)
-                    }
-
-                    override fun onSuccess(response: Response<ResponseBody>) {
-                        val bearerToken = response.body()?.string()
-                        val code = response.code()
-                        if (code == 200) {
-                            bearerToken?.let {
-                                saveBearerToken(bearerToken)
-                            }
-                            view?.navigateToExplanationAfterRegistrationFragment()
-                        }
-                    }
-
-                    override fun onError(e: Throwable) {
-                        // TODO("Not yet implemented")
-                    }
-                })
+        val bundle = Bundle()
+        bundle.putString(BUNDLE_KEY_REGISTRATION_NAME, username)
+        bundle.putString(BUNDLE_KEY_REGISTRATION_PASSWORD, password)
+        view?.navigateToAuthenticationFragment(bundle)
     }
 
-    private fun saveBearerToken(bearerToken: String) {
-        saveBearerTokenInPreferencesUseCase(bearerToken)
-    }
 }

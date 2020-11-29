@@ -1,17 +1,14 @@
 package com.focusstart.android.finalproject.loanmoneyonline.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.di.LoanProfilePresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.di.StartWindowPresenterFactory
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.loanProfile.ILoanProfilePresenter
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.loanProfile.ILoanProfileView
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.startWindow.IStartWindowPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.startWindow.IStartWindowView
 
