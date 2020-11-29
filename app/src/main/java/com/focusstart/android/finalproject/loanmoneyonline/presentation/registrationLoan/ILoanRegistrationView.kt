@@ -1,6 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan
 
-interface ILoanRegistrationView {
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBaseView
+
+interface ILoanRegistrationView : IBaseView {
     fun navigateToExplanationAfterRegisterLoanFragment()
     fun showToast(message: String)
     fun showImmutableConditions(percent: Double, period: Int)

@@ -1,5 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.explanationAfterRegisterLoan
 
-interface IExplanationAfterRegisterLoanView {
+import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBaseView
+
+interface IExplanationAfterRegisterLoanView : IBaseView {
     fun navigateToListOfLoansFragment()
 }
