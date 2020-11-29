@@ -2,4 +2,6 @@ package com.focusstart.android.finalproject.loanmoneyonline.presentation.registr
 
 interface IRegistrationView {
     fun navigateToExplanationAfterRegistrationFragment()
+
+    fun showToast(message:String)
 }

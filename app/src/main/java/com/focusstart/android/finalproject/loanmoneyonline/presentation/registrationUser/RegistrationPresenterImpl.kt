@@ -34,8 +34,12 @@ class RegistrationPresenterImpl(
     }
 
     override fun onRegistrationButtonClicked(username: String, password: String) {
-        registrationInApp(username, password)
+        if (validationOfEnteredValues(username, password))
+            registrationInApp(username, password)
+        else view?.showToast("Заполните все поля")
     }
+
+    private fun validationOfEnteredValues(username: String, password: String): Boolean = username.isNotEmpty() && password.isNotEmpty()
 
     private fun registrationInApp(username: String, password: String) {
         registrationInAppUseCase(username, password)

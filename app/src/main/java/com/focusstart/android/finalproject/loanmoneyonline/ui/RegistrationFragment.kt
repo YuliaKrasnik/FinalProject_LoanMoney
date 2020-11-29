@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.Constants
@@ -62,5 +63,7 @@ class RegistrationFragment : Fragment(), IRegistrationView {
         val navController = NavHostFragment.findNavController(this)
         navController.navigate(R.id.action_registrationFragment_to_explanationAfterRegistrationFragment)
     }
+
+    override fun showToast(message: String) = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
 }
