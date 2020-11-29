@@ -80,7 +80,7 @@ class AuthenticationPresenterImpl(
                     }
 
                     override fun onSuccess(response: Response<ResponseBody>) {
-                        processResponseAuthentication(response)
+                        processingResponseAuthentication(response)
                     }
 
                     override fun onError(e: Throwable) {
@@ -89,7 +89,7 @@ class AuthenticationPresenterImpl(
                 })
     }
 
-    private fun processResponseAuthentication(response: Response<ResponseBody>) {
+    private fun processingResponseAuthentication(response: Response<ResponseBody>) {
         if (response.isSuccessful) {
             val bearerToken = response.body()?.string()
             bearerToken?.let {

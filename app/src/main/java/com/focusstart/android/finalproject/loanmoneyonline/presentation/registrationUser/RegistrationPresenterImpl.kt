@@ -55,7 +55,7 @@ class RegistrationPresenterImpl(
                     }
 
                     override fun onSuccess(response: Response<UserEntity>) {
-                        processResponseRegistration(response, username, password)
+                        processingResponseRegistration(response, username, password)
                     }
 
                     override fun onError(e: Throwable) {
@@ -64,7 +64,7 @@ class RegistrationPresenterImpl(
                 })
     }
 
-    private fun processResponseRegistration(response: Response<UserEntity>, username: String, password: String) {
+    private fun processingResponseRegistration(response: Response<UserEntity>, username: String, password: String) {
         if (response.isSuccessful) {
             automaticallyAuthentication(username, password)
         } else {
