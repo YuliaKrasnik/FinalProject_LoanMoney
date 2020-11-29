@@ -65,22 +65,18 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
         }
     }
 
-
     private fun setChangeListenerOnAmount() {
         sbAmount.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
-                val transformedProgress = progress / 1000 * 1000
-                tvValueAmountSeekBar.text = (transformedProgress).toString()
+                val transformedProgress = presenter?.getTransformedProgressValueInSeekBar(progress)
+                transformedProgress?.let {
+                    tvValueAmountSeekBar.text = (transformedProgress).toString()
+                }
             }
 
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-                //       TODO("Not yet implemented")
-            }
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
 
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                //    TODO("Not yet implemented")
-            }
-
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
         })
     }
 
