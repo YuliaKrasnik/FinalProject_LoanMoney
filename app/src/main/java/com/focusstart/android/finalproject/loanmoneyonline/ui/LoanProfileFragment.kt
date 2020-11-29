@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.di.LoanProfilePresenterFactory
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.loanProfile.ILoanProfilePresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.loanProfile.ILoanProfileView
@@ -60,15 +59,16 @@ class LoanProfileFragment : Fragment(), ILoanProfileView {
         presenter?.attachView(this)
     }
 
-    override fun showLoanProfile(loan: Loan) {
-        tvFirstName.text = loan.firstName
-        tvLastName.text = loan.lastName
-        tvPhoneNumber.text = loan.phoneNumber
-        tvDate.text = loan.date
-        tvAmount.text = loan.amount.toString()
-        tvPeriod.text = loan.period.toString()
-        tvPercent.text = loan.percent.toString()
-        tvState.text = loan.state
+    override fun showLoanProfile(firstName: String, lastName: String, phoneNumber: String, date: String, amount: String, period: String, percent: String, state: String) {
+        tvFirstName.text = firstName
+        tvLastName.text = lastName
+        tvPhoneNumber.text = phoneNumber
+        tvDate.text = date
+        tvAmount.text = amount
+        tvPeriod.text = period
+        tvPercent.text = percent
+        tvState.text = state
     }
+
 
 }
