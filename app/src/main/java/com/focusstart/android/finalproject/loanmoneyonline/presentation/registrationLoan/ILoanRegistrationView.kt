@@ -10,4 +10,6 @@ interface ILoanRegistrationView : IBaseView {
     fun showImmutableConditions(percent: Double, period: Int)
 
     fun setMaxInSeekBar(maxValue: Int)
+
+    fun setProgressInSeekBar(progress: Int)
 }

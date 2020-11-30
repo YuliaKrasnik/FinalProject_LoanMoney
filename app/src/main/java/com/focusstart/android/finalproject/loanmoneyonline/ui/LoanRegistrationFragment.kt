@@ -30,6 +30,7 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_loan_registration, container, false)
         initView(fragmentLayout)
+        savedInstanceState?.let { presenter.onRestoreInstanceState(savedInstanceState) }
         return fragmentLayout
     }
 
@@ -66,6 +67,11 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
                     tvValuePercent.text.toString()
             )
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        presenter.onSaveInstanceState(outState)
     }
 
     private fun setChangeListenerOnAmount() {
@@ -111,5 +117,8 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
         sbAmount.max = maxValue
     }
 
+    override fun setProgressInSeekBar(progress: Int) {
+        sbAmount.progress = progress
+    }
 
 }

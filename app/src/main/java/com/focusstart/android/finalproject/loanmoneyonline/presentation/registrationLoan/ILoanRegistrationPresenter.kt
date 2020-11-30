@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan
 
+import android.os.Bundle
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBasePresenter
 
 interface ILoanRegistrationPresenter : IBasePresenter {
@@ -17,4 +18,8 @@ interface ILoanRegistrationPresenter : IBasePresenter {
     )
 
     fun getTransformedProgressValueInSeekBar(progress: Int): Int
+
+    fun onSaveInstanceState(outState: Bundle)
+
+    fun onRestoreInstanceState(savedInstanceState: Bundle)
 }
