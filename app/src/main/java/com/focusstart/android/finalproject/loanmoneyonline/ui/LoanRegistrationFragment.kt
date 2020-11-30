@@ -25,13 +25,17 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     private lateinit var btnRegistrationLoan: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_loan_registration, container, false)
-        initPresenter()
         initView(fragmentLayout)
         return fragmentLayout
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresenter()
     }
 
     override fun onResume() {
@@ -54,12 +58,12 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
         btnRegistrationLoan = fragmentLayout.findViewById(R.id.btn_registration_loan)
         btnRegistrationLoan.setOnClickListener {
             presenter.onRegistrationLoanButtonClicked(
-                etFirstName.text.toString(),
-                etLastName.text.toString(),
-                etPhoneNumber.text.toString(),
-                tvValueAmountSeekBar.text.toString(),
-                tvValuePeriod.text.toString(),
-                tvValuePercent.text.toString()
+                    etFirstName.text.toString(),
+                    etLastName.text.toString(),
+                    etPhoneNumber.text.toString(),
+                    tvValueAmountSeekBar.text.toString(),
+                    tvValuePeriod.text.toString(),
+                    tvValuePercent.text.toString()
             )
         }
     }
@@ -96,7 +100,7 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     }
 
     override fun showToast(message: String) =
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
     override fun showImmutableConditions(percent: Double, period: Int) {
         tvValuePeriod.text = period.toString()

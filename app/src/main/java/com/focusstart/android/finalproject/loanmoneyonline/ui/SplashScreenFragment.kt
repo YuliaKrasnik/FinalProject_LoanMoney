@@ -14,12 +14,15 @@ class SplashScreenFragment : Fragment(), ISplashScreenView {
     @Inject
     lateinit var presenter: ISplashScreenPresenter
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
-        val fragmentLayout = inflater.inflate(R.layout.fragment_splash_screen, container, false)
+        return inflater.inflate(R.layout.fragment_splash_screen, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         initPresenter()
-        return fragmentLayout
     }
 
     override fun onDestroy() {

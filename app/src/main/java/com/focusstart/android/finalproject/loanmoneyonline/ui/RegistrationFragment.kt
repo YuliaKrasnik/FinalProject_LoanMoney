@@ -22,13 +22,17 @@ class RegistrationFragment : Fragment(), IRegistrationView {
     private lateinit var btnRegistration: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_registration, container, false)
-        initPresenter()
         initView(fragmentLayout)
         return fragmentLayout
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresenter()
     }
 
     private fun initPresenter() {
@@ -48,21 +52,21 @@ class RegistrationFragment : Fragment(), IRegistrationView {
         btnRegistration = fragmentLayout.findViewById(R.id.btn_registration)
         btnRegistration.setOnClickListener {
             presenter.onRegistrationButtonClicked(
-                etNameUser.text.toString(),
-                etPasswordUser.text.toString()
+                    etNameUser.text.toString(),
+                    etPasswordUser.text.toString()
             )
         }
     }
 
     override fun showToast(message: String) =
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
     override fun showUserNameError(message: String) {
         etNameUser.error = message
     }
 
     override fun navigateToAuthenticationFragment(bundle: Bundle) {
-        navigateToDestinationScreen(R.id.action_registrationFragment_to_authenticationFragment, this)
+        navigateToDestinationScreen(R.id.action_registrationFragment_to_authenticationFragment, this, bundle)
     }
 
 }

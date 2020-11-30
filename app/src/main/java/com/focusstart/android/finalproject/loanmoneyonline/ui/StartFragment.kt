@@ -19,14 +19,14 @@ class StartFragment : Fragment(), IStartWindowView {
     private lateinit var btnOpenAuthenticationWindow: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_start, container, false)
-        initPresenter()
         initView(fragmentLayout)
         return fragmentLayout
     }
+
 
     private fun initView(fragmentLayout: View) {
         btnOpenRegistrationWindow = fragmentLayout.findViewById(R.id.btn_open_registration_window)
@@ -39,6 +39,11 @@ class StartFragment : Fragment(), IStartWindowView {
     override fun onDestroy() {
         presenter.detachView()
         super.onDestroy()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresenter()
     }
 
     private fun initPresenter() {

@@ -22,13 +22,17 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
     private lateinit var btnAuthentication: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_authentication, container, false)
-        initPresenter()
         initView(fragmentLayout)
         return fragmentLayout
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresenter()
     }
 
     private fun initPresenter() {
@@ -48,8 +52,8 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
         btnAuthentication = fragmentLayout.findViewById(R.id.btn_authentication)
         btnAuthentication.setOnClickListener {
             presenter.onAuthenticationButtonClicked(
-                etNameUser.text.toString(),
-                etPasswordUser.text.toString()
+                    etNameUser.text.toString(),
+                    etPasswordUser.text.toString()
             )
         }
     }
@@ -73,6 +77,6 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
     }
 
     override fun showToast(message: String) =
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
 }

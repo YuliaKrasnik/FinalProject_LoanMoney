@@ -25,13 +25,17 @@ class LoanProfileFragment : Fragment(), ILoanProfileView {
     private lateinit var tvState: TextView
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_loan_profile, container, false)
-        initPresenter()
         initView(fragmentLayout)
         return fragmentLayout
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresenter()
     }
 
     private fun initView(fragmentLayout: View) {
@@ -61,14 +65,14 @@ class LoanProfileFragment : Fragment(), ILoanProfileView {
     }
 
     override fun showLoanProfile(
-        firstName: String,
-        lastName: String,
-        phoneNumber: String,
-        date: String,
-        amount: String,
-        period: String,
-        percent: String,
-        state: String
+            firstName: String,
+            lastName: String,
+            phoneNumber: String,
+            date: String,
+            amount: String,
+            period: String,
+            percent: String,
+            state: String
     ) {
         tvFirstName.text = firstName
         tvLastName.text = lastName

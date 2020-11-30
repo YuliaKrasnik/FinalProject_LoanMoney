@@ -17,14 +17,18 @@ class ExplanationAfterRegisterLoanFragment : Fragment(), IExplanationAfterRegist
     private lateinit var btnNavigateToListOfLoans: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout =
-            inflater.inflate(R.layout.fragment_explanation_after_register_loan, container, false)
-        initPresenter()
+                inflater.inflate(R.layout.fragment_explanation_after_register_loan, container, false)
         initView(fragmentLayout)
         return fragmentLayout
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresenter()
     }
 
     private fun initView(fragmentLayout: View) {

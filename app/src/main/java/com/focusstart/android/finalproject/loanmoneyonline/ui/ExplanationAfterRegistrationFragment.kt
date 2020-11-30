@@ -18,14 +18,18 @@ class ExplanationAfterRegistrationFragment : Fragment(), IExplanationAfterRegist
     private lateinit var btnGetStartedInApp: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout =
-            inflater.inflate(R.layout.fragment_explanation_after_registration, container, false)
-        initPresenter()
+                inflater.inflate(R.layout.fragment_explanation_after_registration, container, false)
         initView(fragmentLayout)
         return fragmentLayout
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initPresenter()
     }
 
     private fun initView(fragmentLayout: View) {
