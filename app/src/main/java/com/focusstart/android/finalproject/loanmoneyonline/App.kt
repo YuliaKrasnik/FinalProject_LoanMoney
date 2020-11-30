@@ -1,11 +1,11 @@
 package com.focusstart.android.finalproject.loanmoneyonline
 
 import android.app.Application
-import com.focusstart.android.finalproject.loanmoneyonline.Constants.BASE_URL
-import com.focusstart.android.finalproject.loanmoneyonline.di.application.ApplicationComponent
-import com.focusstart.android.finalproject.loanmoneyonline.di.application.ApplicationModule
-import com.focusstart.android.finalproject.loanmoneyonline.di.application.DaggerApplicationComponent
-import com.focusstart.android.finalproject.loanmoneyonline.di.application.NetworkModule
+import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BASE_URL
+import com.focusstart.android.finalproject.loanmoneyonline.di.application.component.ApplicationComponent
+import com.focusstart.android.finalproject.loanmoneyonline.di.application.module.ApplicationModule
+import com.focusstart.android.finalproject.loanmoneyonline.di.application.component.DaggerApplicationComponent
+import com.focusstart.android.finalproject.loanmoneyonline.di.application.module.NetworkModule
 
 
 class App : Application() {

@@ -15,13 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoanMoneyOnline"
         tools:targetApi="n">
-        <activity android:name=".ui.SplashScreenActivity">
+        <activity android:name="com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.ui.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.focusstart.android.finalproject.loanmoneyonline.features.base.ui.MainActivity">
 
         </activity>
     </application>

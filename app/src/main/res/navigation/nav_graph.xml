@@ -6,13 +6,8 @@
     app:startDestination="@id/splashScreenFragment">
 
     <fragment
-        android:id="@+id/applicationSettingsFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ApplicationSettingsFragment"
-        android:label="fragment_application_settings"
-        tools:layout="@layout/fragment_application_settings" />
-    <fragment
         android:id="@+id/authenticationFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.AuthenticationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.authentication.features.authentication.ui.AuthenticationFragment"
         android:label="fragment_authentication"
         tools:layout="@layout/fragment_authentication" >
         <action
@@ -30,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/explanationAfterRegisterLoanFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ExplanationAfterRegisterLoanFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.explanations.explanationAfterRegisterLoan.ui.ExplanationAfterRegisterLoanFragment"
         android:label="fragment_explanation_after_register_loan"
         tools:layout="@layout/fragment_explanation_after_register_loan" >
         <action
@@ -42,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/explanationAfterRegistrationFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.ExplanationAfterRegistrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.explanations.explanationAfterRegisterUser.ui.ExplanationAfterRegistrationFragment"
         android:label="fragment_explanation_after_registration"
         tools:layout="@layout/fragment_explanation_after_registration" >
         <action
@@ -54,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/listOfLoansFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.listOfLoans.ListOfLoansFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.features.listOsLoans.ui.ListOfLoansFragment"
         android:label="fragment_list_of_loans"
         tools:layout="@layout/fragment_list_of_loans" >
         <action
@@ -66,12 +61,12 @@
     </fragment>
     <fragment
         android:id="@+id/loanProfileFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.LoanProfileFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.features.loanProfile.ui.LoanProfileFragment"
         android:label="fragment_loan_profile"
         tools:layout="@layout/fragment_loan_profile" />
     <fragment
         android:id="@+id/loanRegistrationFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.LoanRegistrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.features.registrationLoan.ui.LoanRegistrationFragment"
         android:label="fragment_loan_registration"
         tools:layout="@layout/fragment_loan_registration" >
         <action
@@ -80,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.RegistrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.authentication.features.registration.ui.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action
@@ -89,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.StartFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.startWindow.ui.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -101,7 +96,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.ui.SplashScreenFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.ui.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
