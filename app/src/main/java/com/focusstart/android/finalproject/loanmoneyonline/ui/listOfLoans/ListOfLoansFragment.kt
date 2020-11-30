@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.focusstart.android.finalproject.loanmoneyonline.R
@@ -66,13 +65,11 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     private fun onClickItemFunction(loan: Loan) {
         val bundle = presenter.getNavigationBundle(loan)
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_listOfLoansFragment_to_loanProfileFragment, bundle)
+        navigateToDestinationScreen(R.id.action_listOfLoansFragment_to_loanProfileFragment, this, bundle)
     }
 
     override fun navigateToLoanRegistrationFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_listOfLoansFragment_to_loanRegistrationFragment)
+        navigateToDestinationScreen(R.id.action_listOfLoansFragment_to_loanRegistrationFragment, this)
     }
 
 }

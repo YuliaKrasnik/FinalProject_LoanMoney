@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.startWindow.IStartWindowPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.startWindow.IStartWindowView
@@ -48,13 +47,11 @@ class StartFragment : Fragment(), IStartWindowView {
     }
 
     override fun navigateToAuthenticationFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_startFragment_to_authenticationFragment)
+        navigateToDestinationScreen(R.id.action_startFragment_to_authenticationFragment, this)
     }
 
     override fun navigateToRegistrationFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_startFragment_to_registrationFragment)
+        navigateToDestinationScreen(R.id.action_startFragment_to_registrationFragment, this)
     }
 
 

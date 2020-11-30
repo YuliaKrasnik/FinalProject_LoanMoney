@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.authentication.IAuthenticationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.authentication.IAuthenticationView
@@ -61,13 +60,11 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
     }
 
     override fun navigateToListOfLoansFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_authenticationFragment_to_listOfLoansFragment)
+        navigateToDestinationScreen(R.id.action_authenticationFragment_to_listOfLoansFragment, this)
     }
 
     override fun navigateToExplanationAfterRegistrationFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_authenticationFragment_to_explanationAfterRegistrationFragment)
+        navigateToDestinationScreen(R.id.action_authenticationFragment_to_explanationAfterRegistrationFragment, this)
     }
 
     override fun showPassedValues(username: String, password: String) {

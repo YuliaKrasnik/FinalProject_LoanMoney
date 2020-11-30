@@ -8,7 +8,6 @@ import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.CODE_NOT_FOUND
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.AuthenticationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.SaveBearerTokenUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.applySchedulers
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -16,23 +15,21 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 
 class AuthenticationPresenterImpl(
-        private val authenticationUseCase: AuthenticationUseCase,
-        private val saveBearerTokenUseCase: SaveBearerTokenUseCase) :
-        IAuthenticationPresenter {
+    private val authenticationUseCase: AuthenticationUseCase,
+    private val saveBearerTokenUseCase: SaveBearerTokenUseCase
+) :
+    IAuthenticationPresenter {
 
     companion object {
         private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
-        private const val MESSAGE_USER_NOT_FOUND = "Не удается войти. Такого пользователя не существует"
+        private const val MESSAGE_USER_NOT_FOUND =
+            "Не удается войти. Такого пользователя не существует"
     }
 
     private var view: IAuthenticationView? = null
     private val compositeDisposable = CompositeDisposable()
 
     private var isAuthenticationAfterRegistration = false
-
-    override fun attachView(view: IAuthenticationView) {
-        this.view = view
-    }
 
     override fun detachView() {
         this.view = null
@@ -48,10 +45,15 @@ class AuthenticationPresenterImpl(
         else view?.showToast(MESSAGE_EMPTY_FIELDS)
     }
 
-    private fun validationOfEnteredValues(username: String, password: String) = username.isNotEmpty() && password.isNotEmpty()
+    private fun validationOfEnteredValues(username: String, password: String) =
+        username.isNotEmpty() && password.isNotEmpty()
 
     override fun onResume(arguments: Bundle?) {
         checkPassedValuesInBundle(arguments)
+    }
+
+    override fun <T> attachView(view: T) {
+        this.view = view as IAuthenticationView
     }
 
     private fun checkPassedValuesInBundle(arguments: Bundle?) {
@@ -73,20 +75,20 @@ class AuthenticationPresenterImpl(
 
     private fun authenticationInApp(username: String, password: String) {
         authenticationUseCase(username, password)
-                .compose(applySchedulers())
-                .subscribe(object : SingleObserver<Response<ResponseBody>> {
-                    override fun onSubscribe(disposable: Disposable) {
-                        compositeDisposable.add(disposable)
-                    }
+            .compose(applySchedulers())
+            .subscribe(object : SingleObserver<Response<ResponseBody>> {
+                override fun onSubscribe(disposable: Disposable) {
+                    compositeDisposable.add(disposable)
+                }
 
-                    override fun onSuccess(response: Response<ResponseBody>) {
-                        processingResponseAuthentication(response)
-                    }
+                override fun onSuccess(response: Response<ResponseBody>) {
+                    processingResponseAuthentication(response)
+                }
 
-                    override fun onError(e: Throwable) {
-                        Log.e(Constants.TAG_ERROR, "authentication in App: ${e.message}")
-                    }
-                })
+                override fun onError(e: Throwable) {
+                    Log.e(Constants.TAG_ERROR, "authentication in App: ${e.message}")
+                }
+            })
     }
 
     private fun processingResponseAuthentication(response: Response<ResponseBody>) {

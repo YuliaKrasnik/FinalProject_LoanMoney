@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationLoan.ILoanRegistrationView
@@ -93,8 +92,7 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
     }
 
     override fun navigateToExplanationAfterRegisterLoanFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_loanRegistrationFragment_to_explanationAfterRegisterLoanFragment)
+        navigateToDestinationScreen(R.id.action_loanRegistrationFragment_to_explanationAfterRegisterLoanFragment, this)
     }
 
     override fun showToast(message: String) =

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.splashScreen.ISplashScreenPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.splashScreen.ISplashScreenView
@@ -40,13 +39,11 @@ class SplashScreenFragment : Fragment(), ISplashScreenView {
     }
 
     override fun navigateToStartFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_splashScreenFragment_to_startFragment)
+        navigateToDestinationScreen(R.id.action_splashScreenFragment_to_startFragment, this)
     }
 
     override fun navigateToListOfLoansFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_splashScreenFragment_to_listOfLoansFragment)
+        navigateToDestinationScreen(R.id.action_splashScreenFragment_to_listOfLoansFragment, this)
     }
 
 }

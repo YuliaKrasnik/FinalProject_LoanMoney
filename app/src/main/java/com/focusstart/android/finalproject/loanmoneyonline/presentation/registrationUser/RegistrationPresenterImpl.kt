@@ -8,15 +8,15 @@ import com.focusstart.android.finalproject.loanmoneyonline.Constants.CODE_BAD_RE
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.TAG_ERROR
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.UserEntity
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.RegistrationInAppUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.applySchedulers
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import retrofit2.Response
 
 class RegistrationPresenterImpl(
-        private val registrationInAppUseCase: RegistrationInAppUseCase) :
-        IRegistrationPresenter {
+    private val registrationInAppUseCase: RegistrationInAppUseCase
+) :
+    IRegistrationPresenter {
 
     companion object {
         private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
@@ -25,10 +25,6 @@ class RegistrationPresenterImpl(
 
     private var view: IRegistrationView? = null
     private val compositeDisposable = CompositeDisposable()
-
-    override fun attachView(view: IRegistrationView) {
-        this.view = view
-    }
 
     override fun detachView() {
         this.view = null
@@ -44,27 +40,36 @@ class RegistrationPresenterImpl(
         else view?.showToast(MESSAGE_EMPTY_FIELDS)
     }
 
-    private fun validationOfEnteredValues(username: String, password: String): Boolean = username.isNotEmpty() && password.isNotEmpty()
+    override fun <T> attachView(view: T) {
+        this.view = view as IRegistrationView
+    }
+
+    private fun validationOfEnteredValues(username: String, password: String): Boolean =
+        username.isNotEmpty() && password.isNotEmpty()
 
     private fun registrationInApp(username: String, password: String) {
         registrationInAppUseCase(username, password)
-                .compose(applySchedulers())
-                .subscribe(object : SingleObserver<Response<UserEntity>> {
-                    override fun onSubscribe(disposable: Disposable) {
-                        compositeDisposable.add(disposable)
-                    }
+            .compose(applySchedulers())
+            .subscribe(object : SingleObserver<Response<UserEntity>> {
+                override fun onSubscribe(disposable: Disposable) {
+                    compositeDisposable.add(disposable)
+                }
 
-                    override fun onSuccess(response: Response<UserEntity>) {
-                        processingResponseRegistration(response, username, password)
-                    }
+                override fun onSuccess(response: Response<UserEntity>) {
+                    processingResponseRegistration(response, username, password)
+                }
 
-                    override fun onError(e: Throwable) {
-                        Log.e(TAG_ERROR, "registration in App: ${e.message}")
-                    }
-                })
+                override fun onError(e: Throwable) {
+                    Log.e(TAG_ERROR, "registration in App: ${e.message}")
+                }
+            })
     }
 
-    private fun processingResponseRegistration(response: Response<UserEntity>, username: String, password: String) {
+    private fun processingResponseRegistration(
+        response: Response<UserEntity>,
+        username: String,
+        password: String
+    ) {
         if (response.isSuccessful) {
             automaticallyAuthentication(username, password)
         } else {

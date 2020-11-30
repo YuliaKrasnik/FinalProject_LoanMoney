@@ -14,14 +14,13 @@ import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_
 import com.focusstart.android.finalproject.loanmoneyonline.Constants.BUNDLE_KEY_STATE
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.GetListOfLoansUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.applySchedulers
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import retrofit2.Response
 
 class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoansUseCase) :
-        IListOfLoansPresenter {
+    IListOfLoansPresenter {
     private var view: IListOfLoansView? = null
     private val compositeDisposable = CompositeDisposable()
 
@@ -31,20 +30,20 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
 
     private fun getListOfLoans() {
         getListOfLoansUseCase()
-                .compose(applySchedulers())
-                .subscribe(object : SingleObserver<Response<List<Loan>>> {
-                    override fun onSubscribe(disposable: Disposable) {
-                        compositeDisposable.add(disposable)
-                    }
+            .compose(applySchedulers())
+            .subscribe(object : SingleObserver<Response<List<Loan>>> {
+                override fun onSubscribe(disposable: Disposable) {
+                    compositeDisposable.add(disposable)
+                }
 
-                    override fun onSuccess(response: Response<List<Loan>>) {
-                        processingResponseGetListOfLoans(response)
-                    }
+                override fun onSuccess(response: Response<List<Loan>>) {
+                    processingResponseGetListOfLoans(response)
+                }
 
-                    override fun onError(e: Throwable) {
-                        Log.e(Constants.TAG_ERROR, "get list of loan: ${e.message}")
-                    }
-                })
+                override fun onError(e: Throwable) {
+                    Log.e(Constants.TAG_ERROR, "get list of loan: ${e.message}")
+                }
+            })
     }
 
     private fun processingResponseGetListOfLoans(response: Response<List<Loan>>) {
@@ -52,10 +51,6 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
             val listOfLoans = response.body()
             listOfLoans?.let { view?.showLoans(it) }
         }
-    }
-
-    override fun attachView(view: IListOfLoansView) {
-        this.view = view
     }
 
     override fun detachView() {
@@ -82,6 +77,10 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
         bundle.putString(BUNDLE_KEY_PHONE_NUMBER, loan.phoneNumber)
         bundle.putString(BUNDLE_KEY_STATE, loan.state)
         return bundle
+    }
+
+    override fun <T> attachView(view: T) {
+        this.view = view as IListOfLoansView
     }
 
 }

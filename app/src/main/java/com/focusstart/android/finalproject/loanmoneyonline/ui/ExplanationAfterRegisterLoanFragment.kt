@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.explanationAfterRegisterLoan.IExplanationAfterRegisterLoanPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.explanationAfterRegisterLoan.IExplanationAfterRegisterLoanView
@@ -44,8 +43,7 @@ class ExplanationAfterRegisterLoanFragment : Fragment(), IExplanationAfterRegist
     }
 
     override fun navigateToListOfLoansFragment() {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_explanationAfterRegisterLoanFragment_to_listOfLoansFragment)
+        navigateToDestinationScreen(R.id.action_explanationAfterRegisterLoanFragment_to_listOfLoansFragment, this)
     }
 
 }

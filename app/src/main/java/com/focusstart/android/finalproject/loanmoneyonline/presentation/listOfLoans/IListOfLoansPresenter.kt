@@ -7,10 +7,6 @@ import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.I
 interface IListOfLoansPresenter : IBasePresenter {
     fun onResume()
 
-    fun attachView(view: IListOfLoansView)
-
-    fun detachView()
-
     fun clear()
 
     fun onCreateNewLoanButtonClicked()

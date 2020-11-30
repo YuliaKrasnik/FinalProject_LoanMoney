@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.registrationUser.IRegistrationView
@@ -63,8 +62,7 @@ class RegistrationFragment : Fragment(), IRegistrationView {
     }
 
     override fun navigateToAuthenticationFragment(bundle: Bundle) {
-        val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_registrationFragment_to_authenticationFragment, bundle)
+        navigateToDestinationScreen(R.id.action_registrationFragment_to_authenticationFragment, this)
     }
 
 }

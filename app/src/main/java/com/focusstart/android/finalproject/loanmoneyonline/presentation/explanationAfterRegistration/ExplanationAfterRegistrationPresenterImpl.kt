@@ -3,16 +3,16 @@ package com.focusstart.android.finalproject.loanmoneyonline.presentation.explana
 class ExplanationAfterRegistrationPresenterImpl : IExplanationAfterRegistrationPresenter {
     private var view: IExplanationAfterRegistrationView? = null
 
-    override fun attachView(view: IExplanationAfterRegistrationView) {
-        this.view = view
-    }
-
     override fun detachView() {
         this.view = null
     }
 
     override fun onGetStartedInAppButtonClicked() {
         view?.navigateToLoanRegistrationFragment()
+    }
+
+    override fun <T> attachView(view: T) {
+        this.view = view as IExplanationAfterRegistrationView
     }
 
 

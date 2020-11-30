@@ -16,6 +16,10 @@ class LoanProfilePresenterImpl : ILoanProfilePresenter {
         getProfileInformation(arguments)
     }
 
+    override fun <T> attachView(view: T) {
+        this.view = view as ILoanProfileView
+    }
+
     private fun getProfileInformation(arguments: Bundle?) {
         arguments?.let {
             val amount = it.getInt(BUNDLE_KEY_AMOUNT).toString()
@@ -27,12 +31,17 @@ class LoanProfilePresenterImpl : ILoanProfilePresenter {
             val phoneNumber = it.getString(BUNDLE_KEY_PHONE_NUMBER).toString()
             val state = it.getString(BUNDLE_KEY_STATE).toString()
 
-            view?.showLoanProfile(firstName, lastName, phoneNumber, date, amount, period, percent, state)
+            view?.showLoanProfile(
+                firstName,
+                lastName,
+                phoneNumber,
+                date,
+                amount,
+                period,
+                percent,
+                state
+            )
         }
-    }
-
-    override fun attachView(view: ILoanProfileView) {
-        this.view = view
     }
 
     override fun detachView() {

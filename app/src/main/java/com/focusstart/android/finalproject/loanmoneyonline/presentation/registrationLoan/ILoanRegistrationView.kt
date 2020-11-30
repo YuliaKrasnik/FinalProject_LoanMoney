@@ -4,7 +4,10 @@ import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.I
 
 interface ILoanRegistrationView : IBaseView {
     fun navigateToExplanationAfterRegisterLoanFragment()
+
     fun showToast(message: String)
+
     fun showImmutableConditions(percent: Double, period: Int)
+
     fun setMaxInSeekBar(maxValue: Int)
 }

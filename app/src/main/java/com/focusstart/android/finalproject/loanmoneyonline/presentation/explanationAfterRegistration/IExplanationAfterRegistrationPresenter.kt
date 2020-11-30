@@ -3,9 +3,5 @@ package com.focusstart.android.finalproject.loanmoneyonline.presentation.explana
 import com.focusstart.android.finalproject.loanmoneyonline.presentation.common.IBasePresenter
 
 interface IExplanationAfterRegistrationPresenter : IBasePresenter {
-    fun attachView(view: IExplanationAfterRegistrationView)
-
-    fun detachView()
-
     fun onGetStartedInAppButtonClicked()
 }
