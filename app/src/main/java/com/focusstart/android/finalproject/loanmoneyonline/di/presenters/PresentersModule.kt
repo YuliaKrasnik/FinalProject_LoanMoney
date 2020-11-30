@@ -26,6 +26,7 @@ import javax.inject.Singleton
 @Module(includes = [UseCasesModule::class])
 class PresentersModule {
     @Provides
+    @PresentersScope
     fun provideAuthenticationPresenter(
         authenticationInAppUseCase: AuthenticationUseCase,
         saveBearerTokenInPreferencesUseCase: SaveBearerTokenUseCase
@@ -35,14 +36,17 @@ class PresentersModule {
     )
 
     @Provides
+    @PresentersScope
     fun provideExplanationAfterRegisterLoanPresenter(): IExplanationAfterRegisterLoanPresenter =
         ExplanationAfterRegisterLoanPresenterImpl()
 
     @Provides
+    @PresentersScope
     fun provideExplanationAfterRegistrationPresenter(): IExplanationAfterRegistrationPresenter =
         ExplanationAfterRegistrationPresenterImpl()
 
     @Provides
+    @PresentersScope
     fun provideListOfLoansPresenter(
         getListOfLoansUseCase: GetListOfLoansUseCase
     ): IListOfLoansPresenter = ListOfLoansPresenterImpl(
@@ -50,9 +54,11 @@ class PresentersModule {
     )
 
     @Provides
+    @PresentersScope
     fun provideLoanProfilePresenter(): ILoanProfilePresenter = LoanProfilePresenterImpl()
 
     @Provides
+    @PresentersScope
     fun provideLoanRegistrationPresenter(
         loanRegistrationUseCase: LoanRegistrationUseCase,
         getConditionsLoanUseCase: GetConditionsLoanUseCase
@@ -62,6 +68,7 @@ class PresentersModule {
     )
 
     @Provides
+    @PresentersScope
     fun provideRegistrationPresenter(
         registrationInAppUseCase: RegistrationInAppUseCase
     ): IRegistrationPresenter = RegistrationPresenterImpl(
@@ -69,6 +76,7 @@ class PresentersModule {
     )
 
     @Provides
+    @PresentersScope
     fun provideSplashScreenPresenter(
         checkingBearerTokenAvailabilityUseCase: CheckingBearerTokenAvailabilityUseCase
     ): ISplashScreenPresenter = SplashScreenPresenterImpl(
@@ -76,5 +84,6 @@ class PresentersModule {
     )
 
     @Provides
+    @PresentersScope
     fun provideStartWindowPresenter(): IStartWindowPresenter = StartWindowPresenterImpl()
 }

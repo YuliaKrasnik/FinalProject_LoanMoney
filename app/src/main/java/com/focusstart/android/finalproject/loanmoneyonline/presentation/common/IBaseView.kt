@@ -5,8 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import com.focusstart.android.finalproject.loanmoneyonline.App
-import com.focusstart.android.finalproject.loanmoneyonline.di.presenters.PresentersComponent
-import com.focusstart.android.finalproject.loanmoneyonline.di.presenters.PresentersModule
+import com.focusstart.android.finalproject.loanmoneyonline.di.presenters.*
 
 interface IBaseView {
     fun getPresentersComponent(app: Application): PresentersComponent {

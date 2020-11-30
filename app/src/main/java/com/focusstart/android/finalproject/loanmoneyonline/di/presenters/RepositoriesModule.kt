@@ -12,10 +12,12 @@ import dagger.Provides
 @Module(includes = [SourcesModule::class])
 class RepositoriesModule {
     @Provides
+    @PresentersScope
     fun provideLoginRepository(loginDataSource: LoginDataSourceImpl): LoginRepositoryImpl =
         LoginRepositoryImpl(loginDataSource)
 
     @Provides
+    @PresentersScope
     fun provideLoanRepository(
         loanDataSourceImpl: LoanDataSourceImpl,
         settingsSourceImpl: SettingsSourceImpl
@@ -23,6 +25,7 @@ class RepositoriesModule {
         LoanRepositoryImpl(loanDataSourceImpl, settingsSourceImpl)
 
     @Provides
+    @PresentersScope
     fun provideSettingsRepository(settingsSourceImpl: SettingsSourceImpl): SettingsRepositoryImpl =
         SettingsRepositoryImpl(settingsSourceImpl)
 

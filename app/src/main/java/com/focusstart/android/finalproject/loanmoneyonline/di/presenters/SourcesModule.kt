@@ -10,14 +10,17 @@ import dagger.Provides
 @Module
 class SourcesModule {
     @Provides
+    @PresentersScope
     fun provideLoginSource(): LoginDataSourceImpl =
         LoginDataSourceImpl()
 
     @Provides
+    @PresentersScope
     fun provideLoanSource(): LoanDataSourceImpl =
         LoanDataSourceImpl()
 
     @Provides
+    @PresentersScope
     fun provideSettingsSource(preferences: SharedPreferences): SettingsSourceImpl =
         SettingsSourceImpl(preferences)
 

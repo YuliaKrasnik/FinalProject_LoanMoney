@@ -3,7 +3,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.di.presenters
 import com.focusstart.android.finalproject.loanmoneyonline.ui.*
 import com.focusstart.android.finalproject.loanmoneyonline.ui.listOfLoans.ListOfLoansFragment
 import dagger.Subcomponent
-
+@PresentersScope
 @Subcomponent(modules = [PresentersModule::class, UseCasesModule::class, RepositoriesModule::class, SourcesModule::class])
 interface PresentersComponent {
     fun inject(fragment: AuthenticationFragment)

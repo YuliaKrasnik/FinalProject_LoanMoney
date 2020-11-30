@@ -11,11 +11,11 @@ import javax.inject.Singleton
 @Module
 class ApplicationModule(private val app: Application) {
     @Provides
-    @Singleton
+    @ApplicationScope
     fun applicationContext(): Application = app
 
     @Provides
-    @Singleton
+    @ApplicationScope
     fun sharedPreferences(): SharedPreferences =
         app.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
 }
