@@ -3,7 +3,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.data.datasource
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanConditions
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanRequest
-import com.focusstart.android.finalproject.loanmoneyonline.data.network.ILoanApi
+import com.focusstart.android.finalproject.loanmoneyonline.data.network.api.ILoanApi
 import com.focusstart.android.finalproject.loanmoneyonline.data.network.RetrofitBuilder
 import io.reactivex.Single
 import retrofit2.Response
