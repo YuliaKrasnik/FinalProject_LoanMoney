@@ -2,7 +2,6 @@ package com.focusstart.android.finalproject.loanmoneyonline.data.datasource
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Auth
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.UserEntity
-import com.focusstart.android.finalproject.loanmoneyonline.data.network.RetrofitBuilder
 import com.focusstart.android.finalproject.loanmoneyonline.data.network.api.IAuthApi
 import io.reactivex.Single
 import okhttp3.ResponseBody
@@ -13,8 +12,7 @@ interface LoginDataSource {
     fun authentication(name: String, password: String): Single<Response<ResponseBody>>
 }
 
-class LoginDataSourceImpl : LoginDataSource {
-    private val apiService by lazy { RetrofitBuilder.buildService(IAuthApi::class.java) }
+class LoginDataSourceImpl(private val apiService:IAuthApi) : LoginDataSource {
 
     override fun registrationInApp(name: String, password: String): Single<Response<UserEntity>> {
         val auth = Auth(name, password)

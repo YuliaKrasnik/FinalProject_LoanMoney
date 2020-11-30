@@ -2,7 +2,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.di.presenters
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoanRepositoryImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoginRepositoryImpl
-import com.focusstart.android.finalproject.loanmoneyonline.data.repository.SettingsRepositoryImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.repository.TokenRepositoryImpl
 import com.focusstart.android.finalproject.loanmoneyonline.domain.usecase.*
 import dagger.Module
 import dagger.Provides
@@ -16,8 +16,8 @@ class UseCasesModule {
 
     @Provides
     @PresentersScope
-    fun provideSaveBearerTokenUseCase(settingsRepositoryImpl: SettingsRepositoryImpl): SaveBearerTokenUseCase =
-        SaveBearerTokenUseCase(settingsRepositoryImpl)
+    fun provideSaveBearerTokenUseCase(tokenRepositoryImpl: TokenRepositoryImpl): SaveBearerTokenUseCase =
+        SaveBearerTokenUseCase(tokenRepositoryImpl)
 
     @Provides
     @PresentersScope
@@ -48,9 +48,9 @@ class UseCasesModule {
     @Provides
     @PresentersScope
     fun provideCheckingBearerTokenAvailabilityUseCase(
-        settingsRepositoryImpl: SettingsRepositoryImpl
+            tokenRepositoryImpl: TokenRepositoryImpl
     ): CheckingBearerTokenAvailabilityUseCase = CheckingBearerTokenAvailabilityUseCase(
-        settingsRepositoryImpl
+        tokenRepositoryImpl
     )
 
 }

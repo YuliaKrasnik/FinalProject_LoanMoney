@@ -5,7 +5,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.domain.repository.ILo
 import io.reactivex.Single
 import retrofit2.Response
 
-class LoanRegistrationUseCase (private val loanRepository: ILoanRepository) {
+class LoanRegistrationUseCase(private val loanRepository: ILoanRepository) {
     operator fun invoke(firstName: String, secondName: String, phoneNumber: String, amount: String, period: String, percent: String): Single<Response<Loan>> =
             loanRepository.registerLoan(firstName, secondName, phoneNumber, amount, period, percent)
 }

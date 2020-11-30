@@ -10,9 +10,9 @@ import retrofit2.Response
 class LoginRepositoryImpl(private val dataSource: LoginDataSource) : ILoginRepository {
 
     override fun registrationInApp(name: String, password: String): Single<Response<UserEntity>> =
-        dataSource.registrationInApp(name, password)
+            dataSource.registrationInApp(name, password)
 
     override fun authentication(name: String, password: String): Single<Response<ResponseBody>> =
-        dataSource.authentication(name, password)
+            dataSource.authentication(name, password)
 
 }

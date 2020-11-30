@@ -3,7 +3,6 @@ package com.focusstart.android.finalproject.loanmoneyonline.data.network
 import android.content.SharedPreferences
 import com.focusstart.android.finalproject.loanmoneyonline.Constants
 
-
 interface ITokenProvider {
     fun saveBearerToken(token: String)
     fun getBearerToken(): String?
@@ -30,6 +29,5 @@ class TokenProviderImpl(private val preferences: SharedPreferences) : ITokenProv
         val token = getBearerToken()
         return  token != "" && token!=null
     }
-
 
 }

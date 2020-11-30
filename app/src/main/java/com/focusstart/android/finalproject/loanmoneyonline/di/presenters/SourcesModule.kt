@@ -1,9 +1,11 @@
 package com.focusstart.android.finalproject.loanmoneyonline.di.presenters
 
-import android.content.SharedPreferences
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoanDataSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoginDataSourceImpl
-import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SettingsSourceImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.TokenDataSourceImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.network.TokenProviderImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.network.api.IAuthApi
+import com.focusstart.android.finalproject.loanmoneyonline.data.network.api.ILoanApi
 import dagger.Module
 import dagger.Provides
 
@@ -11,17 +13,17 @@ import dagger.Provides
 class SourcesModule {
     @Provides
     @PresentersScope
-    fun provideLoginSource(): LoginDataSourceImpl =
-        LoginDataSourceImpl()
+    fun provideLoginSource(apiService: IAuthApi): LoginDataSourceImpl =
+            LoginDataSourceImpl(apiService)
 
     @Provides
     @PresentersScope
-    fun provideLoanSource(): LoanDataSourceImpl =
-        LoanDataSourceImpl()
+    fun provideLoanSource(apiService: ILoanApi): LoanDataSourceImpl =
+            LoanDataSourceImpl(apiService)
 
     @Provides
     @PresentersScope
-    fun provideSettingsSource(preferences: SharedPreferences): SettingsSourceImpl =
-        SettingsSourceImpl(preferences)
+    fun provideSettingsSource(tokenProvider: TokenProviderImpl): TokenDataSourceImpl =
+            TokenDataSourceImpl(tokenProvider)
 
 }

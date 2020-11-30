@@ -1,7 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.data.repository
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoanDataSource
-import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.ISettingsSource
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanConditions
 import com.focusstart.android.finalproject.loanmoneyonline.data.model.LoanRequest
@@ -10,36 +9,31 @@ import io.reactivex.Single
 import retrofit2.Response
 
 class LoanRepositoryImpl(
-    private val dataSource: LoanDataSource,
-    private val settingsSource: ISettingsSource
+        private val dataSource: LoanDataSource
 ) : ILoanRepository {
     override fun getLoansList(): Single<Response<List<Loan>>> =
-        dataSource.getLoansList(getBearerToken()!!)
+            dataSource.getLoansList()
 
     override fun registerLoan(
-        firstName: String,
-        secondName: String,
-        phoneNumber: String,
-        amount: String,
-        period: String,
-        percent: String
+            firstName: String,
+            secondName: String,
+            phoneNumber: String,
+            amount: String,
+            period: String,
+            percent: String
     ): Single<Response<Loan>> {
         val loanRequest = LoanRequest(
-            amount.toInt(),
-            firstName,
-            secondName,
-            percent.toDouble(),
-            period.toInt(),
-            phoneNumber
+                amount.toInt(),
+                firstName,
+                secondName,
+                percent.toDouble(),
+                period.toInt(),
+                phoneNumber
         )
-        val token = getBearerToken()!!
-        return dataSource.registerLoan(loanRequest, token)
+        return dataSource.registerLoan(loanRequest)
     }
 
     override fun getLoanConditions(): Single<Response<LoanConditions>> =
-        dataSource.getLoanConditions(getBearerToken()!!)
-
-
-    private fun getBearerToken(): String? = settingsSource.getBearerToken()
+            dataSource.getLoanConditions()
 
 }
