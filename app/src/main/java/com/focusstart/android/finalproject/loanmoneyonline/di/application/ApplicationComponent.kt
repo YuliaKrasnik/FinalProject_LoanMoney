@@ -5,7 +5,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.di.presenters.Present
 import dagger.Component
 
 @ApplicationScope
-@Component(modules = [ApplicationModule::class])
+@Component(modules = [ApplicationModule::class, NetworkModule::class])
 interface ApplicationComponent {
     fun newPresenterComponent(module: PresentersModule): PresentersComponent
 }

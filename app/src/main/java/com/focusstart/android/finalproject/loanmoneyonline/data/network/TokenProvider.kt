@@ -1,15 +1,15 @@
-package com.focusstart.android.finalproject.loanmoneyonline.data.datasource
+package com.focusstart.android.finalproject.loanmoneyonline.data.network
 
 import android.content.SharedPreferences
 import com.focusstart.android.finalproject.loanmoneyonline.Constants
 
-interface ISettingsSource {
+interface ITokenProvider {
     fun saveBearerToken(token: String)
     fun getBearerToken(): String?
     fun isTokenExists(): Boolean
 }
 
-class SettingsSourceImpl(private val preferences: SharedPreferences) : ISettingsSource {
+class TokenProviderImpl(private val preferences: SharedPreferences) : ITokenProvider {
     override fun saveBearerToken(token: String) {
         val editor = preferences.edit()
         editor.putString(Constants.APP_PREFERENCES_TOKEN, token)
@@ -19,7 +19,7 @@ class SettingsSourceImpl(private val preferences: SharedPreferences) : ISettings
     override fun getBearerToken(): String? {
         var token: String? = null
         if (preferences.contains(Constants.APP_PREFERENCES_TOKEN)) {
-            token = preferences.getString(Constants.APP_PREFERENCES_TOKEN, "")
+            token = preferences.getString(Constants.APP_PREFERENCES_TOKEN, null)
         }
 
         return token
@@ -29,6 +29,5 @@ class SettingsSourceImpl(private val preferences: SharedPreferences) : ISettings
         val token = getBearerToken()
         return  token != "" && token!=null
     }
-
 
 }

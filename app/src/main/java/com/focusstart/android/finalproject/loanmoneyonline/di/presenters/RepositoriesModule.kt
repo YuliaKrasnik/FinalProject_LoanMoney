@@ -2,10 +2,10 @@ package com.focusstart.android.finalproject.loanmoneyonline.di.presenters
 
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoanDataSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.LoginDataSourceImpl
-import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.SettingsSourceImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.datasource.TokenDataSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoanRepositoryImpl
 import com.focusstart.android.finalproject.loanmoneyonline.data.repository.LoginRepositoryImpl
-import com.focusstart.android.finalproject.loanmoneyonline.data.repository.SettingsRepositoryImpl
+import com.focusstart.android.finalproject.loanmoneyonline.data.repository.TokenRepositoryImpl
 import dagger.Module
 import dagger.Provides
 
@@ -20,13 +20,12 @@ class RepositoriesModule {
     @PresentersScope
     fun provideLoanRepository(
         loanDataSourceImpl: LoanDataSourceImpl,
-        settingsSourceImpl: SettingsSourceImpl
     ): LoanRepositoryImpl =
-        LoanRepositoryImpl(loanDataSourceImpl, settingsSourceImpl)
+        LoanRepositoryImpl(loanDataSourceImpl)
 
     @Provides
     @PresentersScope
-    fun provideSettingsRepository(settingsSourceImpl: SettingsSourceImpl): SettingsRepositoryImpl =
-        SettingsRepositoryImpl(settingsSourceImpl)
+    fun provideSettingsRepository(tokenDataSourceImpl: TokenDataSourceImpl): TokenRepositoryImpl =
+        TokenRepositoryImpl(tokenDataSourceImpl)
 
 }

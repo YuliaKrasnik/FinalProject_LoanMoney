@@ -7,5 +7,5 @@ import retrofit2.Response
 
 class RegistrationInAppUseCase(private val loginRepository: ILoginRepository) {
     operator fun invoke(name: String, password: String): Single<Response<UserEntity>> =
-        loginRepository.registrationInApp(name, password)
+            loginRepository.registrationInApp(name, password)
 }

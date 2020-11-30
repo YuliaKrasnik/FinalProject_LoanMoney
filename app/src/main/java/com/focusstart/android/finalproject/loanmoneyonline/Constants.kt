@@ -23,4 +23,6 @@ object Constants {
 
     const val BUNDLE_KEY_REGISTRATION_NAME = "key_registration_name"
     const val BUNDLE_KEY_REGISTRATION_PASSWORD = "key_registration_password"
+
+    const val BASE_URL =  "http://focusapp-env.eba-xm2atk2z.eu-central-1.elasticbeanstalk.com/"
 }
