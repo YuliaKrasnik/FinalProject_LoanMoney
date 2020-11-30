@@ -7,7 +7,6 @@ import com.focusstart.android.finalproject.loanmoneyonline.Constants.APP_PREFERE
 import com.focusstart.android.finalproject.loanmoneyonline.data.network.TokenProviderImpl
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class ApplicationModule(private val app: Application) {
