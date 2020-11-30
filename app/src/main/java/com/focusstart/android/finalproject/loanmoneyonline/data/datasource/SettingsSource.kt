@@ -19,7 +19,7 @@ class SettingsSourceImpl(private val preferences: SharedPreferences) : ISettings
     override fun getBearerToken(): String? {
         var token: String? = null
         if (preferences.contains(Constants.APP_PREFERENCES_TOKEN)) {
-            token = preferences.getString(Constants.APP_PREFERENCES_TOKEN, null)
+            token = preferences.getString(Constants.APP_PREFERENCES_TOKEN, "")
         }
 
         return token
