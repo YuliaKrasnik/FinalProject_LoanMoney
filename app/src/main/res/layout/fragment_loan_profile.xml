@@ -1,154 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".features.loans.features.loanProfile.ui.LoanProfileFragment">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_profile_label_first_name"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Фамилия:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0dp"
+        android:paddingBottom="@dimen/padding_vertical_big"
+        tools:context=".features.loans.features.loanProfile.ui.LoanProfileFragment">
 
-    <TextView
-        android:id="@+id/tv_profile_value_first_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_first_name" />
+        <ImageView
+            android:id="@+id/iv_person_avatar"
+            android:layout_width="@dimen/size_profile_icon_in_profile_loan"
+            android:layout_height="@dimen/size_profile_icon_in_profile_loan"
+            android:contentDescription="@string/iv_content_description"
+            android:src="@drawable/ic_person"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_value_phone_number"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_label_first_name" />
 
-    <TextView
-        android:id="@+id/tv_profile_label_last_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Имя:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_first_name" />
+        <TextView
+            android:id="@+id/tv_profile_label_first_name"
+            style="@style/tv_label_without_icon"
+            android:text="@string/label_first_name_in_profile"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/iv_person_avatar"
+            app:layout_constraintTop_toTopOf="@id/guideline_horizontal_top_in_profile_loan" />
 
-    <TextView
-        android:id="@+id/tv_profile_value_last_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_last_name" />
+        <TextView
+            android:id="@+id/tv_profile_value_first_name"
+            style="@style/tv_value"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/iv_person_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_first_name" />
 
-    <TextView
-        android:id="@+id/tv_profile_label_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Телефон:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_last_name" />
+        <TextView
+            android:id="@+id/tv_profile_label_last_name"
+            style="@style/tv_label_without_icon"
+            android:layout_marginTop="@dimen/vertical_small_margin"
+            android:text="@string/label_last_name_in_profile"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/iv_person_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_first_name" />
 
-    <TextView
-        android:id="@+id/tv_profile_value_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_phone_number" />
+        <TextView
+            android:id="@+id/tv_profile_value_last_name"
+            style="@style/tv_value"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/iv_person_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_last_name" />
 
-    <TextView
-        android:id="@+id/tv_profile_label_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Дата получения:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_phone_number" />
+        <TextView
+            android:id="@+id/tv_profile_label_phone_number"
+            style="@style/tv_label_without_icon"
+            android:layout_marginTop="@dimen/vertical_small_margin"
+            android:text="@string/label_phone_in_profile"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/iv_person_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_last_name" />
 
-    <TextView
-        android:id="@+id/tv_profile_value_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_date" />
+        <TextView
+            android:id="@+id/tv_profile_value_phone_number"
+            style="@style/tv_value"
+            app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/iv_person_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_phone_number" />
 
-    <TextView
-        android:id="@+id/tv_profile_label_amount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Сумма:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_date" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_top_in_profile_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="10dp" />
 
-    <TextView
-        android:id="@+id/tv_profile_value_amount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_amount" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start_in_profile_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
 
-    <TextView
-        android:id="@+id/tv_profile_label_period"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Период:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_amount" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end_in_profile_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
 
-    <TextView
-        android:id="@+id/tv_profile_value_period"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_period" />
+        <TextView
+            android:id="@+id/tv_profile_label_date"
+            style="@style/tv_label_with_icon"
+            android:text="@string/tv_label_date_in_profile_loan"
+            app:drawableStartCompat="@drawable/ic_event"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_phone_number" />
 
-    <TextView
-        android:id="@+id/tv_profile_label_percent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Процент:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_period" />
+        <TextView
+            android:id="@+id/tv_profile_value_date"
+            style="@style/tv_value"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_label_date"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/tv_profile_label_date"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_label_date" />
 
-    <TextView
-        android:id="@+id/tv_profile_value_percent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_percent" />
+        <TextView
+            android:id="@+id/tv_profile_label_amount"
+            style="@style/tv_label_with_icon"
+            android:text="@string/tv_label_amount_in_profile_loan"
+            app:drawableStartCompat="@drawable/ic_account"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_date" />
 
-    <TextView
-        android:id="@+id/tv_profile_label_state"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Состояние:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_percent" />
+        <TextView
+            android:id="@+id/tv_profile_value_amount"
+            style="@style/tv_value"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_label_amount"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@+id/tv_profile_label_amount"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_label_amount" />
 
-    <TextView
-        android:id="@+id/tv_profile_value_state"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_state" />
+        <TextView
+            android:id="@+id/tv_profile_label_period"
+            style="@style/tv_label_with_icon"
+            android:text="@string/tv_label_period_in_profile_loan"
+            app:drawableStartCompat="@drawable/ic_event_available"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_amount" />
 
-    <TextView
-        android:id="@+id/tv_profile_instructions_how_to_get"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Какая-то инструкция как получить в банке/оформить на карту"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_state" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_profile_value_period"
+            style="@style/tv_value"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_label_period"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@+id/tv_profile_label_period"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_label_period" />
+
+        <TextView
+            android:id="@+id/tv_profile_label_percent"
+            style="@style/tv_label_with_icon"
+            android:text="@string/tv_label_percent_in_profile_loan"
+            app:drawableStartCompat="@drawable/ic_percent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_period" />
+
+        <TextView
+            android:id="@+id/tv_profile_value_percent"
+            style="@style/tv_value"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_label_percent"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/tv_profile_label_percent"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_label_percent" />
+
+        <TextView
+            android:id="@+id/tv_profile_label_state"
+            style="@style/tv_label_with_icon"
+            android:text="@string/tv_label_state_in_profile"
+            app:drawableStartCompat="@drawable/ic_state"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_percent" />
+
+        <TextView
+            android:id="@+id/tv_profile_value_state"
+            style="@style/tv_value"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_profile_label_state"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@id/tv_profile_label_state"
+            app:layout_constraintTop_toTopOf="@+id/tv_profile_label_state" />
+
+        <View
+            android:id="@+id/split_in_profile"
+            style="@style/split_in_profile"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toEndOf="@+id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_value_state" />
+
+        <TextView
+            android:id="@+id/tv_profile_label_instructions_how_to_get"
+            style="@style/tv_value"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:gravity="center"
+            android:text="@string/tv_instruction_loan"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/split_in_profile" />
+
+        <TextView
+            android:id="@+id/tv_profile_first_method_of_obtaining"
+            style="@style/tv_label_with_icon"
+            android:layout_width="0dp"
+            android:text="@string/tv_first_method_of_obtaining_loan"
+            android:textSize="@dimen/size_in_instruction"
+            android:textStyle="normal"
+            app:drawableStartCompat="@drawable/ic_looks_one"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_label_instructions_how_to_get" />
+
+        <TextView
+            android:id="@+id/tv_profile_second_method_of_obtaining"
+            style="@style/tv_label_with_icon"
+            android:layout_width="0dp"
+            android:text="@string/tv_second_method_of_obtaining_loan"
+            android:textSize="@dimen/size_in_instruction"
+            android:textStyle="normal"
+            app:drawableStartCompat="@drawable/ic_looks_two"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_profile_loan"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_profile_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_first_method_of_obtaining" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
