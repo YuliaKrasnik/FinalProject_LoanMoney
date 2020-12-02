@@ -1,7 +1,10 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.features.listOsLoans.presentation
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
+import androidx.core.content.res.ResourcesCompat
+import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_AMOUNT
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_DATE
@@ -30,20 +33,20 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
 
     private fun getListOfLoans() {
         getListOfLoansUseCase()
-            .compose(applySchedulers())
-            .subscribe(object : SingleObserver<Response<List<Loan>>> {
-                override fun onSubscribe(disposable: Disposable) {
-                    compositeDisposable.add(disposable)
-                }
+                .compose(applySchedulers())
+                .subscribe(object : SingleObserver<Response<List<Loan>>> {
+                    override fun onSubscribe(disposable: Disposable) {
+                        compositeDisposable.add(disposable)
+                    }
 
-                override fun onSuccess(response: Response<List<Loan>>) {
-                    processingResponseGetListOfLoans(response)
-                }
+                    override fun onSuccess(response: Response<List<Loan>>) {
+                        processingResponseGetListOfLoans(response)
+                    }
 
-                override fun onError(e: Throwable) {
-                    Log.e(Constants.TAG_ERROR, "get list of loan: ${e.message}")
-                }
-            })
+                    override fun onError(e: Throwable) {
+                        Log.e(Constants.TAG_ERROR, "get list of loan: ${e.message}")
+                    }
+                })
     }
 
     private fun processingResponseGetListOfLoans(response: Response<List<Loan>>) {
@@ -65,18 +68,43 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
         view?.navigateToLoanRegistrationFragment()
     }
 
-    override fun getNavigationBundle(loan: Loan): Bundle {
+    override fun getNavigationBundle(loan: Loan, resources: Resources): Bundle {
         val bundle = Bundle()
         bundle.putInt(BUNDLE_KEY_AMOUNT, loan.amount)
-        bundle.putString(BUNDLE_KEY_DATE, loan.date)
+        bundle.putString(BUNDLE_KEY_DATE, transformDate(loan.date, resources))
         bundle.putString(BUNDLE_KEY_FIRST_NAME, loan.firstName)
         bundle.putInt(BUNDLE_KEY_ID, loan.id)
         bundle.putString(BUNDLE_KEY_LAST_NAME, loan.lastName)
         bundle.putDouble(BUNDLE_KEY_PERCENT, loan.percent)
         bundle.putInt(BUNDLE_KEY_PERIOD, loan.period)
         bundle.putString(BUNDLE_KEY_PHONE_NUMBER, loan.phoneNumber)
-        bundle.putString(BUNDLE_KEY_STATE, loan.state)
+        bundle.putString(BUNDLE_KEY_STATE, transformNameState(loan.state, resources))
         return bundle
+    }
+
+    override fun determineColorState(state: String, resources: Resources): Int {
+        return when (state) {
+            "APPROVED" -> ResourcesCompat.getColor(resources, R.color.loan_state_approved, null)
+            "REGISTERED" -> ResourcesCompat.getColor(resources, R.color.loan_state_registered, null)
+            "REJECTED" -> ResourcesCompat.getColor(resources, R.color.loan_state_rejected, null)
+            else -> ResourcesCompat.getColor(resources, R.color.black, null)
+        }
+    }
+
+    override fun transformNameState(state: String, resources: Resources): String {
+        return when (state) {
+            "APPROVED" -> resources.getString(R.string.name_loan_state_approved)
+            "REGISTERED" -> resources.getString(R.string.name_loan_state_registered)
+            "REJECTED" -> resources.getString(R.string.name_loan_state_rejected)
+            else -> resources.getString(R.string.name_loan_state_default)
+        }
+    }
+
+    override fun transformDate(date: String, resources: Resources): String {
+        val dateWithoutTime = date.split("T")
+        val dateComponent = dateWithoutTime[0].split("-")
+        val startDateString = resources.getString(R.string.start_date_string_in_list)
+        return "$startDateString ${dateComponent[2]}.${dateComponent[1]}.${dateComponent[0]}"
     }
 
     override fun <T> attachView(view: T) {

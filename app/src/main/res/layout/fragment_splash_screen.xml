@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".features.splashScreen.ui.SplashScreenFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Заставка"
-        android:textStyle="bold"
-        android:textSize="30sp"
+    <ImageView
+        android:id="@+id/iv_logo_splash_screen"
+        android:layout_width="@dimen/size_logo_on_splash_screen"
+        android:layout_height="@dimen/size_logo_on_splash_screen"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

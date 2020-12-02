@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/logo_green</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/logo_green</item>
+    </style>
+
+    <style name="logo_on_start">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_margin</item>
+        <item name="android:fontFamily">@font/aclonica</item>
+        <item name="android:textColor">@color/yellow</item>
+        <item name="android:textSize">@dimen/size_text_big</item>
+    </style>
+
+    <style name="button_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/vertical_margin</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/button_design</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="tv_label_fragment">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/size_text_big</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="et_with_stroke">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:layout_marginEnd">@dimen/horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/vertical_margin</item>
+        <item name="android:background">@drawable/edit_text_design</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:padding">@dimen/et_padding</item>
+    </style>
+
+    <style name="tv_label_without_icon">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_small_margin</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="tv_value">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/horizontal_small_margin</item>
+    </style>
+
+    <style name="tv_label_with_icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="split_in_profile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_marginTop">@dimen/vertical_margin</item>
+        <item name="android:background">@color/yellow</item>
+    </style>
+
+    <style name="et_without_stroke">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/vertical_small_margin</item>
+    </style>
+
+    <style name="iv_item_in_explanation_after_registration">
+        <item name="android:layout_width">@dimen/size_iv_item_in_explanation_after_registration
+        </item>
+        <item name="android:layout_height">@dimen/size_iv_item_in_explanation_after_registration
+        </item>
+        <item name="android:layout_marginTop">@dimen/vertical_big_margin</item>
+    </style>
+
+</resources>

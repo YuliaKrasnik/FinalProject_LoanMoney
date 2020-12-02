@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +19,7 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     lateinit var presenter: IListOfLoansPresenter
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var btnCreateNewLoan: Button
+    private lateinit var btnCreateNewLoan: ImageButton
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -60,15 +60,19 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     }
 
     override fun showLoans(listOfLoans: List<Loan>) {
-        val listAdapter = ListAdapter { loan ->
-            onClickItemFunction(loan)
-        }
+        val listAdapter = ListAdapter(
+                { state, resources -> presenter.determineColorState(state, resources) },
+                { state, resources -> presenter.transformNameState(state, resources) },
+                { date, resources -> presenter.transformDate(date, resources) },
+                { loan -> onClickItemFunction(loan) }
+        )
         recyclerView.adapter = listAdapter
         listAdapter.updateItems(listOfLoans)
     }
 
     private fun onClickItemFunction(loan: Loan) {
-        val bundle = presenter.getNavigationBundle(loan)
+        val bundle = presenter.
+        getNavigationBundle(loan, resources)
         navigateToDestinationScreen(R.id.action_listOfLoansFragment_to_loanProfileFragment, this, bundle)
     }
 
