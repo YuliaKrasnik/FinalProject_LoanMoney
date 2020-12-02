@@ -71,7 +71,7 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
     override fun getNavigationBundle(loan: Loan, resources: Resources): Bundle {
         val bundle = Bundle()
         bundle.putInt(BUNDLE_KEY_AMOUNT, loan.amount)
-        bundle.putString(BUNDLE_KEY_DATE, transformDate(loan.date, resources))
+        bundle.putString(BUNDLE_KEY_DATE, getConvertedDate(loan.date))
         bundle.putString(BUNDLE_KEY_FIRST_NAME, loan.firstName)
         bundle.putInt(BUNDLE_KEY_ID, loan.id)
         bundle.putString(BUNDLE_KEY_LAST_NAME, loan.lastName)
@@ -100,11 +100,15 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
         }
     }
 
-    override fun transformDate(date: String, resources: Resources): String {
+    private fun getConvertedDate(date: String): String {
         val dateWithoutTime = date.split("T")
         val dateComponent = dateWithoutTime[0].split("-")
+        return "${dateComponent[2]}.${dateComponent[1]}.${dateComponent[0]}"
+    }
+
+    override fun transformDate(date: String, resources: Resources): String {
         val startDateString = resources.getString(R.string.start_date_string_in_list)
-        return "$startDateString ${dateComponent[2]}.${dateComponent[1]}.${dateComponent[0]}"
+        return "$startDateString ${getConvertedDate(date)}"
     }
 
     override fun <T> attachView(view: T) {
