@@ -90,7 +90,7 @@
         <TextView
             android:id="@+id/tv_label_percent"
             style="@style/tv_value"
-            android:text="@string/tv_label_procent_in_registration_loan"
+            android:text="@string/tv_label_percent_in_registration_loan"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
             app:layout_constraintTop_toBottomOf="@+id/tv_value_period" />
 

@@ -16,8 +16,8 @@
     <string name="name_loan_state_default">Неизвестно</string>
 
     <string name="start_date_string_in_list">Запрос от </string>
-    <string name="label_first_name_in_profile">Фамилия:</string>
-    <string name="label_last_name_in_profile">Имя:</string>
+    <string name="label_first_name_in_profile">Имя:</string>
+    <string name="label_last_name_in_profile">Фамилия:</string>
     <string name="label_phone_in_profile">Телефон:</string>
     <string name="tv_label_date_in_profile_loan">Дата:</string>
     <string name="tv_label_amount_in_profile_loan">Сумма (рубли):</string>
@@ -28,12 +28,12 @@
     <string name="iv_content_description">профиль</string>
     <string name="tv_first_method_of_obtaining_loan">Переводом на банковскую карту, предварительно привязав ее в приложении</string>
     <string name="tv_second_method_of_obtaining_loan">Наличными, обратившись в наше отделение с паспортом</string>
-    <string name="et_hint_first_name_in_registration_loan">Фамилия</string>
-    <string name="et_hint_last_name_in_registration_loan">Имя</string>
+    <string name="et_hint_first_name_in_registration_loan">Имя</string>
+    <string name="et_hint_last_name_in_registration_loan">Фамилия</string>
     <string name="et_hint_phone_in_registration_loan">Телефон</string>
     <string name="tv_label_amount_in_registration_loan">Сумма займа (рубли):</string>
     <string name="tv_label_period_in_registration_loan">Срок займа (дни):</string>
-    <string name="tv_label_procent_in_registration_loan">Процент:</string>
+    <string name="tv_label_percent_in_registration_loan">Процент:</string>
     <string name="btn_label_in_registration_loan">Оформить заявку</string>
     <string name="tv_register_loan_success">Ваш запрос успешно отправлен</string>
     <string name="tv_register_loan_description">Следите за статусом вашего запроса в списке всех займов</string>
