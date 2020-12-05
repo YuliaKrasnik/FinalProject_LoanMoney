@@ -1,8 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.network.api
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanNetwork
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanConditionsNetwork
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanRequestNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanConditionsNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanRequestNetwork
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.Body

@@ -1,7 +1,11 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.repository
 
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.datasource.LoanDataSource
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.*
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.converter.MapperLoanConditionsNetworkToLoanConditions
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.converter.MapperLoanNetworkToLoan
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.converter.MapperLoanRequestToLoanRequestNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanConditionsNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanNetwork
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.LoanConditions
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.LoanRequest
