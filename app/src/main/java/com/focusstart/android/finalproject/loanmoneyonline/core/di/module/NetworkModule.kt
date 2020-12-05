@@ -1,8 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.core.di.module
 
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.scope.ApplicationScope
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.network.api.IAuthApi
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.network.api.ILoanApi
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.network.interceptor.AuthHeaderInterceptor
 import com.focusstart.android.finalproject.loanmoneyonline.features.token.data.provider.TokenProviderImpl
 import dagger.Module
@@ -15,14 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 class NetworkModule(private val url: String) {
 
-   /* @Provides
-    @ApplicationScope
-    fun provideAuthApiClass(retrofit: Retrofit): IAuthApi = retrofit.create(IAuthApi::class.java)*/
-
-  /*  @Provides
-    @ApplicationScope
-    fun provideLoanApiClass(retrofit: Retrofit): ILoanApi = retrofit.create(ILoanApi::class.java)
-*/
     @Provides
     @ApplicationScope
     fun provideRetrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory, rxJava2CallAdapterFactory: RxJava2CallAdapterFactory): Retrofit =
