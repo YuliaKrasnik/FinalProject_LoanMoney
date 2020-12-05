@@ -2,15 +2,14 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.authenticat
 
 import android.os.Bundle
 import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.UserEntity
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.RegistrationInAppUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_NAME
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_PASSWORD
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.CODE_BAD_REQUEST
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.TAG_ERROR
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.UserEntity
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.RegistrationInAppUseCase
-import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.addTo
 import retrofit2.Response
 
 class RegistrationPresenterImpl(
@@ -50,19 +49,12 @@ class RegistrationPresenterImpl(
     private fun registrationInApp(username: String, password: String) {
         registrationInAppUseCase(username, password)
             .compose(applySchedulers())
-            .subscribe(object : SingleObserver<Response<UserEntity>> {
-                override fun onSubscribe(disposable: Disposable) {
-                    compositeDisposable.add(disposable)
-                }
-
-                override fun onSuccess(response: Response<UserEntity>) {
-                    processingResponseRegistration(response, username, password)
-                }
-
-                override fun onError(e: Throwable) {
-                    Log.e(TAG_ERROR, "registration in App: ${e.message}")
-                }
+            .subscribe({
+                processingResponseRegistration(it, username, password)
+            }, {
+                Log.e(TAG_ERROR, "registration in App: ${it.message}")
             })
+            .addTo(compositeDisposable)
     }
 
     private fun processingResponseRegistration(

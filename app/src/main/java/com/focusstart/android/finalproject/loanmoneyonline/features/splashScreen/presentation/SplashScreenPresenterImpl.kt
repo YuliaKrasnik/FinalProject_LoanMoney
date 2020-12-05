@@ -1,16 +1,15 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.presentation
 
 import android.util.Log
-import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.domain.useCase.CheckingBearerTokenAvailabilityUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import io.reactivex.Single
-import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.addTo
 import java.util.concurrent.TimeUnit
 
 class SplashScreenPresenterImpl(private val checkingBearerTokenAvailabilityUseCase: CheckingBearerTokenAvailabilityUseCase) :
-        ISplashScreenPresenter {
+    ISplashScreenPresenter {
 
     companion object {
         private const val DELAY_TIME = 800L
@@ -27,21 +26,12 @@ class SplashScreenPresenterImpl(private val checkingBearerTokenAvailabilityUseCa
         Single.just(checkingBearerTokenAvailabilityUseCase())
             .delay(DELAY_TIME, TimeUnit.MILLISECONDS)
             .compose(applySchedulers())
-            .subscribe(object : SingleObserver<Boolean> {
-                override fun onSubscribe(disposable: Disposable) {
-                    compositeDisposable.add(disposable)
-                }
-
-                override fun onSuccess(isTokenAvailability: Boolean) {
-                    processingResponseCheckingBearerToken(isTokenAvailability)
-                }
-
-                override fun onError(e: Throwable) {
-                    Log.e(Constants.TAG_ERROR, "checking bearer token availability: ${e.message}")
-                }
-
+            .subscribe({
+                processingResponseCheckingBearerToken(it)
+            }, {
+                Log.e(Constants.TAG_ERROR, "checking bearer token availability: ${it.message}")
             })
-
+            .addTo(compositeDisposable)
     }
 
     private fun processingResponseCheckingBearerToken(isTokenAvailability: Boolean) {
