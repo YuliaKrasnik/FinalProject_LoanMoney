@@ -41,7 +41,7 @@ class AuthenticationPresenterImpl(
 
     override fun onAuthenticationButtonClicked(username: String, password: String) {
         if (validationOfEnteredValues(username, password))
-            authenticationInApp(username, password)
+            authenticationInApp(createAuth(username, password))
         else view?.showToast(MESSAGE_EMPTY_FIELDS)
     }
 
@@ -71,12 +71,12 @@ class AuthenticationPresenterImpl(
 
         if (username != null && password != null) {
             view?.showPassedValues(username, password)
-            authenticationInApp(username, password)
+            authenticationInApp(createAuth(username, password))
         }
     }
 
-    private fun authenticationInApp(username: String, password: String) {
-        authenticationUseCase(createAuth(username, password))
+    private fun authenticationInApp(auth: Auth) {
+        authenticationUseCase(auth)
             .compose(applySchedulers())
             .subscribe({
                 processingResponseAuthentication(it)
