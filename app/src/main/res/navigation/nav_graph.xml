@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/authenticationFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.authentication.features.authentication.ui.AuthenticationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.authentication.ui.AuthenticationFragment"
         android:label="fragment_authentication"
         tools:layout="@layout/fragment_authentication" >
         <action
@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/listOfLoansFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.features.listOsLoans.ui.ListOfLoansFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.ui.ListOfLoansFragment"
         android:label="fragment_list_of_loans"
         tools:layout="@layout/fragment_list_of_loans" >
         <action
@@ -61,12 +61,12 @@
     </fragment>
     <fragment
         android:id="@+id/loanProfileFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.features.loanProfile.ui.LoanProfileFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.ui.LoanProfileFragment"
         android:label="fragment_loan_profile"
         tools:layout="@layout/fragment_loan_profile" />
     <fragment
         android:id="@+id/loanRegistrationFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.features.registrationLoan.ui.LoanRegistrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.loans.ui.LoanRegistrationFragment"
         android:label="fragment_loan_registration"
         tools:layout="@layout/fragment_loan_registration" >
         <action
@@ -75,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.authentication.features.registration.ui.RegistrationFragment"
+        android:name="com.focusstart.android.finalproject.loanmoneyonline.features.authentication.ui.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" >
         <action

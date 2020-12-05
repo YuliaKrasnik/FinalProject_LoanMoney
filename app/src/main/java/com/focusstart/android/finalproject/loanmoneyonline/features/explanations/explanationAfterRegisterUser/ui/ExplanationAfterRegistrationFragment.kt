@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.focusstart.android.finalproject.loanmoneyonline.App
 import com.focusstart.android.finalproject.loanmoneyonline.R
+import com.focusstart.android.finalproject.loanmoneyonline.features.explanations.di.module.ExplanationPresentersModule
 import com.focusstart.android.finalproject.loanmoneyonline.features.explanations.explanationAfterRegisterUser.presentation.IExplanationAfterRegistrationPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.features.explanations.explanationAfterRegisterUser.presentation.IExplanationAfterRegistrationView
 import javax.inject.Inject
@@ -43,7 +45,10 @@ class ExplanationAfterRegistrationFragment : Fragment(), IExplanationAfterRegist
     }
 
     private fun initPresenter() {
-        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        (activity?.application as App)
+                .getApplicationComponent()
+                .newExplanationsComponent(ExplanationPresentersModule())
+                .inject(this)
         presenter.attachView(this)
     }
 

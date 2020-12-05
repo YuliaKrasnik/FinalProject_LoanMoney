@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="@dimen/padding_vertical_big"
-        tools:context=".features.authentication.features.registration.ui.RegistrationFragment">
+        tools:context=".features.authentication.ui.RegistrationFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"

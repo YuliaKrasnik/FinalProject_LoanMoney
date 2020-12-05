@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.focusstart.android.finalproject.loanmoneyonline.App
 import com.focusstart.android.finalproject.loanmoneyonline.R
+import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.di.module.SplashScreenPresentersModule
 import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.presentation.ISplashScreenPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.presentation.ISplashScreenView
 import javax.inject.Inject
@@ -37,7 +39,10 @@ class SplashScreenFragment : Fragment(), ISplashScreenView {
     }
 
     private fun initPresenter() {
-        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        (activity?.application as App)
+                .getApplicationComponent()
+                .newSplashScreenComponent(SplashScreenPresentersModule())
+                .inject(this)
         presenter.attachView(this)
     }
 

@@ -1,6 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.explanations.explanationAfterRegisterUser.presentation
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.base.presentation.common.IBasePresenter
+import com.focusstart.android.finalproject.loanmoneyonline.core.presentation.IBasePresenter
 
 interface IExplanationAfterRegistrationPresenter : IBasePresenter {
     fun onGetStartedInAppButtonClicked()

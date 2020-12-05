@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.focusstart.android.finalproject.loanmoneyonline.features.base.ui.MainActivity">
+        <activity android:name="com.focusstart.android.finalproject.loanmoneyonline.core.ui.MainActivity">
 
         </activity>
     </application>

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="@dimen/padding_vertical_big"
-        tools:context=".features.loans.features.loanProfile.ui.LoanProfileFragment">
+        tools:context=".features.loans.ui.LoanProfileFragment">
 
         <ImageView
             android:id="@+id/iv_person_avatar"

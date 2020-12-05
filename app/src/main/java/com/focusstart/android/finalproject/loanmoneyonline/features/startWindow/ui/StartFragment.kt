@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.focusstart.android.finalproject.loanmoneyonline.App
 import com.focusstart.android.finalproject.loanmoneyonline.R
+import com.focusstart.android.finalproject.loanmoneyonline.features.startWindow.di.module.StartWindowPresentersModule
 import com.focusstart.android.finalproject.loanmoneyonline.features.startWindow.presentation.IStartWindowPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.features.startWindow.presentation.IStartWindowView
 import javax.inject.Inject
@@ -47,7 +49,10 @@ class StartFragment : Fragment(), IStartWindowView {
     }
 
     private fun initPresenter() {
-        activity?.application?.let { getPresentersComponent(it).inject(this) }
+        (activity?.application as App)
+                .getApplicationComponent()
+                .newStartWindowComponent(StartWindowPresentersModule())
+                .inject(this)
         presenter.attachView(this)
     }
 
