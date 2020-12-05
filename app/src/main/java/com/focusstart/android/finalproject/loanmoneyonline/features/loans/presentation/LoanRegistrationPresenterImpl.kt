@@ -2,8 +2,9 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.loans.prese
 
 import android.os.Bundle
 import android.util.Log
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanConditions
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.LoanConditions
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.LoanRequest
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetConditionsLoanUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.LoanRegistrationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
@@ -61,6 +62,22 @@ class LoanRegistrationPresenterImpl(
             .addTo(compositeDisposable)
     }
 
+    private fun createLoanRequest(
+        firstName: String,
+        lastName: String,
+        phoneNumber: String,
+        amount: String,
+        period: String,
+        percent: String
+    ) = LoanRequest(
+        amount.toInt(),
+        firstName,
+        lastName,
+        percent.toDouble(),
+        period.toInt(),
+        phoneNumber
+    )
+
     private fun processingResponseGettingConditionsLoan(response: Response<LoanConditions>) {
         if (response.isSuccessful) {
             val loanCondition = response.body()
@@ -89,7 +106,7 @@ class LoanRegistrationPresenterImpl(
         percent: String
     ) {
         if (validationOfEnteredValues(firstName, secondName, phoneNumber, amount))
-            registrationLoan(firstName, secondName, phoneNumber, amount, period, percent)
+            registrationLoan(createLoanRequest(firstName, secondName, phoneNumber, amount, period, percent))
         else view?.showToast(MESSAGE_EMPTY_FIELDS)
     }
 
@@ -132,15 +149,8 @@ class LoanRegistrationPresenterImpl(
         this.view = view as ILoanRegistrationView
     }
 
-    private fun registrationLoan(
-        firstName: String,
-        secondName: String,
-        phoneNumber: String,
-        amount: String,
-        period: String,
-        percent: String
-    ) {
-        loanRegistrationUseCase(firstName, secondName, phoneNumber, amount, period, percent)
+    private fun registrationLoan(loanRequest: LoanRequest) {
+        loanRegistrationUseCase(loanRequest)
             .compose(applySchedulers())
             .subscribe({
                 processingResponseRegistrationLoan(it)

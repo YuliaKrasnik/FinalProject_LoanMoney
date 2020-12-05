@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_AMOUNT

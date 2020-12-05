@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 
 class ItemViewHolder(
         val view: View,

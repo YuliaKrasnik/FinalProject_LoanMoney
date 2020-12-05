@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.focusstart.android.finalproject.loanmoneyonline.R
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 
 class ListAdapter(
         private val determineColorState: (String, Resources) -> Int,

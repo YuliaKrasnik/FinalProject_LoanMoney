@@ -1,8 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.network.api
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanConditions
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanRequest
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanConditionsNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanRequestNetwork
 import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.Body
@@ -13,20 +13,20 @@ import retrofit2.http.Path
 interface ILoanApi {
     @GET("loans/all")
     fun getLoansList(
-    ): Single<Response<List<Loan>>>
+    ): Single<Response<List<LoanNetwork>>>
 
     @POST("loans/")
     fun createNewLoan(
-            @Body bodyRequest: LoanRequest,
-    ): Single<Response<Loan>>
+        @Body bodyRequest: LoanRequestNetwork,
+    ): Single<Response<LoanNetwork>>
 
     @GET("loans/{id}")
     fun getLoanData(
             @Path("id") idLoan: Int,
-    ): Single<Response<Loan>>
+    ): Single<Response<LoanNetwork>>
 
     @GET("loans/conditions")
     fun getLoanConditions(
-    ): Single<Response<LoanConditions>>
+    ): Single<Response<LoanConditionsNetwork>>
 
 }

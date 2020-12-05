@@ -2,8 +2,8 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.loans.prese
 
 import android.content.res.Resources
 import android.os.Bundle
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.core.presentation.IBasePresenter
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 
 interface IListOfLoansPresenter : IBasePresenter {
     fun onResume()
