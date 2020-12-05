@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import com.focusstart.android.finalproject.loanmoneyonline.R
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_AMOUNT
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_DATE
@@ -15,15 +17,12 @@ import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDL
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_PERIOD
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_PHONE_NUMBER
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_STATE
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansUseCase
-import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.addTo
 import retrofit2.Response
 
 class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoansUseCase) :
-        IListOfLoansPresenter {
+    IListOfLoansPresenter {
     private var view: IListOfLoansView? = null
     private val compositeDisposable = CompositeDisposable()
 
@@ -33,20 +32,13 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
 
     private fun getListOfLoans() {
         getListOfLoansUseCase()
-                .compose(applySchedulers())
-                .subscribe(object : SingleObserver<Response<List<Loan>>> {
-                    override fun onSubscribe(disposable: Disposable) {
-                        compositeDisposable.add(disposable)
-                    }
-
-                    override fun onSuccess(response: Response<List<Loan>>) {
-                        processingResponseGetListOfLoans(response)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        Log.e(Constants.TAG_ERROR, "get list of loan: ${e.message}")
-                    }
-                })
+            .compose(applySchedulers())
+            .subscribe({
+                processingResponseGetListOfLoans(it)
+            }, {
+                Log.e(Constants.TAG_ERROR, "get list of loan: ${it.message}")
+            })
+            .addTo(compositeDisposable)
     }
 
     private fun processingResponseGetListOfLoans(response: Response<List<Loan>>) {

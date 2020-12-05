@@ -2,28 +2,27 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.authenticat
 
 import android.os.Bundle
 import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.AuthenticationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.SaveBearerTokenUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_NAME
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_PASSWORD
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.CODE_NOT_FOUND
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.AuthenticationUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.SaveBearerTokenUseCase
-import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxkotlin.addTo
 import okhttp3.ResponseBody
 import retrofit2.Response
 
 class AuthenticationPresenterImpl(
-        private val authenticationUseCase: AuthenticationUseCase,
-        private val saveBearerTokenUseCase: SaveBearerTokenUseCase
+    private val authenticationUseCase: AuthenticationUseCase,
+    private val saveBearerTokenUseCase: SaveBearerTokenUseCase
 ) :
-        IAuthenticationPresenter {
+    IAuthenticationPresenter {
 
     companion object {
         private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
         private const val MESSAGE_USER_NOT_FOUND =
-                "Не удается войти. Такого пользователя не существует"
+            "Не удается войти. Такого пользователя не существует"
     }
 
     private var view: IAuthenticationView? = null
@@ -46,7 +45,7 @@ class AuthenticationPresenterImpl(
     }
 
     private fun validationOfEnteredValues(username: String, password: String) =
-            username.isNotEmpty() && password.isNotEmpty()
+        username.isNotEmpty() && password.isNotEmpty()
 
     override fun onResume(arguments: Bundle?) {
         checkPassedValuesInBundle(arguments)
@@ -75,20 +74,13 @@ class AuthenticationPresenterImpl(
 
     private fun authenticationInApp(username: String, password: String) {
         authenticationUseCase(username, password)
-                .compose(applySchedulers())
-                .subscribe(object : SingleObserver<Response<ResponseBody>> {
-                    override fun onSubscribe(disposable: Disposable) {
-                        compositeDisposable.add(disposable)
-                    }
-
-                    override fun onSuccess(response: Response<ResponseBody>) {
-                        processingResponseAuthentication(response)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        Log.e(Constants.TAG_ERROR, "authentication in App: ${e.message}")
-                    }
-                })
+            .compose(applySchedulers())
+            .subscribe({
+                processingResponseAuthentication(it)
+            }, {
+                Log.e(Constants.TAG_ERROR, "authentication in App: ${it.message}")
+            })
+            .addTo(compositeDisposable)
     }
 
     private fun processingResponseAuthentication(response: Response<ResponseBody>) {
