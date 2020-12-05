@@ -2,7 +2,8 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.authenticat
 
 import android.os.Bundle
 import android.util.Log
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.UserEntity
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.Auth
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.UserEntity
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.RegistrationInAppUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_NAME
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_PASSWORD
@@ -15,7 +16,7 @@ import retrofit2.Response
 class RegistrationPresenterImpl(
     private val registrationInAppUseCase: RegistrationInAppUseCase
 ) :
-        IRegistrationPresenter {
+    IRegistrationPresenter {
 
     companion object {
         private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
@@ -43,11 +44,13 @@ class RegistrationPresenterImpl(
         this.view = view as IRegistrationView
     }
 
+    private fun createAuth(username: String, password: String) = Auth(username, password)
+
     private fun validationOfEnteredValues(username: String, password: String): Boolean =
         username.isNotEmpty() && password.isNotEmpty()
 
     private fun registrationInApp(username: String, password: String) {
-        registrationInAppUseCase(username, password)
+        registrationInAppUseCase(createAuth(username, password))
             .compose(applySchedulers())
             .subscribe({
                 processingResponseRegistration(it, username, password)
@@ -58,9 +61,9 @@ class RegistrationPresenterImpl(
     }
 
     private fun processingResponseRegistration(
-            response: Response<UserEntity>,
-            username: String,
-            password: String
+        response: Response<UserEntity>,
+        username: String,
+        password: String
     ) {
         if (response.isSuccessful) {
             automaticallyAuthentication(username, password)

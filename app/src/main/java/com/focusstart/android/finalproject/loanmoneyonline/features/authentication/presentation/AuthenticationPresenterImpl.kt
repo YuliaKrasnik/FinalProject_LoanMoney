@@ -2,6 +2,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.authenticat
 
 import android.os.Bundle
 import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.Auth
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.AuthenticationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.SaveBearerTokenUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
@@ -44,6 +45,8 @@ class AuthenticationPresenterImpl(
         else view?.showToast(MESSAGE_EMPTY_FIELDS)
     }
 
+    private fun createAuth(username: String, password: String) = Auth(username, password)
+
     private fun validationOfEnteredValues(username: String, password: String) =
         username.isNotEmpty() && password.isNotEmpty()
 
@@ -73,7 +76,7 @@ class AuthenticationPresenterImpl(
     }
 
     private fun authenticationInApp(username: String, password: String) {
-        authenticationUseCase(username, password)
+        authenticationUseCase(createAuth(username, password))
             .compose(applySchedulers())
             .subscribe({
                 processingResponseAuthentication(it)
