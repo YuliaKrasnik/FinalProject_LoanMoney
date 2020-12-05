@@ -1,6 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model
 
-data class LoanRequest(
+data class LoanRequestNetwork(
     val amount: Int,
     val firstName: String,
     val lastName: String,

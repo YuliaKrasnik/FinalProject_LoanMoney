@@ -2,7 +2,8 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.authenticat
 
 import android.os.Bundle
 import android.util.Log
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.UserEntity
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.Auth
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.UserEntity
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.RegistrationInAppUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_NAME
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_REGISTRATION_PASSWORD
@@ -15,7 +16,7 @@ import retrofit2.Response
 class RegistrationPresenterImpl(
     private val registrationInAppUseCase: RegistrationInAppUseCase
 ) :
-        IRegistrationPresenter {
+    IRegistrationPresenter {
 
     companion object {
         private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
@@ -35,7 +36,7 @@ class RegistrationPresenterImpl(
 
     override fun onRegistrationButtonClicked(username: String, password: String) {
         if (validationOfEnteredValues(username, password))
-            registrationInApp(username, password)
+            registrationInApp(createAuth(username, password))
         else view?.showToast(MESSAGE_EMPTY_FIELDS)
     }
 
@@ -43,14 +44,16 @@ class RegistrationPresenterImpl(
         this.view = view as IRegistrationView
     }
 
+    private fun createAuth(username: String, password: String) = Auth(username, password)
+
     private fun validationOfEnteredValues(username: String, password: String): Boolean =
         username.isNotEmpty() && password.isNotEmpty()
 
-    private fun registrationInApp(username: String, password: String) {
-        registrationInAppUseCase(username, password)
+    private fun registrationInApp(auth: Auth) {
+        registrationInAppUseCase(auth)
             .compose(applySchedulers())
             .subscribe({
-                processingResponseRegistration(it, username, password)
+                processingResponseRegistration(it, auth)
             }, {
                 Log.e(TAG_ERROR, "registration in App: ${it.message}")
             })
@@ -58,12 +61,11 @@ class RegistrationPresenterImpl(
     }
 
     private fun processingResponseRegistration(
-            response: Response<UserEntity>,
-            username: String,
-            password: String
+        response: Response<UserEntity>,
+        auth: Auth
     ) {
         if (response.isSuccessful) {
-            automaticallyAuthentication(username, password)
+            automaticallyAuthentication(auth)
         } else {
             when (response.code()) {
                 CODE_BAD_REQUEST -> view?.showUserNameError(MESSAGE_USER_EXISTS)
@@ -71,10 +73,10 @@ class RegistrationPresenterImpl(
         }
     }
 
-    private fun automaticallyAuthentication(username: String, password: String) {
+    private fun automaticallyAuthentication(auth: Auth) {
         val bundle = Bundle()
-        bundle.putString(BUNDLE_KEY_REGISTRATION_NAME, username)
-        bundle.putString(BUNDLE_KEY_REGISTRATION_PASSWORD, password)
+        bundle.putString(BUNDLE_KEY_REGISTRATION_NAME, auth.name)
+        bundle.putString(BUNDLE_KEY_REGISTRATION_PASSWORD, auth.password)
         view?.navigateToAuthenticationFragment(bundle)
     }
 

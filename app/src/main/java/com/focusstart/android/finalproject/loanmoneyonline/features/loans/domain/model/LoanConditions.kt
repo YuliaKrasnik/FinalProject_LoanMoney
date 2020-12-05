@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model
+package com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model
 
 data class LoanConditions(
     val maxAmount: Int,

@@ -1,27 +1,25 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.dataSource
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.Auth
-import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.UserEntity
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.AuthNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.model.UserEntityNetwork
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.data.network.api.IAuthApi
 import io.reactivex.Single
 import okhttp3.ResponseBody
 import retrofit2.Response
 
 interface LoginDataSource {
-    fun registrationInApp(name: String, password: String): Single<Response<UserEntity>>
-    fun authentication(name: String, password: String): Single<Response<ResponseBody>>
+    fun registrationInApp(authNetwork: AuthNetwork): Single<Response<UserEntityNetwork>>
+    fun authentication(authNetwork: AuthNetwork): Single<Response<ResponseBody>>
 }
 
 class LoginDataSourceImpl(private val apiService: IAuthApi) : LoginDataSource {
 
-    override fun registrationInApp(name: String, password: String): Single<Response<UserEntity>> {
-        val auth = Auth(name, password)
-        return apiService.registrationInApp(auth)
+    override fun registrationInApp(authNetwork: AuthNetwork): Single<Response<UserEntityNetwork>> {
+        return apiService.registrationInApp(authNetwork)
     }
 
-    override fun authentication(name: String, password: String): Single<Response<ResponseBody>> {
-        val auth = Auth(name, password)
-        return apiService.authenticationIntoApp(auth)
+    override fun authentication(authNetwork: AuthNetwork): Single<Response<ResponseBody>> {
+        return apiService.authenticationIntoApp(authNetwork)
     }
 
 }

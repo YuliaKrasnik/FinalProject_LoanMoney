@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.focusstart.android.finalproject.loanmoneyonline.App
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.di.module.LoanPresentersModule
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.Loan
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.presentation.IListOfLoansPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.presentation.IListOfLoansView
 import javax.inject.Inject
 
 class ListOfLoansFragment : Fragment(), IListOfLoansView {
+
     @Inject
     lateinit var presenter: IListOfLoansPresenter
 
