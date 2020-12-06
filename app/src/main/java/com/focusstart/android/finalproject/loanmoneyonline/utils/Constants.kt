@@ -3,6 +3,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.utils
 object Constants {
     const val APP_PREFERENCES = "my_settings"
     const val APP_PREFERENCES_TOKEN = "bearer_token"
+    const val APP_PREFERENCES_FIRST_LAUNCH = "first_launch_app"
 
     const val TAG_DEBUG = "debug_loan"
     const val TAG_ERROR = "error_app"

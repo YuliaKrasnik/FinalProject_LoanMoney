@@ -1,10 +1,8 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.di.module
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.di.scope.LoansScope
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.repository.LoanRepositoryImpl
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetConditionsLoanUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.LoanRegistrationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.di.scope.LoansScope
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.*
 import dagger.Module
 import dagger.Provides
 
@@ -12,8 +10,8 @@ import dagger.Provides
 class LoanUseCasesModule {
     @Provides
     @LoansScope
-    fun provideGetListOfLoansUseCase(loanRepositoryImpl: LoanRepositoryImpl): GetListOfLoansUseCase =
-            GetListOfLoansUseCase(loanRepositoryImpl)
+    fun provideGetListOfLoansUseCase(loanRepositoryImpl: LoanRepositoryImpl): GetListOfLoansFromNetworkUseCase =
+            GetListOfLoansFromNetworkUseCase(loanRepositoryImpl)
 
     @Provides
     @LoansScope
@@ -27,5 +25,20 @@ class LoanUseCasesModule {
     @LoansScope
     fun provideGetConditionsLoanUseCase(loanRepositoryImpl: LoanRepositoryImpl): GetConditionsLoanUseCase =
             GetConditionsLoanUseCase(loanRepositoryImpl)
+
+    @Provides
+    @LoansScope
+    fun provideGetListOfLoansFromDbUseCase(loanRepositoryImpl: LoanRepositoryImpl): GetListOfLoansFromDbUseCase =
+            GetListOfLoansFromDbUseCase(loanRepositoryImpl)
+
+    @Provides
+    @LoansScope
+    fun provideSaveListOfLoansToDbUseCase(loanRepositoryImpl: LoanRepositoryImpl): SaveListOfLoansToDbUseCase =
+            SaveListOfLoansToDbUseCase(loanRepositoryImpl)
+
+    @Provides
+    @LoansScope
+    fun provideSaveLoanToDbUseCase(loanRepositoryImpl: LoanRepositoryImpl): SaveLoanToDbUseCase =
+            SaveLoanToDbUseCase(loanRepositoryImpl)
 
 }

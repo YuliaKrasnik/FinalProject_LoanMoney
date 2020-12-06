@@ -7,14 +7,19 @@ import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.LoanRequest
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetConditionsLoanUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.LoanRegistrationUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.SaveLoanToDbUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
 class LoanRegistrationPresenterImpl(
     private val loanRegistrationUseCase: LoanRegistrationUseCase,
-    private val getConditionsLoanUseCase: GetConditionsLoanUseCase
+    private val getConditionsLoanUseCase: GetConditionsLoanUseCase,
+    private val saveLoanToDbUseCase: SaveLoanToDbUseCase
 ) :
     ILoanRegistrationPresenter {
 
@@ -163,8 +168,21 @@ class LoanRegistrationPresenterImpl(
     private fun processingResponseRegistrationLoan(response: Response<Loan>) {
         if (response.isSuccessful) {
             val loan = response.body()
-            loan?.let { view?.navigateToExplanationAfterRegisterLoanFragment() }
+            loan?.let {
+                saveLoanInDB(it)
+                view?.navigateToExplanationAfterRegisterLoanFragment()
+            }
         }
+    }
+
+    private fun saveLoanInDB(loan: Loan) {
+        Completable.fromAction { saveLoanToDbUseCase(loan) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({}, {
+                    Log.e(Constants.TAG_ERROR, "save loan in database: ${it.message}")
+                })
+                .addTo(compositeDisposable)
     }
 
 }

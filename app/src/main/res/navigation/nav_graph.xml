@@ -71,7 +71,8 @@
         tools:layout="@layout/fragment_loan_registration" >
         <action
             android:id="@+id/action_loanRegistrationFragment_to_explanationAfterRegisterLoanFragment"
-            app:destination="@id/explanationAfterRegisterLoanFragment" />
+            app:destination="@id/explanationAfterRegisterLoanFragment"
+            app:popUpTo="@id/listOfLoansFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"

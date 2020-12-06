@@ -7,4 +7,6 @@ interface IListOfLoansView : IBaseView {
     fun showLoans(listOfLoans: List<Loan>)
 
     fun navigateToLoanRegistrationFragment()
+
+    fun setRefreshing(flag: Boolean)
 }

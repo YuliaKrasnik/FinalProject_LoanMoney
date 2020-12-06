@@ -1,6 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +9,14 @@ import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.focusstart.android.finalproject.loanmoneyonline.App
 import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.di.module.LoanPresentersModule
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.presentation.IListOfLoansPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.presentation.IListOfLoansView
+import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import javax.inject.Inject
 
 class ListOfLoansFragment : Fragment(), IListOfLoansView {
@@ -23,6 +26,7 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var btnCreateNewLoan: ImageButton
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +43,9 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     }
 
     private fun initView(fragmentLayout: View) {
+        swipeRefreshLayout = fragmentLayout.findViewById(R.id.swipe_refresh)
+        swipeRefreshLayout.setOnRefreshListener { presenter.onRefresh() }
+
         recyclerView = fragmentLayout.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
@@ -83,6 +90,10 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     override fun navigateToLoanRegistrationFragment() {
         navigateToDestinationScreen(R.id.action_listOfLoansFragment_to_loanRegistrationFragment, this)
+    }
+
+    override fun setRefreshing(flag: Boolean) {
+        swipeRefreshLayout.isRefreshing = flag
     }
 
 }

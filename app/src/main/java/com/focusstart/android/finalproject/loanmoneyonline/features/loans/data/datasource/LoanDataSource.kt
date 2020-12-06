@@ -1,20 +1,25 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.datasource
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanNetwork
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanConditionsNetwork
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.LoanRequestNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.db.LoansDao
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.db.LoanDb
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanConditionsNetwork
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanRequestNetwork
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.network.api.ILoanApi
 import io.reactivex.Single
 import retrofit2.Response
 
 interface LoanDataSource {
-    fun getLoansList(): Single<Response<List<LoanNetwork>>>
+    fun getLoansListFromNetwork(): Single<Response<List<LoanNetwork>>>
     fun registerLoan(loanRequestNetwork: LoanRequestNetwork): Single<Response<LoanNetwork>>
     fun getLoanConditions(): Single<Response<LoanConditionsNetwork>>
+    fun getLoansListFromDb(): Single<List<LoanDb>>
+    fun saveLoansListInDb(listOfLoansDb: List<LoanDb>)
+    fun saveLoanInDd(loan: LoanDb)
 }
 
-class LoanDataSourceImpl(private val apiService: ILoanApi) : LoanDataSource {
-    override fun getLoansList(): Single<Response<List<LoanNetwork>>> {
+class LoanDataSourceImpl(private val apiService: ILoanApi, private val dao: LoansDao) : LoanDataSource {
+    override fun getLoansListFromNetwork(): Single<Response<List<LoanNetwork>>> {
         return apiService.getLoansList()
     }
 
@@ -24,6 +29,18 @@ class LoanDataSourceImpl(private val apiService: ILoanApi) : LoanDataSource {
 
     override fun getLoanConditions(): Single<Response<LoanConditionsNetwork>> {
         return apiService.getLoanConditions()
+    }
+
+    override fun getLoansListFromDb(): Single<List<LoanDb>> {
+        return dao.getListOfLoans()
+    }
+
+    override fun saveLoansListInDb(listOfLoansDb: List<LoanDb>) {
+        dao.insertListLoans(listOfLoansDb)
+    }
+
+    override fun saveLoanInDd(loan: LoanDb) {
+        dao.insertOneLoan(loan)
     }
 
 }

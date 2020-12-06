@@ -19,4 +19,6 @@ interface IListOfLoansPresenter : IBasePresenter {
     fun transformNameState(state: String, resources: Resources): String
 
     fun transformDate(date: String, resources: Resources): String
+
+    fun onRefresh()
 }
