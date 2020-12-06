@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.di.module
 
+import com.focusstart.android.finalproject.loanmoneyonline.core.domain.useCase.SetFlagFirstLaunchAppUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.features.token.di.scope.TokenScope
 import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.domain.useCase.CheckingBearerTokenAvailabilityUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.presentation.ISplashScreenPresenter
@@ -12,8 +13,10 @@ class SplashScreenPresentersModule {
     @Provides
     @TokenScope
     fun provideSplashScreenPresenter(
-            checkingBearerTokenAvailabilityUseCase: CheckingBearerTokenAvailabilityUseCase
+            checkingBearerTokenAvailabilityUseCase: CheckingBearerTokenAvailabilityUseCase,
+            setFlagFirstLaunchAppUseCase: SetFlagFirstLaunchAppUseCase
     ): ISplashScreenPresenter = SplashScreenPresenterImpl(
-            checkingBearerTokenAvailabilityUseCase
+            checkingBearerTokenAvailabilityUseCase,
+            setFlagFirstLaunchAppUseCase
     )
 }
