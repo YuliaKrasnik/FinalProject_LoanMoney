@@ -7,7 +7,10 @@ import io.reactivex.Single
 import retrofit2.Response
 
 interface ILoanRepository {
-    fun getLoansList(): Single<Response<List<Loan>>>
+    fun getLoansListFromNetwork(): Single<Response<List<Loan>>>
     fun registerLoan(loanRequest: LoanRequest): Single<Response<Loan>>
     fun getLoanConditions(): Single<Response<LoanConditions>>
+    fun getLoansListFromDb(): Single<List<Loan>>
+    fun saveLoansListInDb(listOfLoans: List<Loan>)
+    fun saveLoanInDb(loan: Loan)
 }
