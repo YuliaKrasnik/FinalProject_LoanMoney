@@ -1,6 +1,7 @@
 package com.focusstart.android.finalproject.loanmoneyonline.core.di.component
 
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.module.ApplicationModule
+import com.focusstart.android.finalproject.loanmoneyonline.core.di.module.DatabaseModule
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.module.NetworkModule
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.scope.ApplicationScope
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.di.component.AuthenticationComponent
@@ -16,7 +17,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.features.startWindow.
 import dagger.Component
 
 @ApplicationScope
-@Component(modules = [ApplicationModule::class, NetworkModule::class])
+@Component(modules = [ApplicationModule::class, NetworkModule::class, DatabaseModule::class])
 interface ApplicationComponent {
     fun newAuthenticationComponent(module: AuthenticationPresentersModule): AuthenticationComponent
     fun newExplanationsComponent(module: ExplanationPresentersModule): ExplanationsComponent

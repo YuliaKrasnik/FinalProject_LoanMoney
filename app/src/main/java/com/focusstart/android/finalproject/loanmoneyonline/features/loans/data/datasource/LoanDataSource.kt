@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.datasource
 
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.db.LoansDao
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanNetwork
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanConditionsNetwork
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.model.network.LoanRequestNetwork
@@ -13,7 +14,7 @@ interface LoanDataSource {
     fun getLoanConditions(): Single<Response<LoanConditionsNetwork>>
 }
 
-class LoanDataSourceImpl(private val apiService: ILoanApi) : LoanDataSource {
+class LoanDataSourceImpl(private val apiService: ILoanApi, dao: LoansDao) : LoanDataSource {
     override fun getLoansList(): Single<Response<List<LoanNetwork>>> {
         return apiService.getLoansList()
     }

@@ -18,6 +18,6 @@ interface LoansDao {
     @Query("SELECT * FROM loan")
     fun getListOfLoans(): Single<List<LoanDb>>
 
-    @Delete
+    @Query("DELETE FROM loan")
     fun deleteAll()
 }
