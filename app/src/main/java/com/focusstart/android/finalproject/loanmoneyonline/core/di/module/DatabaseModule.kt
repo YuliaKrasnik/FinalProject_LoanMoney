@@ -13,8 +13,4 @@ class DatabaseModule {
     @ApplicationScope
     fun provideRoomDb(context: Application) =
         Room.databaseBuilder(context, AppDatabase::class.java, "database").build()
-
-    @Provides
-    @ApplicationScope
-    fun provideLoansDao(appDatabase: AppDatabase) = appDatabase.loansDao()
 }
