@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import com.focusstart.android.finalproject.loanmoneyonline.R
+import com.focusstart.android.finalproject.loanmoneyonline.core.domain.useCase.GetFlagFirstLaunchAppUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.core.domain.useCase.SetFlagFirstLaunchAppUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
-import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansFromDbUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansFromNetworkUseCase
+import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.SaveListOfLoansToDbUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_AMOUNT
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_DATE
@@ -17,35 +21,84 @@ import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDL
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_PERIOD
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_PHONE_NUMBER
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BUNDLE_KEY_STATE
+import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.addTo
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
-class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoansUseCase) :
-    IListOfLoansPresenter {
+class ListOfLoansPresenterImpl(
+        private val getListOfLoansFromNetworkUseCase: GetListOfLoansFromNetworkUseCase,
+        private val getListOfLoansFromDbUseCase: GetListOfLoansFromDbUseCase,
+        private val saveListOfLoansToDbUseCase: SaveListOfLoansToDbUseCase,
+        private val getFlagFirstLaunchAppUseCase: GetFlagFirstLaunchAppUseCase,
+        private val setFlagFirstLaunchAppUseCase: SetFlagFirstLaunchAppUseCase)
+    : IListOfLoansPresenter {
+
+    companion object {
+        private const val BUNDLE_KEY_IS_FIRST_INITIALIZATION = "key_first_initialization"
+    }
+
     private var view: IListOfLoansView? = null
     private val compositeDisposable = CompositeDisposable()
 
     override fun onResume() {
-        getListOfLoans()
+        if (isAppLaunchedFirstTime()) {
+            Log.d(Constants.TAG_DEBUG, "Network")
+            getListOfLoansFromNetwork()
+            setFlagFirstLaunchApp()
+        } else {
+            Log.d(Constants.TAG_DEBUG, "DB")
+            getListOfLoansFromDb()
+        }
     }
 
-    private fun getListOfLoans() {
-        getListOfLoansUseCase()
-            .compose(applySchedulers())
-            .subscribe({
-                processingResponseGetListOfLoans(it)
-            }, {
-                Log.e(Constants.TAG_ERROR, "get list of loan: ${it.message}")
-            })
-            .addTo(compositeDisposable)
+    private fun setFlagFirstLaunchApp() = setFlagFirstLaunchAppUseCase(false)
+
+    private fun isAppLaunchedFirstTime() = getFlagFirstLaunchAppUseCase()
+
+    private fun getListOfLoansFromDb() {
+        getListOfLoansFromDbUseCase()
+                .compose(applySchedulers())
+                .subscribe({
+                    view?.showLoans(it)
+                }, {
+                    Log.e(Constants.TAG_ERROR, "get list of loan from db: ${it.message}")
+                })
+                .addTo(compositeDisposable)
+    }
+
+    private fun getListOfLoansFromNetwork() {
+        getListOfLoansFromNetworkUseCase()
+                .compose(applySchedulers())
+                .subscribe({
+                    processingResponseGetListOfLoans(it)
+                }, {
+                    Log.e(Constants.TAG_ERROR, "get list of loan from network: ${it.message}")
+                })
+                .addTo(compositeDisposable)
     }
 
     private fun processingResponseGetListOfLoans(response: Response<List<Loan>>) {
+        view?.setRefreshing(false)
         if (response.isSuccessful) {
             val listOfLoans = response.body()
-            listOfLoans?.let { view?.showLoans(it) }
+            listOfLoans?.let {
+                view?.showLoans(it)
+                saveListOfLoansInDb(it)
+            }
         }
+    }
+
+    private fun saveListOfLoansInDb(listOfLoans: List<Loan>) {
+        Completable.fromAction { saveListOfLoansToDbUseCase(listOfLoans) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({}, {
+                    Log.e(Constants.TAG_ERROR, "save list of loans in database: ${it.message}")
+                })
+                .addTo(compositeDisposable)
     }
 
     override fun detachView() {
@@ -101,6 +154,11 @@ class ListOfLoansPresenterImpl(private val getListOfLoansUseCase: GetListOfLoans
     override fun transformDate(date: String, resources: Resources): String {
         val startDateString = resources.getString(R.string.start_date_string_in_list)
         return "$startDateString ${getConvertedDate(date)}"
+    }
+
+    override fun onRefresh() {
+        Log.d(Constants.TAG_DEBUG, "Network")
+        getListOfLoansFromNetwork()
     }
 
     override fun <T> attachView(view: T) {
