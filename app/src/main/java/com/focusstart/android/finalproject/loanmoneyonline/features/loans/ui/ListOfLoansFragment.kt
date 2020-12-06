@@ -69,7 +69,6 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     override fun onDestroy() {
         presenter.detachView()
         presenter.clear()
-        Log.d(Constants.TAG_DEBUG, "DESTROY")
         super.onDestroy()
     }
 

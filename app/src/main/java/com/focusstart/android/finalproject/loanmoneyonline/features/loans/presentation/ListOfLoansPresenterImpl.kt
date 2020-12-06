@@ -36,20 +36,14 @@ class ListOfLoansPresenterImpl(
         private val setFlagFirstLaunchAppUseCase: SetFlagFirstLaunchAppUseCase)
     : IListOfLoansPresenter {
 
-    companion object {
-        private const val BUNDLE_KEY_IS_FIRST_INITIALIZATION = "key_first_initialization"
-    }
-
     private var view: IListOfLoansView? = null
     private val compositeDisposable = CompositeDisposable()
 
     override fun onResume() {
         if (isAppLaunchedFirstTime()) {
-            Log.d(Constants.TAG_DEBUG, "Network")
             getListOfLoansFromNetwork()
             setFlagFirstLaunchApp()
         } else {
-            Log.d(Constants.TAG_DEBUG, "DB")
             getListOfLoansFromDb()
         }
     }
@@ -157,7 +151,6 @@ class ListOfLoansPresenterImpl(
     }
 
     override fun onRefresh() {
-        Log.d(Constants.TAG_DEBUG, "Network")
         getListOfLoansFromNetwork()
     }
 
