@@ -5,7 +5,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain
 import io.reactivex.Single
 import retrofit2.Response
 
-class GetListOfLoansUseCase(private val loanRepository: ILoanRepository) {
+class GetListOfLoansFromNetworkUseCase(private val loanRepository: ILoanRepository) {
     operator fun invoke(): Single<Response<List<Loan>>> =
-        loanRepository.getLoansList()
+        loanRepository.getLoansListFromNetwork()
 }
