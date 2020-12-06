@@ -7,7 +7,7 @@ import com.focusstart.android.finalproject.loanmoneyonline.features.loans.di.sco
 import dagger.Module
 import dagger.Provides
 
-@Module(includes = [LoanApiModule::class])
+@Module(includes = [LoanApiModule::class, LoanDbModule::class])
 class LoanSourcesModule {
     @Provides
     @LoansScope
