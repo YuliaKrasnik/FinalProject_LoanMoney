@@ -1,7 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import com.focusstart.android.finalproject.loanmoneyonline.features.loans.di.mod
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.presentation.IListOfLoansPresenter
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.presentation.IListOfLoansView
-import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants
 import javax.inject.Inject
 
 class ListOfLoansFragment : Fragment(), IListOfLoansView {
@@ -29,8 +27,8 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_list_of_loans, container, false)
         initView(fragmentLayout)
@@ -60,9 +58,9 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     private fun initPresenter() {
         (activity?.application as App)
-                .getApplicationComponent()
-                .newLoansComponent(LoanPresentersModule())
-                .inject(this)
+            .getApplicationComponent()
+            .newLoansComponent(LoanPresentersModule())
+            .inject(this)
         presenter.attachView(this)
     }
 
@@ -74,10 +72,10 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     override fun showLoans(listOfLoans: List<Loan>) {
         val listAdapter = ListAdapter(
-                { state, resources -> presenter.determineColorState(state, resources) },
-                { state, resources -> presenter.transformNameState(state, resources) },
-                { date, resources -> presenter.transformDate(date, resources) },
-                { loan -> onClickItemFunction(loan) }
+            { state, resources -> presenter.determineColorState(state, resources) },
+            { state, resources -> presenter.transformNameState(state, resources) },
+            { date, resources -> presenter.transformDate(date, resources) },
+            { loan -> onClickItemFunction(loan) }
         )
         recyclerView.adapter = listAdapter
         listAdapter.updateItems(listOfLoans)
@@ -85,11 +83,18 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     private fun onClickItemFunction(loan: Loan) {
         val bundle = presenter.getNavigationBundle(loan, resources)
-        navigateToDestinationScreen(R.id.action_listOfLoansFragment_to_loanProfileFragment, this, bundle)
+        navigateToDestinationScreen(
+            R.id.action_listOfLoansFragment_to_loanProfileFragment,
+            this,
+            bundle
+        )
     }
 
     override fun navigateToLoanRegistrationFragment() {
-        navigateToDestinationScreen(R.id.action_listOfLoansFragment_to_loanRegistrationFragment, this)
+        navigateToDestinationScreen(
+            R.id.action_listOfLoansFragment_to_loanRegistrationFragment,
+            this
+        )
     }
 
     override fun setRefreshing(flag: Boolean) {
