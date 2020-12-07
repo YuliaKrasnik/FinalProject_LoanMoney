@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.core.presentation.workManager
+package com.focusstart.android.finalproject.loanmoneyonline.core.workManager
 
 import android.content.Context
 import androidx.work.ListenableWorker
@@ -14,7 +14,7 @@ class CustomWorkerFactory(private val getListOfLoansFromNetworkUseCase: GetListO
         workerClassName: String,
         workerParameters: WorkerParameters
     ): ListenableWorker? {
-        
+
         val workerClass = Class.forName(workerClassName).asSubclass(Worker::class.java)
         val constructor =
             workerClass.getDeclaredConstructor(Context::class.java, WorkerParameters::class.java)

@@ -2,7 +2,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.core.di.module
 
 import androidx.work.WorkerFactory
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.scope.ApplicationScope
-import com.focusstart.android.finalproject.loanmoneyonline.core.presentation.workManager.CustomWorkerFactory
+import com.focusstart.android.finalproject.loanmoneyonline.core.workManager.CustomWorkerFactory
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.datasource.LoanDataSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.db.AppDatabase
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.db.LoansDao

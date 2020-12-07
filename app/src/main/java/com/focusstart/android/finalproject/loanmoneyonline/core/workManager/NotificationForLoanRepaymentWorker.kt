@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.core.presentation.workManager
+package com.focusstart.android.finalproject.loanmoneyonline.core.workManager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

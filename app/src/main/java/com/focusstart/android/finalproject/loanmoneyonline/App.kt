@@ -5,7 +5,7 @@ import androidx.work.*
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.component.ApplicationComponent
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.component.DaggerApplicationComponent
 import com.focusstart.android.finalproject.loanmoneyonline.core.di.module.*
-import com.focusstart.android.finalproject.loanmoneyonline.core.presentation.workManager.NotificationForLoanRepaymentWorker
+import com.focusstart.android.finalproject.loanmoneyonline.core.workManager.NotificationForLoanRepaymentWorker
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BASE_URL
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.FLEX_INTERVAL_IN_WORK_MANAGER
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.REPEAT_INTERVAL_IN_WORK_MANAGER
