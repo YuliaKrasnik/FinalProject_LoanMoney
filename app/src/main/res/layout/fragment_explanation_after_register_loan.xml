@@ -11,10 +11,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
+        style="@style/tv_label_fragment"
         android:text="@string/tv_register_loan_success"
         android:textSize="@dimen/size_text_normal"
         app:drawableStartCompat="@drawable/ic_check"
         app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_end_in_explanation_after_register_loan"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_explanation_after_register_loan"
         app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_top_in_explanation_after_register_loan" />
 
@@ -39,7 +41,6 @@
         android:text="@string/btn_label_navigate_in_loans_list"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_register_loan_description" />
 

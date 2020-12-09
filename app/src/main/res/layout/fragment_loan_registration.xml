@@ -54,14 +54,10 @@
 
         <SeekBar
             android:id="@+id/sb_amount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/horizontal_small_margin"
-            android:layout_marginEnd="@dimen/horizontal_small_margin"
-            android:max="50"
             app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_amount" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_amount"
+            style="@style/seek_bar" />
 
         <TextView
             android:id="@+id/tv_value_amount_seekBar"
@@ -76,6 +72,7 @@
             style="@style/tv_value"
             android:layout_marginTop="@dimen/vertical_margin"
             android:text="@string/tv_label_period_in_registration_loan"
+            android:layout_marginBottom="@dimen/vertical_margin"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
             app:layout_constraintTop_toBottomOf="@+id/tv_value_amount_seekBar" />
 
@@ -91,12 +88,14 @@
             android:id="@+id/tv_label_percent"
             style="@style/tv_value"
             android:text="@string/tv_label_percent_in_registration_loan"
+            android:layout_marginTop="@dimen/vertical_margin"
             app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
             app:layout_constraintTop_toBottomOf="@+id/tv_value_period" />
 
         <TextView
             android:id="@+id/tv_value_percent"
             style="@style/tv_value"
+            android:layout_marginTop="@dimen/vertical_margin"
             app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
             app:layout_constraintStart_toEndOf="@id/tv_label_percent"
             app:layout_constraintTop_toBottomOf="@+id/tv_value_period" />
