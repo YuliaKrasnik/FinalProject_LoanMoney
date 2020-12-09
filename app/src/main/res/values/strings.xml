@@ -42,5 +42,12 @@
     <string name="tv_item_register_loan_in_explanation">Заполните простую заявку на займ</string>
     <string name="tv_item_approval_time_in_explanation">Дождитесь одобрения</string>
     <string name="tv_obtain_money_in_explanation">Получите деньги переводом на карту или наличными в офисе</string>
+    
+    <string name="title_notification">Срок займов истекает</string>
+    <string name="text_1_part_notification">У вас имеются неоплаченные займы.</string>
+    <string name="text_2_part_notification">Общее количество:</string>
+    <string name="text_3_part_notification">Перейдите в приложение для просмотра.</string>
+
+
 
 </resources>

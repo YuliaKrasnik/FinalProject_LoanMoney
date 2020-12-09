@@ -10,10 +10,7 @@ import dagger.Subcomponent
 @LoansScope
 @Subcomponent(modules = [
     LoanPresentersModule::class,
-    LoanUseCasesModule::class,
-    LoanRepositoriesModule::class,
-    LoanSourcesModule::class,
-    LoanApiModule::class
+    LoanUseCasesModule::class
 ])
 interface LoansComponent {
     fun inject(fragment: ListOfLoansFragment)
