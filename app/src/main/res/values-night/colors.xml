@@ -7,17 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="background">@color/white</color>
+    <color name="background">#121212</color>
+
 
     <color name="yellow">#FFD46C</color>
     <color name="icon_gray">#8C8C8C</color>
+    <color name="window_authentication">#272727</color>
     <color name="split_view">#8C8C8C</color>
-    <color name="window_authentication">@color/white</color>
     <color name="logo">#7FA201</color>
-    <color name="background_under_window">#ECEAEA</color>
+    <color name="background_under_window">#121212</color>
     <color name="loan_state_approved">#7FA201</color>
     <color name="loan_state_registered">#424141</color>
     <color name="loan_state_rejected">#9B0125</color>
-    <color name="text_in_list">@color/black</color>
+    <color name="text_in_list">#f4f4f4</color>
 
 </resources>
