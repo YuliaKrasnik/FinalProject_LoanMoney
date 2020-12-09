@@ -8,22 +8,14 @@
 
     <TextView
         android:id="@+id/tv_date_loan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vertical_small_margin"
         android:text="@string/start_date_string_in_list"
-        android:textColor="@color/black"
-        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/tv_item_in_list" />
 
     <TextView
         android:id="@+id/tv_amount_loan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/vertical_margin"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        style="@style/tv_item_in_list"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/vertical_small_margin"
         android:textAllCaps="true"
-        android:textColor="@color/loan_state_registered"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_date_loan" />

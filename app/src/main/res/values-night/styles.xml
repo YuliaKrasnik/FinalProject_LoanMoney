@@ -4,7 +4,10 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/page_header</item>
         <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/logo</item>
+        <item name="colorAccent">@color/color_accent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColorPrimary">#191919</item>
+        <item name="titleTextColor">#f4f4f4</item>
     </style>
 
     <style name="logo_on_start">
@@ -25,7 +28,7 @@
         <item name="android:layout_marginTop">@dimen/vertical_big_margin</item>
         <item name="android:layout_marginEnd">@dimen/horizontal_margin</item>
         <item name="android:layout_marginBottom">@dimen/vertical_margin</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:background">@drawable/button_design</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -51,6 +54,7 @@
     </style>
 
     <style name="tv_label_without_icon">
+        <item name="android:textColor">@color/text</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/horizontal_small_margin</item>
@@ -60,6 +64,7 @@
     </style>
 
     <style name="tv_value">
+        <item name="android:textColor">@color/text</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">16sp</item>
         <item name="android:layout_width">0dp</item>
@@ -68,6 +73,7 @@
     </style>
 
     <style name="tv_label_with_icon">
+        <item name="android:textColor">@color/text</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -84,12 +90,16 @@
     </style>
 
     <style name="et_without_stroke">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:backgroundTint">@color/split_view</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/vertical_small_margin</item>
     </style>
 
     <style name="iv_item_in_explanation_after_registration">
+        <item name="android:textColor">@color/text</item>
         <item name="android:layout_width">@dimen/size_iv_item_in_explanation_after_registration
         </item>
         <item name="android:layout_height">@dimen/size_iv_item_in_explanation_after_registration
@@ -101,18 +111,8 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/vertical_small_margin</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/text</item>
         <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="seek_bar">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">@dimen/horizontal_small_margin</item>
-        <item name="android:layout_marginEnd">@dimen/horizontal_small_margin</item>
-        <item name="android:max">50</item>
-        <item name="android:progressBackgroundTint">@color/sb_progress_background_tint</item>
-        <item name="android:progressTint">@color/sb_progress_tint</item>
     </style>
 
 </resources>
