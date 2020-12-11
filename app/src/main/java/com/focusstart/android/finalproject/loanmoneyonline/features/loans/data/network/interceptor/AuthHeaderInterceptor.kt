@@ -1,6 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.network.interceptor
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.token.data.provider.ITokenProvider
+import com.focusstart.android.finalproject.loanmoneyonline.core.data.provider.ITokenProvider
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response

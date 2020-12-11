@@ -62,19 +62,21 @@ class LoanRepositoryImpl(
                     }
 
     override fun saveLoansListInDb(listOfLoans: List<Loan>) =
-        dataSource.saveLoansListInDb(mapperListOfLoansToListOfLoansDb(listOfLoans))
+            dataSource.saveLoansListInDb(mapperListOfLoansToListOfLoansDb(listOfLoans))
 
     override fun saveLoanInDb(loan: Loan) {
         dataSource.saveLoanInDd(mapperLoanToLoanDb(loan))
     }
 
+    override fun deleteCachedLoans() = dataSource.deleteCachedLoans()
+
     private fun mapperLoanToLoanDb(loan: Loan): LoanDb =
-        MapperLoanToLoanDb().map(loan)
+            MapperLoanToLoanDb().map(loan)
 
     private fun mapperListOfLoansToListOfLoansDb(listOfLoans: List<Loan>): List<LoanDb> =
-        listOfLoans.map {
-            MapperLoanToLoanDb().map(it)
-        }
+            listOfLoans.map {
+                MapperLoanToLoanDb().map(it)
+            }
 
     private fun mapperListOfLoansDbToListOfLoans(listOfLoansDb: List<LoanDb>?): List<Loan>? =
             listOfLoansDb?.map {

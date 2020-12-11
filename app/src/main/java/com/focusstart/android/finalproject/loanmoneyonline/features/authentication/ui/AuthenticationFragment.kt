@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.authentication.ui
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -84,4 +85,5 @@ class AuthenticationFragment : Fragment(), IAuthenticationView {
     override fun showToast(message: String) =
             Toast.makeText(context, message, Toast.LENGTH_LONG).show()
 
+    override fun returnResources() = resources
 }

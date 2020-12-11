@@ -1,11 +1,11 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -27,8 +27,8 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val fragmentLayout = inflater.inflate(R.layout.fragment_list_of_loans, container, false)
         initView(fragmentLayout)
@@ -49,6 +49,8 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
         btnCreateNewLoan = fragmentLayout.findViewById(R.id.btn_create_new_loan)
         btnCreateNewLoan.setOnClickListener { presenter.onCreateNewLoanButtonClicked() }
+
+        setHasOptionsMenu(true)
     }
 
     override fun onResume() {
@@ -58,10 +60,21 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     private fun initPresenter() {
         (activity?.application as App)
-            .getApplicationComponent()
-            .newLoansComponent(LoanPresentersModule())
-            .inject(this)
+                .getApplicationComponent()
+                .newLoansComponent(LoanPresentersModule())
+                .inject(this)
         presenter.attachView(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val navController = NavHostFragment.findNavController(this)
+        NavigationUI.onNavDestinationSelected(item, navController)
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onDestroy() {
@@ -72,10 +85,10 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
 
     override fun showLoans(listOfLoans: List<Loan>) {
         val listAdapter = ListAdapter(
-            { state, resources -> presenter.determineColorState(state, resources) },
-            { state, resources -> presenter.transformNameState(state, resources) },
-            { date, resources -> presenter.transformDate(date, resources) },
-            { loan -> onClickItemFunction(loan) }
+                { state, resources -> presenter.determineColorState(state, resources) },
+                { state, resources -> presenter.transformNameState(state, resources) },
+                { date, resources -> presenter.transformDate(date, resources) },
+                { loan -> onClickItemFunction(loan) }
         )
         recyclerView.adapter = listAdapter
         listAdapter.updateItems(listOfLoans)
@@ -84,21 +97,20 @@ class ListOfLoansFragment : Fragment(), IListOfLoansView {
     private fun onClickItemFunction(loan: Loan) {
         val bundle = presenter.getNavigationBundle(loan, resources)
         navigateToDestinationScreen(
-            R.id.action_listOfLoansFragment_to_loanProfileFragment,
-            this,
-            bundle
+                R.id.action_listOfLoansFragment_to_loanProfileFragment,
+                this,
+                bundle
         )
     }
 
     override fun navigateToLoanRegistrationFragment() {
         navigateToDestinationScreen(
-            R.id.action_listOfLoansFragment_to_loanRegistrationFragment,
-            this
+                R.id.action_listOfLoansFragment_to_loanRegistrationFragment,
+                this
         )
     }
 
     override fun setRefreshing(flag: Boolean) {
         swipeRefreshLayout.isRefreshing = flag
     }
-
 }

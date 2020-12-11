@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.authentication.presentation
 
+import android.content.res.Resources
 import android.os.Bundle
 import com.focusstart.android.finalproject.loanmoneyonline.core.presentation.IBaseView
 
@@ -10,4 +11,6 @@ interface IRegistrationView : IBaseView {
     fun showUserNameError(message: String)
 
     fun navigateToAuthenticationFragment(bundle: Bundle)
+
+    fun returnResources():Resources
 }
