@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Loan Money</string>
-    <string name="btn_label_authentication">Enter your personal account</string>
+    <string name="btn_label_authentication">Log in to your personal account</string>
     <string name="btn_label_registration">Registration</string>
     <string name="label_app">Loan Money</string>
     <string name="tv_label_registration_fragment">Registration</string>
@@ -28,15 +28,15 @@
     <string name="tv_instruction_loan">After the status of your request is \"Approved\", you can get a loan in a convenient way:</string>
     <string name="iv_content_description">profile</string>
     <string name="tv_first_method_of_obtaining_loan">By transfer to a bank card, having previously linked it in the application</string>
-    <string name="tv_second_method_of_obtaining_loan">Cash by contacting our office with a passport</string>
+    <string name="tv_second_method_of_obtaining_loan">In cash by contacting our office with a passport</string>
     <string name="et_hint_first_name_in_registration_loan">First name</string>
     <string name="et_hint_last_name_in_registration_loan">Last name</string>
     <string name="et_hint_phone_in_registration_loan">Phone number</string>
-    <string name="tv_label_amount_in_registration_loan">Amount loan (rubles):</string>
-    <string name="tv_label_period_in_registration_loan">Period loan (days):</string>
+    <string name="tv_label_amount_in_registration_loan">Loan amount (rubles):</string>
+    <string name="tv_label_period_in_registration_loan">Loan term (days):</string>
     <string name="tv_label_percent_in_registration_loan">Percent:</string>
     <string name="btn_label_in_registration_loan">Make a request</string>
-    <string name="tv_register_loan_success">Your request has been successfully sent</string>
+    <string name="tv_register_loan_success">Your request has been sent successfully</string>
     <string name="tv_register_loan_description">Track the status of your request in the list of all loans</string>
     <string name="btn_label_navigate_in_loans_list">Go to the list of loans</string>
     <string name="btn_label_in_explanation_after_registration">To begin</string>
@@ -44,10 +44,10 @@
     <string name="tv_item_approval_time_in_explanation">Wait for approval</string>
     <string name="tv_obtain_money_in_explanation">Receive money by transfer to a card or in cash at the office</string>
 
-    <string name="title_notification">Loans expire</string>
+    <string name="title_notification">Loan term expires</string>
     <string name="text_1_part_notification">You have unpaid loans.</string>
-    <string name="text_2_part_notification">Total:</string>
-    <string name="text_3_part_notification">Navigate to the application for viewing.</string>
+    <string name="text_2_part_notification">Total amount:</string>
+    <string name="text_3_part_notification">Go to the application for viewing.</string>
     <string name="tv_label_language_settings">Language:</string>
     <string name="rb_russian_language">Русский</string>
     <string name="rb_english_language">English</string>
