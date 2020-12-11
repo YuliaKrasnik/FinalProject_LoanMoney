@@ -57,9 +57,9 @@ class App : Application() {
         val listWorkRequest = PeriodicWorkRequest.Builder(
                 NotificationForLoanRepaymentWorker::class.java,
                 REPEAT_INTERVAL_IN_WORK_MANAGER,
-                TimeUnit.MINUTES,
+                TimeUnit.DAYS,
                 FLEX_INTERVAL_IN_WORK_MANAGER,
-                TimeUnit.MINUTES
+                TimeUnit.DAYS
         )
                 .setConstraints(constrains)
                 .build()

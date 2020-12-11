@@ -30,7 +30,7 @@ object Constants {
 
     const val STATE_LOAN_FOR_NOTIFICATION = "APPROVED"
 
-    const val COUNT_OF_DAYS_BEFORE_LOAN_EXPIRATION = 15 //Todo =5, сейчас большой промежуток, чтобы были какие-то истекающие займы
+    const val COUNT_OF_DAYS_BEFORE_LOAN_EXPIRATION = 5
     const val KEY_COUNT_FOUND_EXPIRING_LOANS = "key_count_found_expiring_loans"
 
     const val DEFAULT_ID_NOTIFICATION = 1
@@ -42,7 +42,7 @@ object Constants {
 
     const val COUNT_MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24
 
-    const val REPEAT_INTERVAL_IN_WORK_MANAGER = 20L //Todo = несколько дней
-    const val FLEX_INTERVAL_IN_WORK_MANAGER = 5L  //Todo = несколько дней
+    const val REPEAT_INTERVAL_IN_WORK_MANAGER = 2L
+    const val FLEX_INTERVAL_IN_WORK_MANAGER = 1L
 
 }
