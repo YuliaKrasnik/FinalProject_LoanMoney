@@ -126,4 +126,6 @@ class LoanRegistrationFragment : Fragment(), ILoanRegistrationView {
         sbAmount.progress = progress
     }
 
+    override fun returnResources() = resources
+
 }

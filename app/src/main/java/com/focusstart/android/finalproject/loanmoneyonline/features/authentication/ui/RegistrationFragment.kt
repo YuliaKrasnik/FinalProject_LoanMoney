@@ -74,4 +74,6 @@ class RegistrationFragment : Fragment(), IRegistrationView {
         navigateToDestinationScreen(R.id.action_registrationFragment_to_authenticationFragment, this, bundle)
     }
 
+    override fun returnResources() = resources
+
 }

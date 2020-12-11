@@ -13,4 +13,5 @@ interface ILoanRepository {
     fun getLoansListFromDb(): Single<List<Loan>>
     fun saveLoansListInDb(listOfLoans: List<Loan>)
     fun saveLoanInDb(loan: Loan)
+    fun deleteCachedLoans()
 }

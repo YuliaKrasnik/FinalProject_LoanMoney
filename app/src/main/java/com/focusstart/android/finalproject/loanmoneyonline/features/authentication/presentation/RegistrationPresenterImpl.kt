@@ -2,6 +2,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.authenticat
 
 import android.os.Bundle
 import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.Auth
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.UserEntity
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.RegistrationInAppUseCase
@@ -14,15 +15,9 @@ import io.reactivex.rxkotlin.addTo
 import retrofit2.Response
 
 class RegistrationPresenterImpl(
-    private val registrationInAppUseCase: RegistrationInAppUseCase
+        private val registrationInAppUseCase: RegistrationInAppUseCase
 ) :
-    IRegistrationPresenter {
-
-    companion object {
-        private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
-        private const val MESSAGE_USER_EXISTS = "Пользователь с таким именем уже существует"
-    }
-
+        IRegistrationPresenter {
     private var view: IRegistrationView? = null
     private val compositeDisposable = CompositeDisposable()
 
@@ -37,7 +32,12 @@ class RegistrationPresenterImpl(
     override fun onRegistrationButtonClicked(username: String, password: String) {
         if (validationOfEnteredValues(username, password))
             registrationInApp(createAuth(username, password))
-        else view?.showToast(MESSAGE_EMPTY_FIELDS)
+        else showToast(R.string.message_empty_fields)
+    }
+
+    private fun showToast(messageId: Int) {
+        val message = view?.returnResources()?.getString(messageId)
+        message?.let { view?.showToast(it) }
     }
 
     override fun <T> attachView(view: T) {
@@ -47,28 +47,31 @@ class RegistrationPresenterImpl(
     private fun createAuth(username: String, password: String) = Auth(username, password)
 
     private fun validationOfEnteredValues(username: String, password: String): Boolean =
-        username.isNotEmpty() && password.isNotEmpty()
+            username.isNotEmpty() && password.isNotEmpty()
 
     private fun registrationInApp(auth: Auth) {
         registrationInAppUseCase(auth)
-            .compose(applySchedulers())
-            .subscribe({
-                processingResponseRegistration(it, auth)
-            }, {
-                Log.e(TAG_ERROR, "registration in App: ${it.message}")
-            })
-            .addTo(compositeDisposable)
+                .compose(applySchedulers())
+                .subscribe({
+                    processingResponseRegistration(it, auth)
+                }, {
+                    Log.e(TAG_ERROR, "registration in App: ${it.message}")
+                })
+                .addTo(compositeDisposable)
     }
 
     private fun processingResponseRegistration(
-        response: Response<UserEntity>,
-        auth: Auth
+            response: Response<UserEntity>,
+            auth: Auth
     ) {
         if (response.isSuccessful) {
             automaticallyAuthentication(auth)
         } else {
             when (response.code()) {
-                CODE_BAD_REQUEST -> view?.showUserNameError(MESSAGE_USER_EXISTS)
+                CODE_BAD_REQUEST -> {
+                    val message = view?.returnResources()?.getString(R.string.message_user_exists)
+                    message?.let { view?.showUserNameError(it) }
+                }
             }
         }
     }

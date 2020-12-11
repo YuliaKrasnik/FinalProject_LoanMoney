@@ -1,5 +1,6 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.loans.presentation
 
+import android.content.res.Resources
 import com.focusstart.android.finalproject.loanmoneyonline.core.presentation.IBaseView
 
 interface ILoanRegistrationView : IBaseView {
@@ -12,4 +13,6 @@ interface ILoanRegistrationView : IBaseView {
     fun setMaxInSeekBar(maxValue: Int)
 
     fun setProgressInSeekBar(progress: Int)
+
+    fun returnResources(): Resources
 }

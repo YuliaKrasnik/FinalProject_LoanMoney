@@ -16,6 +16,7 @@ interface LoanDataSource {
     fun getLoansListFromDb(): Single<List<LoanDb>>
     fun saveLoansListInDb(listOfLoansDb: List<LoanDb>)
     fun saveLoanInDd(loan: LoanDb)
+    fun deleteCachedLoans()
 }
 
 class LoanDataSourceImpl(private val apiService: ILoanApi, private val dao: LoansDao) : LoanDataSource {
@@ -41,6 +42,10 @@ class LoanDataSourceImpl(private val apiService: ILoanApi, private val dao: Loan
 
     override fun saveLoanInDd(loan: LoanDb) {
         dao.insertOneLoan(loan)
+    }
+
+    override fun deleteCachedLoans() {
+        dao.deleteAll()
     }
 
 }

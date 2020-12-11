@@ -42,12 +42,18 @@
     <string name="tv_item_register_loan_in_explanation">Заполните простую заявку на займ</string>
     <string name="tv_item_approval_time_in_explanation">Дождитесь одобрения</string>
     <string name="tv_obtain_money_in_explanation">Получите деньги переводом на карту или наличными в офисе</string>
-    
+
     <string name="title_notification">Срок займов истекает</string>
     <string name="text_1_part_notification">У вас имеются неоплаченные займы.</string>
     <string name="text_2_part_notification">Общее количество:</string>
     <string name="text_3_part_notification">Перейдите в приложение для просмотра.</string>
+    <string name="tv_label_language_settings">Язык:</string>
+    <string name="rb_russian_language">Русский</string>
+    <string name="rb_english_language">English</string>
+    <string name="item_menu_settings">Настройки</string>
 
-
+    <string name="message_empty_fields">Заполните все поля</string>
+    <string name="message_user_not_found">Не удается войти. Такого пользователя не существует</string>
+    <string name="message_user_exists">Пользователь с таким именем уже существует</string>
 
 </resources>

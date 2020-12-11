@@ -1,16 +1,15 @@
 package com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.di.module
 
-import com.focusstart.android.finalproject.loanmoneyonline.features.token.di.module.TokenRepositoriesModule
-import com.focusstart.android.finalproject.loanmoneyonline.features.token.di.scope.TokenScope
+import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.di.scope.SplashScreenScope
 import com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.domain.useCase.CheckingBearerTokenAvailabilityUseCase
-import com.focusstart.android.finalproject.loanmoneyonline.features.token.data.repository.TokenRepositoryImpl
+import com.focusstart.android.finalproject.loanmoneyonline.core.data.repository.TokenRepositoryImpl
 import dagger.Module
 import dagger.Provides
 
-@Module(includes = [TokenRepositoriesModule::class])
+@Module
 class SplashScreenUseCasesModule {
     @Provides
-    @TokenScope
+    @SplashScreenScope
     fun provideCheckingBearerTokenAvailabilityUseCase(
             tokenRepositoryImpl: TokenRepositoryImpl
     ): CheckingBearerTokenAvailabilityUseCase = CheckingBearerTokenAvailabilityUseCase(

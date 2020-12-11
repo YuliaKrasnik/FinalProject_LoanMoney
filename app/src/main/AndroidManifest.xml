@@ -15,21 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name="com.focusstart.android.finalproject.loanmoneyonline.features.splashScreen.ui.SplashScreenActivity">
+
+        <activity android:name="com.focusstart.android.finalproject.loanmoneyonline.core.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.focusstart.android.finalproject.loanmoneyonline.core.ui.MainActivity">
-        </activity>
 
         <provider
-            android:authorities="com.focusstart.android.finalproject.loanmoneyonline.workmanager-init"
             android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="com.focusstart.android.finalproject.loanmoneyonline.workmanager-init"
             android:enabled="false"
             android:exported="false"
-            tools:node="remove"/>
+            tools:node="remove" />
     </application>
 
 </manifest>

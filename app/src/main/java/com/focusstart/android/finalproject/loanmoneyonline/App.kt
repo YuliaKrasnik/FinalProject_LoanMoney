@@ -2,9 +2,9 @@ package com.focusstart.android.finalproject.loanmoneyonline
 
 import android.app.Application
 import androidx.work.*
-import com.focusstart.android.finalproject.loanmoneyonline.core.di.component.ApplicationComponent
-import com.focusstart.android.finalproject.loanmoneyonline.core.di.component.DaggerApplicationComponent
-import com.focusstart.android.finalproject.loanmoneyonline.core.di.module.*
+import com.focusstart.android.finalproject.loanmoneyonline.core.di.app.component.ApplicationComponent
+import com.focusstart.android.finalproject.loanmoneyonline.core.di.app.component.DaggerApplicationComponent
+import com.focusstart.android.finalproject.loanmoneyonline.core.di.app.module.*
 import com.focusstart.android.finalproject.loanmoneyonline.core.workManager.NotificationForLoanRepaymentWorker
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.BASE_URL
 import com.focusstart.android.finalproject.loanmoneyonline.utils.Constants.FLEX_INTERVAL_IN_WORK_MANAGER
@@ -22,12 +22,13 @@ class App : Application() {
     fun getApplicationComponent(): ApplicationComponent {
         if (applicationComponent == null) {
             applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(ApplicationModule(this))
-                .networkModule(NetworkModule(BASE_URL))
-                .databaseModule(DatabaseModule())
-                .settingsModule(SettingsModule())
-                .workerModule(WorkerModule())
-                .build()
+                    .applicationModule(ApplicationModule(this))
+                    .networkModule(NetworkModule(BASE_URL))
+                    .databaseModule(DatabaseModule())
+                    .settingsModule(SettingsModule())
+                    .workerModule(WorkerModule())
+                    .tokenModule(TokenModule())
+                    .build()
 
         }
         return applicationComponent!!
@@ -43,30 +44,30 @@ class App : Application() {
 
     private fun configureWorkManager() {
         val config = Configuration.Builder()
-            .setWorkerFactory(workerFactory)
-            .build()
+                .setWorkerFactory(workerFactory)
+                .build()
         WorkManager.initialize(this, config)
     }
 
     private fun runWorkManager() {
         val constrains = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .build()
+                .setRequiredNetworkType(NetworkType.CONNECTED)
+                .build()
 
         val listWorkRequest = PeriodicWorkRequest.Builder(
-            NotificationForLoanRepaymentWorker::class.java,
-            REPEAT_INTERVAL_IN_WORK_MANAGER,
-            TimeUnit.MINUTES,
-            FLEX_INTERVAL_IN_WORK_MANAGER,
-            TimeUnit.MINUTES
+                NotificationForLoanRepaymentWorker::class.java,
+                REPEAT_INTERVAL_IN_WORK_MANAGER,
+                TimeUnit.MINUTES,
+                FLEX_INTERVAL_IN_WORK_MANAGER,
+                TimeUnit.MINUTES
         )
-            .setConstraints(constrains)
-            .build()
+                .setConstraints(constrains)
+                .build()
 
         WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
-            UNIQUE_NAME_WORK_NOTIFICATION,
-            ExistingPeriodicWorkPolicy.KEEP,
-            listWorkRequest
+                UNIQUE_NAME_WORK_NOTIFICATION,
+                ExistingPeriodicWorkPolicy.KEEP,
+                listWorkRequest
         )
 
     }

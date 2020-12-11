@@ -2,6 +2,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.loans.prese
 
 import android.os.Bundle
 import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.Loan
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.LoanConditions
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.model.LoanRequest
@@ -17,16 +18,15 @@ import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 
 class LoanRegistrationPresenterImpl(
-    private val loanRegistrationUseCase: LoanRegistrationUseCase,
-    private val getConditionsLoanUseCase: GetConditionsLoanUseCase,
-    private val saveLoanToDbUseCase: SaveLoanToDbUseCase
+        private val loanRegistrationUseCase: LoanRegistrationUseCase,
+        private val getConditionsLoanUseCase: GetConditionsLoanUseCase,
+        private val saveLoanToDbUseCase: SaveLoanToDbUseCase
 ) :
-    ILoanRegistrationPresenter {
+        ILoanRegistrationPresenter {
 
     companion object {
         private const val STEP_VALUE_IN_SEEK_BAR = 1000
         private const val MIN_VALUE_IN_SEEK_BAR = 1000
-        private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
 
         private const val BUNDLE_KEY_PROGRESS = "key_progress"
         private const val BUNDLE_KEY_PERCENT = "key_percent"
@@ -58,29 +58,29 @@ class LoanRegistrationPresenterImpl(
 
     private fun getConditionsLoan() {
         getConditionsLoanUseCase()
-            .compose(applySchedulers())
-            .subscribe({
-                processingResponseGettingConditionsLoan(it)
-            }, {
-                Log.e(Constants.TAG_ERROR, "get conditions loan: ${it.message}")
-            })
-            .addTo(compositeDisposable)
+                .compose(applySchedulers())
+                .subscribe({
+                    processingResponseGettingConditionsLoan(it)
+                }, {
+                    Log.e(Constants.TAG_ERROR, "get conditions loan: ${it.message}")
+                })
+                .addTo(compositeDisposable)
     }
 
     private fun createLoanRequest(
-        firstName: String,
-        lastName: String,
-        phoneNumber: String,
-        amount: String,
-        period: String,
-        percent: String
+            firstName: String,
+            lastName: String,
+            phoneNumber: String,
+            amount: String,
+            period: String,
+            percent: String
     ) = LoanRequest(
-        amount.toInt(),
-        firstName,
-        lastName,
-        percent.toDouble(),
-        period.toInt(),
-        phoneNumber
+            amount.toInt(),
+            firstName,
+            lastName,
+            percent.toDouble(),
+            period.toInt(),
+            phoneNumber
     )
 
     private fun processingResponseGettingConditionsLoan(response: Response<LoanConditions>) {
@@ -97,31 +97,36 @@ class LoanRegistrationPresenterImpl(
     }
 
     private fun setMaxValueInSeekBar(maxAmount: Int) =
-        view?.setMaxInSeekBar(calculateValueSeekBar(maxAmount))
+            view?.setMaxInSeekBar(calculateValueSeekBar(maxAmount))
 
     private fun calculateValueSeekBar(maxAmount: Int) =
-        (maxAmount - MIN_VALUE_IN_SEEK_BAR) / STEP_VALUE_IN_SEEK_BAR
+            (maxAmount - MIN_VALUE_IN_SEEK_BAR) / STEP_VALUE_IN_SEEK_BAR
 
     override fun onRegistrationLoanButtonClicked(
-        firstName: String,
-        secondName: String,
-        phoneNumber: String,
-        amount: String,
-        period: String,
-        percent: String
+            firstName: String,
+            secondName: String,
+            phoneNumber: String,
+            amount: String,
+            period: String,
+            percent: String
     ) {
         if (validationOfEnteredValues(firstName, secondName, phoneNumber, amount))
             registrationLoan(createLoanRequest(firstName, secondName, phoneNumber, amount, period, percent))
-        else view?.showToast(MESSAGE_EMPTY_FIELDS)
+        else showToast(R.string.message_empty_fields)
+    }
+
+    private fun showToast(messageId: Int) {
+        val message = view?.returnResources()?.getString(messageId)
+        message?.let { view?.showToast(it) }
     }
 
     private fun validationOfEnteredValues(
-        firstName: String,
-        secondName: String,
-        phoneNumber: String,
-        amount: String
+            firstName: String,
+            secondName: String,
+            phoneNumber: String,
+            amount: String
     ): Boolean =
-        firstName.isNotEmpty() && secondName.isNotEmpty() && phoneNumber.isNotEmpty() && amount.isNotEmpty()
+            firstName.isNotEmpty() && secondName.isNotEmpty() && phoneNumber.isNotEmpty() && amount.isNotEmpty()
 
     override fun getTransformedProgressValueInSeekBar(progress: Int): Int {
         progressSeekBar = progress
@@ -156,13 +161,13 @@ class LoanRegistrationPresenterImpl(
 
     private fun registrationLoan(loanRequest: LoanRequest) {
         loanRegistrationUseCase(loanRequest)
-            .compose(applySchedulers())
-            .subscribe({
-                processingResponseRegistrationLoan(it)
-            }, {
-                Log.e(Constants.TAG_ERROR, "registration loan: ${it.message}")
-            })
-            .addTo(compositeDisposable)
+                .compose(applySchedulers())
+                .subscribe({
+                    processingResponseRegistrationLoan(it)
+                }, {
+                    Log.e(Constants.TAG_ERROR, "registration loan: ${it.message}")
+                })
+                .addTo(compositeDisposable)
     }
 
     private fun processingResponseRegistrationLoan(response: Response<Loan>) {

@@ -2,6 +2,7 @@ package com.focusstart.android.finalproject.loanmoneyonline.features.authenticat
 
 import android.os.Bundle
 import android.util.Log
+import com.focusstart.android.finalproject.loanmoneyonline.R
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.model.Auth
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.AuthenticationUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.features.authentication.domain.useCase.SaveBearerTokenUseCase
@@ -15,17 +16,10 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 
 class AuthenticationPresenterImpl(
-    private val authenticationUseCase: AuthenticationUseCase,
-    private val saveBearerTokenUseCase: SaveBearerTokenUseCase
+        private val authenticationUseCase: AuthenticationUseCase,
+        private val saveBearerTokenUseCase: SaveBearerTokenUseCase
 ) :
-    IAuthenticationPresenter {
-
-    companion object {
-        private const val MESSAGE_EMPTY_FIELDS = "Заполните все поля"
-        private const val MESSAGE_USER_NOT_FOUND =
-            "Не удается войти. Такого пользователя не существует"
-    }
-
+        IAuthenticationPresenter {
     private var view: IAuthenticationView? = null
     private val compositeDisposable = CompositeDisposable()
 
@@ -42,13 +36,20 @@ class AuthenticationPresenterImpl(
     override fun onAuthenticationButtonClicked(username: String, password: String) {
         if (validationOfEnteredValues(username, password))
             authenticationInApp(createAuth(username, password))
-        else view?.showToast(MESSAGE_EMPTY_FIELDS)
+        else {
+            showToast(R.string.message_empty_fields)
+        }
+    }
+
+    private fun showToast(messageId: Int) {
+        val message = view?.returnResources()?.getString(messageId)
+        message?.let { view?.showToast(it) }
     }
 
     private fun createAuth(username: String, password: String) = Auth(username, password)
 
     private fun validationOfEnteredValues(username: String, password: String) =
-        username.isNotEmpty() && password.isNotEmpty()
+            username.isNotEmpty() && password.isNotEmpty()
 
     override fun onResume(arguments: Bundle?) {
         checkPassedValuesInBundle(arguments)
@@ -77,13 +78,13 @@ class AuthenticationPresenterImpl(
 
     private fun authenticationInApp(auth: Auth) {
         authenticationUseCase(auth)
-            .compose(applySchedulers())
-            .subscribe({
-                processingResponseAuthentication(it)
-            }, {
-                Log.e(Constants.TAG_ERROR, "authentication in App: ${it.message}")
-            })
-            .addTo(compositeDisposable)
+                .compose(applySchedulers())
+                .subscribe({
+                    processingResponseAuthentication(it)
+                }, {
+                    Log.e(Constants.TAG_ERROR, "authentication in App: ${it.message}")
+                })
+                .addTo(compositeDisposable)
     }
 
     private fun processingResponseAuthentication(response: Response<ResponseBody>) {
@@ -95,7 +96,7 @@ class AuthenticationPresenterImpl(
             }
         } else {
             when (response.code()) {
-                CODE_NOT_FOUND -> view?.showToast(MESSAGE_USER_NOT_FOUND)
+                CODE_NOT_FOUND -> showToast(R.string.message_user_not_found)
             }
         }
     }
