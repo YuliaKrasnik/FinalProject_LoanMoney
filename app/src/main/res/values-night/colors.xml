@@ -28,5 +28,5 @@
     <color name="text_label">#494646</color>
     <color name="sb_progress_background_tint">#8C8C8C</color>
     <color name="sb_progress_tint">#E68BA13B</color>
-
+    <color name="rb_tint">#E68BA13B</color>
 </resources>

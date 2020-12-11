@@ -28,4 +28,5 @@
     <color name="text_label">#494646</color>
     <color name="sb_progress_background_tint">#272727</color>
     <color name="sb_progress_tint">#7FA201</color>
+    <color name="rb_tint">#7FA201</color>
 </resources>
