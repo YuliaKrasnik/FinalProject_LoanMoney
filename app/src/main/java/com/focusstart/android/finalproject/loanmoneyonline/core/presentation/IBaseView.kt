@@ -10,4 +10,10 @@ interface IBaseView {
         val navController = NavHostFragment.findNavController(fragment)
         bundle?.let { navController.navigate(idWay, bundle) } ?: navController.navigate(idWay)
     }
+
+    fun popBackStackNavigation(fragment: Fragment, idDestination: Int, inclusive: Boolean) {
+        val navController = NavHostFragment.findNavController(fragment)
+        navController.popBackStack(idDestination, inclusive)
+    }
+
 }

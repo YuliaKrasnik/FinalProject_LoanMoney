@@ -1,8 +1,8 @@
-package com.focusstart.android.finalproject.loanmoneyonline.core.di.module
+package com.focusstart.android.finalproject.loanmoneyonline.core.di.app.module
 
-import com.focusstart.android.finalproject.loanmoneyonline.core.di.scope.ApplicationScope
+import com.focusstart.android.finalproject.loanmoneyonline.core.di.app.scope.ApplicationScope
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.data.network.interceptor.AuthHeaderInterceptor
-import com.focusstart.android.finalproject.loanmoneyonline.features.token.data.provider.TokenProviderImpl
+import com.focusstart.android.finalproject.loanmoneyonline.core.data.provider.TokenProviderImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

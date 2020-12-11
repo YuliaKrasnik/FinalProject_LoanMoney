@@ -1,4 +1,4 @@
-package com.focusstart.android.finalproject.loanmoneyonline.core.di.scope
+package com.focusstart.android.finalproject.loanmoneyonline.core.di.app.scope
 
 import javax.inject.Scope
 

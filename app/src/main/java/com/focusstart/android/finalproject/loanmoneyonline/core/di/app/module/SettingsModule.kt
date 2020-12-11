@@ -1,9 +1,9 @@
-package com.focusstart.android.finalproject.loanmoneyonline.core.di.module
+package com.focusstart.android.finalproject.loanmoneyonline.core.di.app.module
 
 import com.focusstart.android.finalproject.loanmoneyonline.core.data.datasource.SettingsDataSourceImpl
 import com.focusstart.android.finalproject.loanmoneyonline.core.data.provider.SettingsProviderImpl
 import com.focusstart.android.finalproject.loanmoneyonline.core.data.repository.SettingsRepositoryImpl
-import com.focusstart.android.finalproject.loanmoneyonline.core.di.scope.ApplicationScope
+import com.focusstart.android.finalproject.loanmoneyonline.core.di.app.scope.ApplicationScope
 import com.focusstart.android.finalproject.loanmoneyonline.core.domain.useCase.GetFlagFirstLaunchAppUseCase
 import com.focusstart.android.finalproject.loanmoneyonline.core.domain.useCase.SetFlagFirstLaunchAppUseCase
 import dagger.Module
