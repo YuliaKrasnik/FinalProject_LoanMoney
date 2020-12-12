@@ -34,19 +34,7 @@ class MainActivity : AppCompatActivity(), IMainView {
     }
 
     override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(createContextWithChangedLanguage(base))
-    }
-
-    private fun createContextWithChangedLanguage(base: Context): Context {
-        val settingsProvider: ISettingsProvider = SettingsProviderImpl((base.getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE)))
-        val localeString = settingsProvider.getLanguage()
-        var locale: Locale = Locale.getDefault()
-        if (localeString != null) locale = Locale(localeString)
-
-        val newConfiguration = Configuration(base.resources.configuration)
-        Locale.setDefault(locale)
-        newConfiguration.setLocale(locale)
-        return base.createConfigurationContext(newConfiguration)
+        super.attachBaseContext(base.createContextWithChangedLanguage())
     }
 
     override fun restartView() {
