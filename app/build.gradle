@@ -69,4 +69,7 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
 
     implementation "androidx.work:work-runtime-ktx:2.4.0"
+
+    testImplementation "org.mockito:mockito-android:2.24.5"
+    testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.6.0"
 }
