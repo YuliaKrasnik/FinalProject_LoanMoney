@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_under_window">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="@dimen/padding_vertical_big"
+        tools:context=".features.authentication.ui.RegistrationFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/window_constraint_layout"
+            android:paddingBottom="@dimen/padding_vertical_big"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_bottom_in_registration"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_end_in_registration"
+            app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_registration"
+            app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_top_in_registration">
+
+            <TextView
+                android:id="@+id/tv_label_registration_fragment"
+                style="@style/tv_label_fragment"
+                android:text="@string/tv_label_registration_fragment"
+                app:layout_constraintBottom_toTopOf="@+id/et_name_user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_name_user"
+                style="@style/et_with_stroke"
+                android:drawableStart="@drawable/ic_person_small"
+                android:hint="@string/et_hint_name_user"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_internal_in_registration"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_internal_in_registration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="200dp" />
+
+            <EditText
+                android:id="@+id/et_password_user"
+                style="@style/et_with_stroke"
+                android:drawableStart="@drawable/ic_lock"
+                android:hint="@string/et_hint_password_user"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_internal_in_registration" />
+
+            <Button
+                android:id="@+id/btn_registration"
+                style="@style/button_style"
+                android:layout_marginTop="100dp"
+                android:text="@string/btn_label_continue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_password_user" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start_in_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end_in_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_top_in_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_bottom_in_registration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="100dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

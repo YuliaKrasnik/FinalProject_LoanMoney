@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.explanations.explanationAfterRegisterLoan.ui.ExplanationAfterRegisterLoanFragment">
+
+    <TextView
+        android:id="@+id/tv_register_loan_success"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        style="@style/tv_label_fragment"
+        android:text="@string/tv_register_loan_success"
+        android:textSize="@dimen/size_text_normal"
+        app:drawableStartCompat="@drawable/ic_check"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_end_in_explanation_after_register_loan"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_explanation_after_register_loan"
+        app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_top_in_explanation_after_register_loan" />
+
+    <TextView
+        android:id="@+id/tv_register_loan_description"
+        style="@style/tv_value"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center"
+        android:text="@string/tv_register_loan_description"
+        app:layout_constraintBottom_toTopOf="@+id/btn_navigate_in_loans_list"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_vertical_end_in_explanation_after_register_loan"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_explanation_after_register_loan"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_loan_success"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <Button
+        android:id="@+id/btn_navigate_in_loans_list"
+        style="@style/button_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_label_navigate_in_loans_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_register_loan_description" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_top_in_explanation_after_register_loan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="60dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_start_in_explanation_after_register_loan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_end_in_explanation_after_register_loan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

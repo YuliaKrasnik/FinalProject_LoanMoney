@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="@dimen/padding_vertical_big"
+        tools:context=".features.loans.ui.LoanRegistrationFragment">
+
+        <EditText
+            android:id="@+id/et_first_name"
+            style="@style/et_without_stroke"
+            android:hint="@string/et_hint_first_name_in_registration_loan"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toTopOf="@id/guideline_horizontal_top_in_registration_loan" />
+
+        <EditText
+            android:id="@+id/et_last_name"
+            style="@style/et_without_stroke"
+            android:hint="@string/et_hint_last_name_in_registration_loan"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/et_first_name" />
+
+        <EditText
+            android:id="@+id/et_phone_number"
+            style="@style/et_without_stroke"
+            android:hint="@string/et_hint_phone_in_registration_loan"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/et_last_name" />
+
+        <TextView
+            android:id="@+id/tv_label_amount"
+            style="@style/tv_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:text="@string/tv_label_amount_in_registration_loan"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
+
+        <SeekBar
+            android:id="@+id/sb_amount"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_amount"
+            style="@style/seek_bar" />
+
+        <TextView
+            android:id="@+id/tv_value_amount_seekBar"
+            style="@style/tv_value"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/sb_amount" />
+
+        <TextView
+            android:id="@+id/tv_label_period"
+            style="@style/tv_value"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:text="@string/tv_label_period_in_registration_loan"
+            android:layout_marginBottom="@dimen/vertical_margin"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_value_amount_seekBar" />
+
+        <TextView
+            android:id="@+id/tv_value_period"
+            style="@style/tv_value"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toEndOf="@id/tv_label_period"
+            app:layout_constraintTop_toBottomOf="@+id/tv_value_amount_seekBar" />
+
+        <TextView
+            android:id="@+id/tv_label_percent"
+            style="@style/tv_value"
+            android:text="@string/tv_label_percent_in_registration_loan"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_value_period" />
+
+        <TextView
+            android:id="@+id/tv_value_percent"
+            style="@style/tv_value"
+            android:layout_marginTop="@dimen/vertical_margin"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toEndOf="@id/tv_label_percent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_value_period" />
+
+        <Button
+            android:id="@+id/btn_registration_loan"
+            style="@style/button_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_label_in_registration_loan"
+            app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_registration_loan"
+            app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_registration_loan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_value_percent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_start_in_registration_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_top_in_registration_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="30dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_vertical_end_in_registration_loan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

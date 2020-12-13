@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".features.explanations.explanationAfterRegisterUser.ui.ExplanationAfterRegistrationFragment">
+
+    <ImageView
+        android:id="@+id/iv_item_register_loan_in_explanation"
+        style="@style/iv_item_in_explanation_after_registration"
+        android:src="@drawable/ic_create"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_explanation_after_registration"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_item_register_loan_in_explanation"
+        style="@style/tv_value"
+        android:text="@string/tv_item_register_loan_in_explanation"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_item_register_loan_in_explanation"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_explanation_after_registration"
+        app:layout_constraintStart_toEndOf="@+id/iv_item_register_loan_in_explanation"
+        app:layout_constraintTop_toTopOf="@id/iv_item_register_loan_in_explanation" />
+
+    <ImageView
+        android:id="@+id/iv_item_approval_time_in_explanation"
+        style="@style/iv_item_in_explanation_after_registration"
+        android:src="@drawable/ic_access_time"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_explanation_after_registration"
+        app:layout_constraintTop_toBottomOf="@+id/iv_item_register_loan_in_explanation" />
+
+    <TextView
+        android:id="@+id/tv_item_approval_time_in_explanation"
+        style="@style/tv_value"
+        android:text="@string/tv_item_approval_time_in_explanation"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_item_approval_time_in_explanation"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_explanation_after_registration"
+        app:layout_constraintStart_toEndOf="@+id/iv_item_approval_time_in_explanation"
+        app:layout_constraintTop_toTopOf="@id/iv_item_approval_time_in_explanation" />
+
+    <ImageView
+        android:id="@+id/iv_obtain_money_in_explanation"
+        style="@style/iv_item_in_explanation_after_registration"
+        android:src="@drawable/ic_account_balance_wallet"
+        app:layout_constraintBottom_toTopOf="@+id/btn_get_started_in_app"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical_start_in_explanation_after_registration"
+        app:layout_constraintTop_toBottomOf="@+id/iv_item_approval_time_in_explanation"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TextView
+        android:id="@+id/tv_obtain_money_in_explanation"
+        style="@style/tv_value"
+        android:text="@string/tv_obtain_money_in_explanation"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_obtain_money_in_explanation"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_explanation_after_registration"
+        app:layout_constraintStart_toEndOf="@+id/iv_obtain_money_in_explanation"
+        app:layout_constraintTop_toTopOf="@id/iv_obtain_money_in_explanation" />
+
+    <Button
+        android:id="@+id/btn_get_started_in_app"
+        style="@style/button_style"
+        android:layout_marginTop="@dimen/vertical_big_margin"
+        android:text="@string/btn_label_in_explanation_after_registration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_end_in_explanation_after_registration"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_start_in_explanation_after_registration"
+        app:layout_constraintTop_toBottomOf="@+id/iv_obtain_money_in_explanation" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_start_in_explanation_after_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_end_in_explanation_after_registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
