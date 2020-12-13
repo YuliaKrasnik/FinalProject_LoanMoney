@@ -9,12 +9,12 @@ interface ILoanRegistrationPresenter : IBasePresenter {
     fun onResume()
 
     fun onRegistrationLoanButtonClicked(
-        firstName: String,
-        secondName: String,
-        phoneNumber: String,
-        amount: String,
-        period: String,
-        percent: String
+            firstName: String,
+            secondName: String,
+            phoneNumber: String,
+            amount: String,
+            period: String,
+            percent: String
     )
 
     fun getTransformedProgressValueInSeekBar(progress: Int): Int

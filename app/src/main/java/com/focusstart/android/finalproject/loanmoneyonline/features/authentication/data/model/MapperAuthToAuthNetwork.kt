@@ -6,8 +6,8 @@ import com.focusstart.android.finalproject.loanmoneyonline.features.authenticati
 class MapperAuthToAuthNetwork : Mapper<Auth, AuthNetwork> {
     override fun map(input: Auth): AuthNetwork {
         return AuthNetwork(
-            input.name,
-            input.password
+                input.name,
+                input.password
         )
     }
 

@@ -7,12 +7,12 @@ import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain
 class MapperLoanRequestToLoanRequestNetwork : Mapper<LoanRequest, LoanRequestNetwork> {
     override fun map(input: LoanRequest): LoanRequestNetwork {
         return LoanRequestNetwork(
-            input.amount,
-            input.firstName,
-            input.lastName,
-            input.percent,
-            input.period,
-            input.phoneNumber
+                input.amount,
+                input.firstName,
+                input.lastName,
+                input.percent,
+                input.period,
+                input.phoneNumber
         )
     }
 }

@@ -18,30 +18,21 @@ object Constants {
     const val BUNDLE_KEY_PERIOD = "key_period"
     const val BUNDLE_KEY_PHONE_NUMBER = "key_phone_number"
     const val BUNDLE_KEY_STATE = "key_state"
-
-    const val CODE_SUCCESSFUL = 200
-    const val CODE_BAD_REQUEST = 400
-    const val CODE_NOT_FOUND = 404
-
     const val BUNDLE_KEY_REGISTRATION_NAME = "key_registration_name"
     const val BUNDLE_KEY_REGISTRATION_PASSWORD = "key_registration_password"
 
-    const val BASE_URL =  "http://focusapp-env.eba-xm2atk2z.eu-central-1.elasticbeanstalk.com/"
+    const val CODE_BAD_REQUEST = 400
+    const val CODE_NOT_FOUND = 404
+
+    const val BASE_URL = "http://focusapp-env.eba-xm2atk2z.eu-central-1.elasticbeanstalk.com/"
 
     const val STATE_LOAN_FOR_NOTIFICATION = "APPROVED"
-
     const val COUNT_OF_DAYS_BEFORE_LOAN_EXPIRATION = 5
-    const val KEY_COUNT_FOUND_EXPIRING_LOANS = "key_count_found_expiring_loans"
-
     const val DEFAULT_ID_NOTIFICATION = 1
     const val DEFAULT_ID_CHANNEL = "default_id_channel"
     const val DEFAULT_NAME_CHANNEL = "default_name_channel"
-
-    const val TAG_WORK_MANAGER_GET_LIST_AND_NOTIFICATION = "tag_get_list_and_notification"
     const val UNIQUE_NAME_WORK_NOTIFICATION = "work_notification"
-
     const val COUNT_MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24
-
     const val REPEAT_INTERVAL_IN_WORK_MANAGER = 2L
     const val FLEX_INTERVAL_IN_WORK_MANAGER = 1L
 

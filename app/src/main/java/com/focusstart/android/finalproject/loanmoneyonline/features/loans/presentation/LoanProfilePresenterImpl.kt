@@ -32,14 +32,14 @@ class LoanProfilePresenterImpl : ILoanProfilePresenter {
             val state = it.getString(BUNDLE_KEY_STATE).toString()
 
             view?.showLoanProfile(
-                firstName,
-                lastName,
-                phoneNumber,
-                date,
-                amount,
-                period,
-                percent,
-                state
+                    firstName,
+                    lastName,
+                    phoneNumber,
+                    date,
+                    amount,
+                    period,
+                    percent,
+                    state
             )
         }
     }

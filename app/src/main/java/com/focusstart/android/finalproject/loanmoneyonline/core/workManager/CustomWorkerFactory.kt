@@ -8,16 +8,16 @@ import androidx.work.WorkerParameters
 import com.focusstart.android.finalproject.loanmoneyonline.features.loans.domain.useCase.GetListOfLoansFromNetworkUseCase
 
 class CustomWorkerFactory(private val getListOfLoansFromNetworkUseCase: GetListOfLoansFromNetworkUseCase) :
-    WorkerFactory() {
+        WorkerFactory() {
     override fun createWorker(
-        appContext: Context,
-        workerClassName: String,
-        workerParameters: WorkerParameters
+            appContext: Context,
+            workerClassName: String,
+            workerParameters: WorkerParameters
     ): ListenableWorker? {
 
         val workerClass = Class.forName(workerClassName).asSubclass(Worker::class.java)
         val constructor =
-            workerClass.getDeclaredConstructor(Context::class.java, WorkerParameters::class.java)
+                workerClass.getDeclaredConstructor(Context::class.java, WorkerParameters::class.java)
         val instance = constructor.newInstance(appContext, workerParameters)
 
         when (instance) {

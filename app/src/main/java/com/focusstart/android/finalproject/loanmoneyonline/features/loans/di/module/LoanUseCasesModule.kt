@@ -11,29 +11,29 @@ class LoanUseCasesModule {
     @Provides
     @LoansScope
     fun provideLoanRegistrationUseCase(
-        loanRepositoryImpl: LoanRepositoryImpl
+            loanRepositoryImpl: LoanRepositoryImpl
     ): LoanRegistrationUseCase = LoanRegistrationUseCase(
-        loanRepositoryImpl
+            loanRepositoryImpl
     )
 
     @Provides
     @LoansScope
     fun provideGetConditionsLoanUseCase(loanRepositoryImpl: LoanRepositoryImpl): GetConditionsLoanUseCase =
-        GetConditionsLoanUseCase(loanRepositoryImpl)
+            GetConditionsLoanUseCase(loanRepositoryImpl)
 
     @Provides
     @LoansScope
     fun provideGetListOfLoansFromDbUseCase(loanRepositoryImpl: LoanRepositoryImpl): GetListOfLoansFromDbUseCase =
-        GetListOfLoansFromDbUseCase(loanRepositoryImpl)
+            GetListOfLoansFromDbUseCase(loanRepositoryImpl)
 
     @Provides
     @LoansScope
     fun provideSaveListOfLoansToDbUseCase(loanRepositoryImpl: LoanRepositoryImpl): SaveListOfLoansToDbUseCase =
-        SaveListOfLoansToDbUseCase(loanRepositoryImpl)
+            SaveListOfLoansToDbUseCase(loanRepositoryImpl)
 
     @Provides
     @LoansScope
     fun provideSaveLoanToDbUseCase(loanRepositoryImpl: LoanRepositoryImpl): SaveLoanToDbUseCase =
-        SaveLoanToDbUseCase(loanRepositoryImpl)
+            SaveLoanToDbUseCase(loanRepositoryImpl)
 
 }

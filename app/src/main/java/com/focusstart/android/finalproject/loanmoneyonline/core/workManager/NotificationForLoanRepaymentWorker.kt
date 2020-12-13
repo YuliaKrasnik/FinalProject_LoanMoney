@@ -22,11 +22,11 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class NotificationForLoanRepaymentWorker(
-    context: Context,
-    workerParams: WorkerParameters
+        context: Context,
+        workerParams: WorkerParameters
 ) : Worker(
-    context,
-    workerParams
+        context,
+        workerParams
 ) {
     private var listOfLoans: List<Loan> = mutableListOf()
     lateinit var getListOfLoansFromNetworkUseCase: GetListOfLoansFromNetworkUseCase
@@ -48,57 +48,57 @@ class NotificationForLoanRepaymentWorker(
         val notificationManager = createNotificationManager()
 
         val notification =
-            NotificationCompat.Builder(applicationContext, Constants.DEFAULT_ID_CHANNEL)
-                .setContentTitle(applicationContext.resources.getString(R.string.title_notification))
-                .setContentText(text)
-                .setSmallIcon(R.drawable.logo)
-                .setContentIntent(contentIntent)
-                .setStyle(NotificationCompat.BigTextStyle().bigText(text))
-                .setAutoCancel(true)
+                NotificationCompat.Builder(applicationContext, Constants.DEFAULT_ID_CHANNEL)
+                        .setContentTitle(applicationContext.resources.getString(R.string.title_notification))
+                        .setContentText(text)
+                        .setSmallIcon(R.drawable.logo)
+                        .setContentIntent(contentIntent)
+                        .setStyle(NotificationCompat.BigTextStyle().bigText(text))
+                        .setAutoCancel(true)
 
         notificationManager.notify(Constants.DEFAULT_ID_NOTIFICATION, notification.build())
     }
 
     private fun createNotificationManager(): NotificationManager {
         val notificationManager: NotificationManager =
-            applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             val notificationChannel =
-                NotificationChannel(
-                    Constants.DEFAULT_ID_CHANNEL,
-                    Constants.DEFAULT_NAME_CHANNEL,
-                    NotificationManager.IMPORTANCE_DEFAULT
-                )
+                    NotificationChannel(
+                            Constants.DEFAULT_ID_CHANNEL,
+                            Constants.DEFAULT_NAME_CHANNEL,
+                            NotificationManager.IMPORTANCE_DEFAULT
+                    )
             notificationManager.createNotificationChannel(notificationChannel)
         }
         return notificationManager
     }
 
     private fun createTextNotification(countFindExpiringLoans: Int) =
-        applicationContext.resources.getString(R.string.text_1_part_notification) + " " +
-                applicationContext.resources.getString(R.string.text_2_part_notification) + " " + countFindExpiringLoans + ". " +
-                applicationContext.resources.getString(R.string.text_3_part_notification)
+            applicationContext.resources.getString(R.string.text_1_part_notification) + " " +
+                    applicationContext.resources.getString(R.string.text_2_part_notification) + " " + countFindExpiringLoans + ". " +
+                    applicationContext.resources.getString(R.string.text_3_part_notification)
 
     private fun createContentIntent(): PendingIntent {
         val notificationIntent = Intent(applicationContext, MainActivity::class.java)
         return PendingIntent.getActivity(
-            applicationContext,
-            0,
-            notificationIntent,
-            PendingIntent.FLAG_CANCEL_CURRENT
+                applicationContext,
+                0,
+                notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT
         )
     }
 
     private fun getListOfLoansFromNetwork() {
         getListOfLoansFromNetworkUseCase()
-            .subscribe({
-                processingResponse(it)
-            }, {
-                Log.e(
-                    Constants.TAG_ERROR,
-                    "get list of loan in work manager from network: ${it.message}"
-                )
-            }).dispose()
+                .subscribe({
+                    processingResponse(it)
+                }, {
+                    Log.e(
+                            Constants.TAG_ERROR,
+                            "get list of loan in work manager from network: ${it.message}"
+                    )
+                }).dispose()
     }
 
     private fun processingResponse(response: Response<List<Loan>>) {
@@ -122,7 +122,7 @@ class NotificationForLoanRepaymentWorker(
 
     private fun checkExpirationDate(date: String, period: Int): Boolean {
         val simpleDateFormat =
-            SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+HH:mm", Locale.getDefault())
+                SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS+HH:mm", Locale.getDefault())
         val dateLoan = simpleDateFormat.parse(date)
 
         val calendarCurrent = Calendar.getInstance(Locale.getDefault())

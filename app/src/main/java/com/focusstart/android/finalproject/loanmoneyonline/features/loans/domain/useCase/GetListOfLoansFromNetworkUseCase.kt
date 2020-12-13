@@ -7,5 +7,5 @@ import retrofit2.Response
 
 class GetListOfLoansFromNetworkUseCase(private val loanRepository: ILoanRepository) {
     operator fun invoke(): Single<Response<List<Loan>>> =
-        loanRepository.getLoansListFromNetwork()
+            loanRepository.getLoansListFromNetwork()
 }
